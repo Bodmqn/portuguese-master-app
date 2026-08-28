@@ -151,7 +151,7 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 ## 6. Changelog
 
 - **v0.3.1 — 2026-08-28: Articles Full Words + Bold + Scoped Font**
-  - Expand `Masc.`/`Fem.`/`Sing.`/`Pl.` → `Masculine`/`Feminine`/`Singular`/`Plural` (full words) for all 28 Articles + tricky rules; bold distinguished first segment `<span style='font-weight:800;color:var(--rv-pale)'>` for both Alphabet (26, `á [a]` pops) and Articles (28, grammar core pops)
+  - Expand `Masc.`/`Fem.`/`Sing.`/`Pl.` → `Masculine`/`Feminine`/`Singular`/`Plural` (full words) for all 28 Articles + tricky rules; bold distinguished via `<span style='font-weight:800;color:var(--rv-pale)'>` — Alphabet: `á [a]` (first segment) pops, Articles core 8: `Definite Article — Masculine Singular 'the'` (first two segments) pops for explanatory clarity
   - Scoped font reduction for `Articles` only: `translation-display` `22px`→`19px`, `quiz-opt` `14px`→`13px` via `currentCategory==='Articles'` in `showWord`/`showQuiz` — accommodates longer strings, keeps mobile-friendly
   - Files: `index.html:638,752,1110,1156` (Alphabet+Articles bold, font), `data.js:30` (sync), `service-worker.js:3` `v3`→`v4`, `PROGRESS.md`
 
