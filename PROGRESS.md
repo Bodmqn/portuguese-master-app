@@ -13,7 +13,7 @@
 | `index.html` | **Authoritative** app + inline `const database` + UI | Mobile shell preserved |
 | `data.js` | Mirror database (cached by PWA) | Synced with `index.html` database |
 | `manifest.json` | PWA manifest — branding | Updated to Brazilian |
-| `service-worker.js` | Offline cache | Bumped to `br-portuguese-v3` |
+| `service-worker.js` | Offline cache | Bumped to `br-portuguese-v4` |
 | `PROGRESS.md` | This log — living document | Created 2026-08-28 |
 
 **Key code refs:**
@@ -61,7 +61,7 @@
     ["Y","ípsilon [ipsilõ] — 'ee-psee-lon' — Yoga"],
     ["Z","zê [ze] — 'zeh' — Zebra (zebra)"]
     ```
-  - **Design rationale:** Pronunciation kept **alongside** letter (name `[IPA]` + simple respelling `'ah'` + pt-BR example word) to fit `word-display:349` / `translation-display:356` + `quiz-opt:368` 2-col (360px `601`) without overflow. Audio via `🔊` (`speak('A')`) always `pt-BR`; tip card now dynamic `Pronunciation Tip` for alphabet (`index.html:1121-1123`).
+  - **Design rationale:** Pronunciation kept **alongside** letter (name `[IPA]` + simple respelling `'ah'` + pt-BR example word) to fit `word-display:349` / `translation-display:356` + `quiz-opt:368` 2-col (360px `601`) without overflow. **Bold distinguished** `á [a]` first segment via `<span style='font-weight:800;color:var(--rv-pale)'>` — important pronunciation pops. Audio via `🔊` (`speak('A')`) always `pt-BR`; tip card now dynamic `Pronunciation Tip` for alphabet (`index.html:1121-1123`).
   - **Why 26 not 38:** Core 26 official letters kept; accented `ÁÂÃÀÉÊÍÓÔÕÚÇ` reserved for future `Category 01B` to avoid quiz fatigue.
 
 ### 2026-08-28 — Brazilian Lock (pt-BR ONLY)
@@ -89,10 +89,10 @@
     - *Examples definite 6:* `O gato/Os gatos`, `A cadeira/As cadeiras`, `O telefone`, `O amigo`, `A praia`, `O jornal`
     - *Examples indefinite 6:* `Um cachorro`, `Uma caneta`, `Um relógio`, `Um avião`, `Uma xícara`, `Uma cidade`
     - *Tricky Rules 8:* `O problema` (Greek -ema masc), `O sistema/O clima/O tema` (-ema/-ama), `A nação/A cidade/A viagem` (-ção/-dade/-gem fem), `O dia/O mapa/O planeta` (false friend masc -a), `A foto`/`A moto` (shortened fem), `O pneu` (shortened masc), `O cinema` (masc -a)
-  - **Design rationale:** Articles must match gender+number. Kept pronunciation `O=[oo] boot, A=[ah] father, Os=[oosh], As=[ash]` alongside each definite article; example word per entry keeps `translation-display:356` and `quiz-opt:367` distinct; tricky rules teach -ema/-ama vs -ção/-dade/-gem and shortened gender retention without layout change.
+  - **Design rationale:** Articles must match gender+number. **Expanded** `Masc.`→`Masculine`, `Fem.`→`Feminine`, `Sing.`→`Singular`, `Pl.`→`Plural`, `Masc. despite`→`Masculine despite` etc. for clarity (full words). **Bold distinguished** first segment `Definite Article — Masculine Plural 'the'` via `<span style='font-weight:800;color:var(--rv-pale)'>` — grammar core pops. Kept pronunciation `O=[oo] boot` etc. and example word per entry; **scoped font reduction** for `Articles` (`translation-display:356` `22px`→`19px`, `quiz-opt:368` `14px`→`13px` when `currentCategory==='Articles'` in `showWord:1110`/`showQuiz:1156`) accommodates longer full-word strings without overflow. Tricky rules teach -ema/-ama vs -ção/-dade/-gem and shortened retention without global redesign.
   - **Tip card:** Dynamic `Grammar Tip` for `Articles` (`index.html:1122-1123`): `O=[oo], A=[ah], Os=[oosh], As=[ash] — match gender & number!`
   - **Why 28 not 8:** Core 8 articles + 12 examples + 8 tricky = 28 gives quiz variety (`showQuiz:1133` distinct wrongs) and matches Alphabet 26 granularity; contractions (`no/na/do/da`) reserved for future `02B`.
-- **Files:** `index.html:638` `Greetings` → `Articles` (28), `data.js:30` `Articles` (2 → 28, sync), `index.html:1049` emoji `📰`, `service-worker.js:3` `br-portuguese-v2` → `br-portuguese-v3`
+- **Files:** `index.html:638` `Greetings` → `Articles` (28, full words + bold, scoped 19px/13px), `data.js:30` `Articles` (2 → 28, sync, full words + bold), `index.html:1049` emoji `📰`, `index.html:752` bold for Alphabet, `service-worker.js:3` `br-portuguese-v3` → `br-portuguese-v4`
 
 ---
 
@@ -150,6 +150,11 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 
 ## 6. Changelog
 
+- **v0.3.1 — 2026-08-28: Articles Full Words + Bold + Scoped Font**
+  - Expand `Masc.`/`Fem.`/`Sing.`/`Pl.` → `Masculine`/`Feminine`/`Singular`/`Plural` (full words) for all 28 Articles + tricky rules; bold distinguished first segment `<span style='font-weight:800;color:var(--rv-pale)'>` for both Alphabet (26, `á [a]` pops) and Articles (28, grammar core pops)
+  - Scoped font reduction for `Articles` only: `translation-display` `22px`→`19px`, `quiz-opt` `14px`→`13px` via `currentCategory==='Articles'` in `showWord`/`showQuiz` — accommodates longer strings, keeps mobile-friendly
+  - Files: `index.html:638,752,1110,1156` (Alphabet+Articles bold, font), `data.js:30` (sync), `service-worker.js:3` `v3`→`v4`, `PROGRESS.md`
+
 - **v0.3.0 — 2026-08-28: Articles Foundations**
   - Category 02: `Greetings` (18) → `Articles` (28: 8 articles + 12 examples + 8 tricky, `📰`, pronunciation O/A/Os/As, -ema/-ama vs -ção/-dade/-gem, shortened retention)
   - Tip card dynamic `Grammar Tip` for Articles, emoji 02 `📰`, PWA cache `br-portuguese-v3`
@@ -187,4 +192,4 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 
 ---
 
-*Maintained by: Bodeo — 2026-08-28 — ✅ Paused after Category 02 (Alphabet 26 + Articles 28) — Next: Category 03 Brazilian Café & Padaria — will continue next session. Record kept as requested.*
+*Maintained by: Bodeo — 2026-08-28 — ✅ Paused after Category 02 (Alphabet 26 + Articles 28) — Next: Category 03 Brazilian Café & Padaria — paused after v0.3.1 full-words+bold, will continue next session. Record kept as requested.*
