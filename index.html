@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Brazilian Portuguese Master</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --rv: #32174D;
+  --rv-mid: #4A2272;
+  --rv-light: #6B35A8;
+  --rv-pale: #8B4FC8;
+  --rv-glow: rgba(50,23,77,0.35);
+  --rv-subtle: rgba(50,23,77,0.07);
+
+  --coral: #FF6B51;
+  --gold: #F5C842;
+  --mint: #2DD4A0;
+
+  --bg: #F5F0FA;
+  --surface: #FFFFFF;
+  --surface2: #EEE6F7;
+  --text: #1A0B2E;
+  --text-2: #5A4A72;
+  --text-3: #9B8FB0;
+  --border: rgba(50,23,77,0.12);
+
+  --grad: linear-gradient(135deg, #32174D 0%, #6B35A8 100%);
+  --grad-subtle: linear-gradient(135deg, rgba(50,23,77,0.08) 0%, rgba(107,53,168,0.08) 100%);
+
+  --shadow-card: 0 4px 24px rgba(50,23,77,0.10), 0 1px 4px rgba(50,23,77,0.06);
+  --shadow-btn: 0 8px 24px rgba(50,23,77,0.30);
+  --shadow-nav: 0 -4px 40px rgba(50,23,77,0.18), 0 2px 12px rgba(50,23,77,0.08);
+  --shadow-hero: 0 24px 64px rgba(50,23,77,0.35);
+
+  --radius-sm: 14px;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-pill: 100px;
+}
+
+body.dark {
+  --bg: #0D0717;
+  --surface: #1A0B2E;
+  --surface2: #24103F;
+  --text: #F0E8FF;
+  --text-2: #C4AEDE;
+  --text-3: #6E5A8A;
+  --border: rgba(180,140,255,0.12);
+  --rv-subtle: rgba(180,140,255,0.06);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3);
+  --shadow-btn: 0 8px 24px rgba(107,53,168,0.5);
+  --shadow-nav: 0 -4px 40px rgba(0,0,0,0.5);
+  --grad: linear-gradient(135deg, #5A2A8A 0%, #9B5FD4 100%);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(107,53,168,0.4); }
+  70%  { box-shadow: 0 0 0 16px rgba(107,53,168,0); }
+  100% { box-shadow: 0 0 0 0 rgba(107,53,168,0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes ripple {
+  from { transform: scale(0); opacity: 0.4; }
+  to   { transform: scale(4); opacity: 0; }
+}
+@keyframes navBounce {
+  0%, 100% { transform: translateY(0); }
+  40%       { transform: translateY(-6px); }
+  60%       { transform: translateY(-3px); }
+}
+@keyframes confettiFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+@keyframes correctPop {
+  0%  { transform: scale(1); }
+  40% { transform: scale(1.08); }
+  100%{ transform: scale(1); }
+}
+@keyframes micPulse {
+  0%, 100% { transform: scale(1); box-shadow: var(--shadow-hero); }
+  50%       { transform: scale(1.08); box-shadow: 0 30px 50px rgba(50,23,77,0.5); }
+}
+
+.fade-enter { animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.scale-enter { animation: scaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ===== HEADER ===== */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 20px 12px;
+}
+.header-title {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px;
+  letter-spacing: -0.3px; background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.header-actions { display: flex; gap: 8px; }
+
+.icon-btn {
+  width: 42px; height: 42px; border-radius: 14px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 17px; color: var(--text-2);
+  transition: background 0.25s ease, border-color 0.25s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease, color 0.25s ease;
+  box-shadow: var(--shadow-card); position: relative; overflow: hidden; outline: none;
+}
+.icon-btn:hover {
+  background: var(--rv-mid); border-color: var(--rv-mid);
+  color: white; transform: translateY(-2px) scale(1.05); box-shadow: var(--shadow-btn);
+}
+.icon-btn:active { transform: scale(0.9); transition-duration: 0.1s; }
+
+/* ===== HERO CARD ===== */
+.hero-card {
+  background: var(--grad); margin: 8px 16px 20px; padding: 26px 22px 22px;
+  border-radius: var(--radius-xl); color: white; box-shadow: var(--shadow-hero);
+  position: relative; overflow: hidden;
+  animation: scaleIn 0.45s cubic-bezier(0.22,1,0.36,1) both;
+}
+.hero-card::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; background: rgba(255,255,255,0.07); border-radius: 50%;
+}
+.hero-card::after {
+  content: ''; position: absolute; bottom: -40px; left: -30px;
+  width: 130px; height: 130px; background: rgba(255,255,255,0.05); border-radius: 50%;
+}
+.hero-greeting {
+  font-size: 12px; font-weight: 600; letter-spacing: 1px; opacity: 0.7;
+  text-transform: uppercase; margin-bottom: 4px; position: relative; z-index: 2;
+}
+.hero-name {
+  font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1.1;
+  margin-bottom: 6px; position: relative; z-index: 2; letter-spacing: -0.5px;
+}
+.hero-level {
+  font-size: 14px; font-weight: 500; opacity: 0.85; margin-bottom: 20px;
+  position: relative; z-index: 2;
+}
+.hero-badges {
+  display: flex; gap: 10px; align-items: center; position: relative; z-index: 2; flex-wrap: wrap;
+}
+.hero-badge {
+  background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(12px); padding: 7px 14px; border-radius: var(--radius-pill);
+  font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 5px;
+  transition: background 0.2s, transform 0.2s;
+}
+.hero-badge:hover { background: rgba(255,255,255,0.28); transform: scale(1.04); }
+.score-ring {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800;
+  backdrop-filter: blur(10px); animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ===== SECTION LABEL ===== */
+.section-header {
+  display: flex; justify-content: space-between; align-items: center; padding: 4px 20px 14px;
+}
+.section-label {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-3);
+}
+.section-count {
+  font-size: 12px; font-weight: 600; color: var(--rv-pale);
+  background: var(--rv-subtle); padding: 3px 10px; border-radius: var(--radius-pill);
+}
+
+/* ===== CATEGORY GRID ===== */
+.category-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 16px;
+}
+.category-card {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+  padding: 20px 16px 16px; cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-card); position: relative; overflow: hidden;
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.category-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad); opacity: 0; transition: opacity 0.3s;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.category-card:hover {
+  transform: translateY(-5px) scale(1.01); border-color: var(--rv-pale);
+  box-shadow: 0 12px 36px rgba(50,23,77,0.18);
+}
+.category-card:hover::before { opacity: 1; }
+.category-card:active { transform: scale(0.94); transition-duration: 0.12s; }
+.cat-num {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--rv-pale); opacity: 0.7; margin-bottom: 10px;
+}
+.cat-emoji {
+  font-size: 28px; margin-bottom: 10px; display: block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.category-card:hover .cat-emoji { transform: scale(1.2) rotate(-5deg); }
+.cat-name {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--text);
+  margin-bottom: 3px; letter-spacing: -0.2px; line-height: 1.2;
+}
+.cat-meta { font-size: 11px; color: var(--text-3); font-weight: 500; margin-bottom: 10px; }
+.prog-track { height: 4px; background: var(--surface2); border-radius: 10px; overflow: hidden; }
+.prog-fill {
+  height: 100%; background: var(--grad); border-radius: 10px;
+  transition: width 0.6s cubic-bezier(0.22,1,0.36,1); position: relative;
+}
+.prog-fill::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 200% 100%; animation: shimmer 2s infinite;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background: var(--grad); color: white; border: none; padding: 17px 24px;
+  border-radius: var(--radius-pill); font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 15px; letter-spacing: 0.2px; cursor: pointer; width: 100%;
+  position: relative; overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  box-shadow: var(--shadow-btn); outline: none;
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  border-radius: inherit;
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 36px rgba(50,23,77,0.45); filter: brightness(1.1);
+}
+.btn-primary:active { transform: scale(0.96); transition-duration: 0.1s; }
+
+.ripple-el {
+  position: absolute; border-radius: 50%; background: rgba(255,255,255,0.35);
+  pointer-events: none; animation: ripple 0.6s ease-out forwards; transform-origin: center;
+}
+
+.btn-secondary {
+  background: var(--surface); color: var(--text); border: 2px solid var(--border);
+  padding: 15px 24px; border-radius: var(--radius-pill); font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 15px; cursor: pointer; width: 100%;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  box-shadow: var(--shadow-card); outline: none;
+}
+.btn-secondary:hover {
+  border-color: var(--rv-light); color: var(--rv-light); background: var(--rv-subtle);
+  transform: translateY(-2px); box-shadow: 0 8px 24px rgba(50,23,77,0.12);
+}
+.btn-secondary:active { transform: scale(0.95); transition-duration: 0.1s; }
+
+/* ===== NAVIGATION ===== */
+.navigation {
+  position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+  width: calc(100% - 32px); max-width: 398px;
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-xl);
+  display: flex; justify-content: space-around; align-items: center; padding: 10px 8px;
+  box-shadow: var(--shadow-nav); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  z-index: 1000; animation: fadeIn 0.5s ease both;
+}
+body.dark .navigation { background: rgba(26, 11, 46, 0.92); }
+.nav-item {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  cursor: pointer; padding: 8px 18px; border-radius: var(--radius);
+  transition: background 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative; min-width: 60px;
+}
+.nav-icon { font-size: 20px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.nav-label { font-size: 10px; font-weight: 700; letter-spacing: 0.3px; color: var(--text-3); transition: color 0.25s ease; }
+.nav-item:hover .nav-icon { transform: translateY(-2px) scale(1.1); }
+.nav-item.active { background: var(--rv-subtle); }
+.nav-item.active .nav-icon { animation: navBounce 0.4s cubic-bezier(0.22, 1, 0.36, 1); transform: translateY(-2px); }
+.nav-item.active .nav-label { color: var(--rv-light); font-weight: 800; }
+.nav-dot {
+  position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%; background: var(--rv-pale);
+  opacity: 0; transition: opacity 0.3s;
+}
+.nav-item.active .nav-dot { opacity: 1; }
+
+/* ===== CONTENT CARD ===== */
+.content-card {
+  background: var(--surface); border: 1.5px solid var(--border);
+  margin: 10px 16px; padding: 36px 22px 28px;
+  border-radius: var(--radius-xl); box-shadow: var(--shadow-card); text-align: center;
+}
+.word-display {
+  font-family: 'Syne', sans-serif; font-size: 46px; font-weight: 800;
+  background: var(--grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  margin: 18px 0 10px; line-height: 1.1; letter-spacing: -1px;
+  animation: scaleIn 0.3s cubic-bezier(0.22,1,0.36,1) both;
+}
+.translation-display {
+  font-size: 22px; font-weight: 500; color: var(--text-2);
+  margin-bottom: 28px; padding-bottom: 24px; border-bottom: 2px dashed var(--border);
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-track { height: 5px; background: var(--surface2); margin: 0 16px 4px; border-radius: 10px; overflow: hidden; }
+.progress-fill-bar { height: 100%; background: var(--grad); border-radius: 10px; transition: width 0.5s cubic-bezier(0.22,1,0.36,1); }
+.progress-label { display: flex; justify-content: space-between; padding: 0 16px; font-size: 11px; font-weight: 600; color: var(--text-3); margin-bottom: 8px; }
+
+/* ===== QUIZ OPTIONS ===== */
+.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 22px 0; }
+.quiz-opt {
+  padding: 18px 14px; border-radius: var(--radius); border: 2px solid var(--border);
+  background: var(--surface); font-weight: 700; font-size: 14px; cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  text-align: center; outline: none; font-family: 'DM Sans', sans-serif;
+}
+.quiz-opt:hover {
+  border-color: var(--rv-light); color: var(--rv-light); background: var(--rv-subtle);
+  transform: translateY(-3px); box-shadow: 0 8px 20px rgba(50,23,77,0.12);
+}
+.quiz-opt:active { transform: scale(0.94); }
+.quiz-opt.correct {
+  background: linear-gradient(135deg, #10b981, #2dd4a0); border-color: transparent;
+  color: white; box-shadow: 0 8px 24px rgba(16,185,129,0.35);
+  animation: correctPop 0.3s ease; pointer-events: none;
+}
+.quiz-opt.wrong {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  border-color: transparent; color: white;
+}
+
+/* ===== LOGIN ===== */
+.login-wrap {
+  padding: 40px 20px 32px; display: flex; flex-direction: column;
+  align-items: center; min-height: 100vh;
+}
+.login-logo-wrap { font-size: 70px; animation: float 3s ease-in-out infinite; margin-bottom: 18px; }
+.login-title {
+  font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.8px;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 6px; text-align: center;
+}
+.login-sub { font-size: 15px; color: var(--text-2); margin-bottom: 32px; text-align: center; }
+.login-card {
+  width: 100%; background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-card);
+}
+.field-label {
+  display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: 8px;
+}
+.field-input {
+  width: 100%; padding: 16px 18px; border: 2px solid var(--border); border-radius: var(--radius);
+  font-size: 15px; font-family: 'DM Sans', sans-serif; font-weight: 500;
+  background: var(--bg); color: var(--text); transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none; margin-bottom: 18px;
+}
+.field-input:focus { border-color: var(--rv-light); box-shadow: 0 0 0 4px rgba(107,53,168,0.12); }
+.field-input::placeholder { color: var(--text-3); }
+
+/* Age options */
+.age-options {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;
+}
+.age-opt {
+  padding: 14px 10px; border: 2px solid var(--border); border-radius: var(--radius);
+  text-align: center; font-weight: 600; font-size: 13px; cursor: pointer;
+  background: var(--bg); color: var(--text-2);
+  transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: 'DM Sans', sans-serif;
+}
+.age-opt:hover { border-color: var(--rv-light); color: var(--rv-light); transform: translateY(-2px); }
+.age-opt.selected {
+  background: var(--grad); color: white; border-color: transparent;
+  box-shadow: var(--shadow-btn); transform: scale(1.02);
+}
+
+/* ===== STATS ===== */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; }
+.stat-card {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+  padding: 20px 16px; text-align: center; box-shadow: var(--shadow-card);
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(50,23,77,0.15); }
+.stat-value {
+  font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-bottom: 6px;
+}
+.stat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.4px; color: var(--text-3); text-transform: uppercase; }
+
+/* ===== SPEAK BTN ===== */
+.speak-btn {
+  width: 64px; height: 64px; border-radius: 50%; background: var(--grad); border: none;
+  cursor: pointer; font-size: 26px; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px; box-shadow: 0 8px 28px rgba(50,23,77,0.35);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+  animation: pulse-ring 2.5s infinite;
+}
+.speak-btn:hover { transform: scale(1.12); box-shadow: 0 14px 40px rgba(50,23,77,0.5); }
+.speak-btn:active { transform: scale(0.92); }
+
+/* ===== MIC BTN ===== */
+.mic-btn {
+  width: 100px; height: 100px; border-radius: 50%; background: var(--grad); border: none;
+  color: white; font-size: 38px; display: flex; align-items: center; justify-content: center;
+  margin: 20px auto; cursor: pointer; box-shadow: var(--shadow-hero);
+  animation: micPulse 2s ease-in-out infinite; transition: transform 0.2s;
+}
+.mic-btn:active { transform: scale(0.9); }
+/* Active listening state — turns red and pulses faster */
+.mic-btn.listening {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  animation: micPulse 0.8s ease-in-out infinite;
+}
+
+/* ===== CONFETTI ===== */
+.confetti {
+  position: fixed; top: 0; border-radius: 3px; animation: confettiFall linear forwards;
+  pointer-events: none; z-index: 9999;
+}
+
+/* ===== COMPLETE SCREEN ===== */
+.complete-wrap { text-align: center; padding: 48px 24px 24px; animation: fadeUp 0.5s ease both; }
+.complete-emoji { font-size: 76px; display: block; margin-bottom: 18px; animation: float 2s ease-in-out infinite; }
+.complete-title { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+.complete-sub { font-size: 15px; color: var(--text-2); margin-bottom: 32px; }
+
+/* ===== PROFILE AVATAR ===== */
+.profile-avatar {
+  width: 90px; height: 90px; border-radius: 50%; background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; font-family: 'Syne', sans-serif; font-weight: 800; color: white;
+  margin: 0 auto 16px; box-shadow: 0 12px 36px rgba(50,23,77,0.3);
+  animation: pulse-ring 3s infinite;
+}
+
+/* ===== PRACTICE CARD ===== */
+.practice-card {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+  padding: 18px 16px; cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s, box-shadow 0.3s;
+  box-shadow: var(--shadow-card); animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.practice-card:hover { transform: translateY(-4px) scale(1.01); border-color: var(--rv-pale); box-shadow: 0 16px 40px rgba(50,23,77,0.18); }
+.practice-card:active { transform: scale(0.95); }
+
+/* ===== PRACTICE TABS ===== */
+.practice-tabs {
+  display: flex; gap: 6px; background: var(--surface); padding: 5px;
+  border-radius: var(--radius-pill); border: 1.5px solid var(--border);
+  margin: 0 16px 16px; box-shadow: var(--shadow-card);
+}
+.practice-tab {
+  flex: 1; padding: 11px 12px; border-radius: var(--radius-pill); font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 13px; cursor: pointer; text-align: center;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--text-3);
+}
+.practice-tab:hover { color: var(--rv-light); transform: scale(1.02); }
+.practice-tab.active {
+  background: var(--grad); color: white; box-shadow: var(--shadow-btn);
+  animation: scaleIn 0.2s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ===== PILL TAG ===== */
+.pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: var(--radius-pill);
+  background: var(--rv-subtle); color: var(--rv-pale);
+}
+
+/* ===== MATCHING GAME ===== */
+.match-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.match-word {
+  flex: 1; padding: 16px 10px; background: var(--surface); border: 2px solid var(--border);
+  border-radius: var(--radius); text-align: center; font-weight: 700; font-size: 13px;
+  cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  line-height: 1.3; font-family: 'DM Sans', sans-serif;
+}
+.match-word:hover { border-color: var(--rv-light); transform: scale(1.02); }
+.match-word.selected {
+  border-color: var(--rv-light); background: var(--grad); color: white;
+  transform: scale(1.03); box-shadow: 0 6px 20px rgba(50,23,77,0.3);
+}
+.match-word.matched {
+  opacity: 0.45; cursor: default; pointer-events: none;
+  background: linear-gradient(135deg, #10b981, #2dd4a0); color: white; border-color: transparent;
+}
+
+/* ===== FILL IN BLANK ===== */
+.fill-blank-text {
+  font-size: 26px; font-weight: 700; text-align: center; margin: 24px 0;
+  color: var(--text); line-height: 1.5;
+}
+.blank-slot {
+  display: inline-block; min-width: 90px; border-bottom: 3px solid var(--rv-light);
+  margin: 0 6px; color: var(--rv-pale); font-weight: 800;
+  font-family: 'Syne', sans-serif;
+}
+
+/* ===== ACHIEVEMENT BADGE ===== */
+.achievement-badge {
+  display: inline-block; padding: 8px 16px; background: var(--grad); color: white;
+  border-radius: var(--radius-pill); font-weight: 600; font-size: 12px; margin: 4px;
+  box-shadow: 0 6px 16px rgba(50,23,77,0.25); animation: fadeUp 0.4s ease both;
+}
+
+/* ===== SETTINGS ROW ===== */
+.settings-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0; border-bottom: 1.5px solid var(--border);
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-row span { font-size: 14px; font-weight: 600; color: var(--text-2); }
+
+/* ===== TIP CARD ===== */
+.tip-card {
+  background: var(--rv-subtle); border: 1.5px solid var(--border);
+  margin: 0 16px 16px; padding: 16px 18px; border-radius: var(--radius-lg);
+}
+.tip-label { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--rv-pale); margin-bottom: 6px; }
+.tip-text { font-size: 13px; color: var(--text-2); font-weight: 500; line-height: 1.5; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+button, .category-card, .nav-item, .quiz-opt, .age-opt, .match-word {
+  touch-action: manipulation;
+}
+
+@media (max-width: 360px) {
+  .hero-name { font-size: 24px; }
+  .word-display { font-size: 38px; }
+  .nav-item { padding: 8px 12px; min-width: 50px; }
+  .cat-name { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+// ==================== FULL DATABASE ====================
+// Brazilian Portuguese ONLY (pt-BR) — Updated 2026-08-28: Category 01 now Alphabet with pronunciation
+const database = {
+  "Brazilian Portuguese Alphabet": [
+    ["A","á [a] — 'ah' as in father — Avião (airplane)"],
+    ["B","bê [be] — 'beh' as in boy — Bola (ball)"],
+    ["C","cê [se] — 'seh' — Casa (house)"],
+    ["D","dê [de] — 'deh' — Dado (dice)"],
+    ["E","é [ɛ/e] — 'eh' — Escola (school)"],
+    ["F","efe [ɛfi] — 'eh-fee' — Faca (knife)"],
+    ["G","gê [ʒe] — 'zheh' — Gato (cat)"],
+    ["H","agá [a'ga] — silent — Hotel (hotel)"],
+    ["I","i [i] — 'ee' as in see — Igreja (church)"],
+    ["J","jota [ʒɔta] — 'zhota' — Janela (window)"],
+    ["K","cá [ka] — 'kah' — Kiwi (kiwi)"],
+    ["L","ele [ɛli] — 'eh-lee' — Lua (moon)"],
+    ["M","eme [ẽmi] — 'em-ee' — Mesa (table)"],
+    ["N","ene [ẽni] — 'en-ee' — Navio (ship)"],
+    ["O","ó [ɔ/o] — 'aw/oh' — Ovo (egg)"],
+    ["P","pê [pe] — 'peh' — Pato (duck)"],
+    ["Q","quê [ke] — 'keh' — Queijo (cheese)"],
+    ["R","erre [ɛʁi] — 'eh-hee' (guttural R) — Rato (rat)"],
+    ["S","esse [ɛsi] — 'eh-see' — Sol (sun)"],
+    ["T","tê [te] — 'teh' — Teto (ceiling)"],
+    ["U","u [u] — 'oo' — Uva (grape)"],
+    ["V","vê [ve] — 'veh' — Vaca (cow)"],
+    ["W","dáblio [dablju] — 'dah-blee-oo' — Website"],
+    ["X","xis [ʃis] — 'shees' — Xícara (cup)"],
+    ["Y","ípsilon [ipsilõ] — 'ee-psee-lon' — Yoga"],
+    ["Z","zê [ze] — 'zeh' — Zebra (zebra)"]
+  ],
+  "Greetings": [
+    ["Olá","Hello"],["Oi","Hi"],["Bom dia","Good morning"],
+    ["Boa tarde","Good afternoon"],["Boa noite","Good night / Good evening"],
+    ["Por favor","Please"],["Obrigado","Thank you (masc./fem.)"],
+    ["Desculpe","Sorry"],["Com licença","Excuse me"],["De nada","You're welcome"],
+    ["Tudo bem?","How are you? / Everything good?"],["Até logo","See you later"],
+    ["Até amanhã","See you tomorrow"],["Bem-vindo","Welcome"],
+    ["Como vai?","How's it going?"],["Muito prazer","Nice to meet you"],
+    ["Igualmente","Likewise"],["Até mais","Goodbye"]
+  ],
+  "Order at a Cafe (Section 1)": [
+    ["até logo","see you later"],["tudo bem","how are you"],["ela","she"],
+    ["tudo","all good"],["ele","he"],["o","your, her, the"],
+    ["muito prazer","nice to meet you"],["é","belongs, is, it's"],
+    ["bom dia","good morning"],["sou","am, it's, are"],
+    ["a","to be, through, your"],["eu","I"],["ótimo","great"],
+    ["com açúcar","with sugar"],["pão","bread"],["e","what, and, and then"],
+    ["tchau","bye, bye bye, goodbye"],["sorvete","ice cream, popsicles"],
+    ["obrigado","thanks, thank you, forced"],["água","water"],["ou","or, either"],
+    ["com gelo","with ice"],["sanduíche","sandwich"],["pastel","pastry, pastel"],
+    ["por favor","please"],["com leite","with milk"],["oi","hi, hello, hey"],
+    ["um","an, a, one"],["chá","tea"],["café","coffee, café, coffee shop"]
+  ],
+  "Order at a Cafe (Section 2)": [
+    ["oi tudo bem","hi, how are you"],["bom dia tudo bem","good morning, how are you"],
+    ["eu sou ela","I am she"],["eu sou ele","I am he"],["muito prazer","nice to meet you"],
+    ["café com leite","coffee with milk"],["café com açúcar","coffee with sugar"],
+    ["chá com gelo","tea with ice"],["pão e café","bread and coffee"],
+    ["sanduíche e água","sandwich and water"],["pastel e sorvete","pastry and ice cream"],
+    ["um café por favor","a coffee please"],["um chá por favor","a tea please"],
+    ["até logo tchau","see you later bye"],["obrigado até logo","thank you see you later"]
+  ],
+  "Order at a Restaurant (Section 1)": [
+    ["a","the"],["água","water"],["arroz","rice"],["até logo","See you soon"],
+    ["banheiro","bathroom"],["bolo","cake"],["café","coffee"],["carro","car"],
+    ["cerveja","beer"],["chá","tea"],["e","and"],["está","is"],["eu","I"],
+    ["frango","chicken"],["hambúrguer","hamburger"],["leite","milk"],["livro","book"],
+    ["macarrão","pasta"],["mesa","table"],["museu","museum"],["na","in"],["no","in"],
+    ["o","The"],["obrigado","Thank you"],["oi","Hi"],["olá","Hello"],["pão","bread"],
+    ["peixe","fish"],["pela","through the"],["pelo","by"],["pizza","pizza"],
+    ["por favor","Please"],["quero","want"],["salada","salad"],["sanduíche","sandwich"],
+    ["sopa","soup"],["suco","juice"],["tchau","Bye"],["tem","have"],
+    ["tudo bem","How are you?"],["um","a"],["uma","a"],["vinho","wine"]
+  ],
+  "Order at a Restaurant (Section 2)": [
+    ["a mesa e o livro.","the table and the book."],
+    ["a água e o vinho.","the water and the wine."],
+    ["o arroz e o frango.","the rice and the chicken."],
+    ["até logo, obrigado.","See you soon, thank you."],
+    ["o banheiro e a sala.","the bathroom and the living room."],
+    ["o bolo e o café.","the cake and the coffee."],
+    ["o café e o leite.","the coffee and the milk."],
+    ["o carro e a mesa.","the car and the table."],
+    ["a cerveja e a pizza.","the beer and the pizza."],
+    ["o chá e o bolo.","the tea and the cake."],
+    ["eu e ela.","I and her."],
+    ["o carro está na rua.","the car is in the street."],
+    ["eu quero água.","I want water."],
+    ["o frango e o arroz.","the chicken and the rice."],
+    ["o hambúrguer e a cerveja.","the hamburger and the beer."],
+    ["o leite e o café.","the milk and the coffee."],
+    ["o livro está na mesa.","the book is on the table."],
+    ["o macarrão e o frango.","the pasta and the chicken."],
+    ["o museu e o carro.","the museum and the car."],
+    ["o peixe está no prato.","the fish is on the plate."],
+    ["o peixe e o arroz.","the fish and the rice."],
+    ["obrigado, até logo.","Thank you, see you soon."],
+    ["oi, tudo bem?","Hi, how are you?"],
+    ["olá, eu quero pizza.","Hello, I want pizza."],
+    ["o pão e o café.","the bread and the coffee."],
+    ["pela rua, o carro.","through the street, the car."],
+    ["pelo livro, eu quero.","by the book, I want."],
+    ["a pizza e a cerveja.","the pizza and the beer."],
+    ["um café, por favor.","a coffee, please."],
+    ["a salada e o frango.","the salad and the chicken."],
+    ["o sanduíche e o suco.","the sandwich and the juice."],
+    ["a sopa e o pão.","the soup and the bread."],
+    ["o suco e o sanduíche.","the juice and the sandwich."],
+    ["tchau, até logo.","Bye, see you soon."],
+    ["eu tem um carro.","I have a car."],
+    ["um café e um bolo.","a coffee and a cake."],
+    ["uma água e uma pizza.","a water and a pizza."],
+    ["o vinho e o peixe.","the wine and the fish."]
+  ],
+  "Home (Section 1)": [
+    ["Bebo","Drink"],["Ponte","Bridge"],["Hospital","Hospital"],["Teatro","Theater"],
+    ["Palacio","Palace"],["Bicicleta","Bicycle"],["Carro","Car"],["Cachorro","Dog"],
+    ["Gato","Cat"],["Tenho","Have"],["Irmā","Sister"],["Māe","Mother"],["Pai","Father"],
+    ["Irmāo","Brother"],["Nome","Name"],["Qual","Which / What"],["Você","You"],
+    ["Seu","Your / His / Her"],["Nós","We / Us"]
+  ],
+  "Home (Section 2)": [
+    ["Bebo água.","I drink water."],
+    ["A ponte é velha.","The bridge is old."],
+    ["Vou ao hospital.","I go to the hospital."],
+    ["O teatro é grande.","The theater is big."],
+    ["O palacio é bonito.","The palace is beautiful."],
+    ["Tenho uma bicicleta.","I have a bicycle."],
+    ["O carro é vermelho.","The car is red."],
+    ["O cachorro é pequeno.","The dog is small."],
+    ["O gato bebe leite.","The cat drinks milk."],
+    ["O nome dela é Ana.","Her name is Ana."],
+    ["Qual é o seu nome?","What is your name?"],
+    ["Você tem uma irmā?","You have a sister?"],
+    ["A māe está no hospital.","The mother is in the hospital."],
+    ["O pai tem um carro.","The father has a car."],
+    ["O irmāo dela é alto.","Her brother is tall."],
+    ["Nós vamos ao teatro.","We go to the theater."]
+  ]
+};
+
+// ==================== STATE ====================
+let users = JSON.parse(localStorage.getItem('users') || '[]');
+let currentUser = null;
+const accent = 'pt-BR'; // Locked to Brazilian Portuguese only (pt-BR)
+let currentCategory = null;
+let currentWordIndex = 0;
+let categoryWords = [];
+let practiceType = 'match';
+let selectedMatchPortuguese = null;
+let selectedMatchEnglish = null;
+let matchedPairs = [];
+const app = document.getElementById('app');
+
+// ==================== UTILS ====================
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Bom dia'; if (h < 18) return 'Boa tarde'; return 'Boa noite';
+}
+function getLevel(score) {
+  if (score >= 80) return '🏆 Fluent'; if (score >= 60) return '⚡ Advanced';
+  if (score >= 40) return '📈 Intermediate'; if (score >= 20) return '🌱 Beginner'; return '🚀 Starter';
+}
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function updateStreak() {
+  if (!currentUser) return;
+  const today = new Date().toDateString();
+  const last = localStorage.getItem('lastActiveDate');
+  if (last !== today) {
+    const yest = new Date(Date.now()-86400000).toDateString();
+    currentUser.streak = last === yest ? (currentUser.streak||0)+1 : 1;
+    localStorage.setItem('lastActiveDate', today);
+  }
+  currentUser.streak = currentUser.streak || 0;
+}
+function saveUsers() { localStorage.setItem('users', JSON.stringify(users)); }
+
+// ==================== iOS-COMPATIBLE SPEECH SYNTHESIS ====================
+// iOS loads voices asynchronously — getVoices() returns [] on first call.
+// We wait for the voiceschanged event with a 2-second timeout fallback.
+function getVoicesAsync() {
+  return new Promise(function(resolve) {
+    var voices = speechSynthesis.getVoices();
+    if (voices && voices.length > 0) { resolve(voices); return; }
+    var resolved = false;
+    function onChanged() {
+      if (resolved) return;
+      resolved = true;
+      resolve(speechSynthesis.getVoices());
+    }
+    speechSynthesis.addEventListener('voiceschanged', onChanged, { once: true });
+    setTimeout(function() {
+      if (!resolved) { resolved = true; resolve(speechSynthesis.getVoices() || []); }
+    }, 2000);
+  });
+}
+
+// iOS-safe speak():
+// • cancel() clears any stalled queue before and just before speaking
+// • waits for voices to load async before picking a Portuguese voice
+// • 50ms gap between cancel() and speak() lets iOS settle
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  getVoicesAsync().then(function(voices) {
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'pt-BR';
+    u.rate = 0.9;
+    u.pitch = 1;
+    u.volume = 1;
+    var ptVoice =
+      voices.find(function(v) { return v.lang === 'pt-BR'; }) ||
+      voices.find(function(v) { return v.lang.toLowerCase().startsWith('pt'); });
+    if (ptVoice) u.voice = ptVoice;
+    setTimeout(function() {
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    }, 50);
+  });
+}
+
+// ==================== iOS-COMPATIBLE SPEECH RECOGNITION ====================
+var _activeRecognition = null;
+
+function startListening(word) {
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    showToast('Speech recognition is not supported in this browser');
+    return;
+  }
+  // Abort any existing session cleanly before starting a new one
+  if (_activeRecognition) {
+    try { _activeRecognition.abort(); } catch(e) {}
+    _activeRecognition = null;
+  }
+
+  var R = new SpeechRecognition();
+  _activeRecognition = R;
+
+  R.lang = 'pt-BR'; // Locked to Brazilian Portuguese
+  R.continuous = false;    // Must be false on iOS — true causes silent stalling
+  R.interimResults = true; // Critical for iOS — Safari often fires no results without this
+  R.maxAlternatives = 3;
+
+  var resultReceived = false;
+  var listenTimeout = null;
+
+  // Visual feedback: mic turns red while listening
+  var micBtn = document.querySelector('.mic-btn');
+  if (micBtn) { micBtn.classList.add('listening'); micBtn.textContent = '⏹'; }
+
+  // Hard 7s timeout — iOS sometimes never fires onerror or onend on failure
+  listenTimeout = setTimeout(function() {
+    if (!resultReceived) {
+      try { R.stop(); } catch(e) {}
+      resetMicBtn();
+      showToast('Could not hear anything — please try again 🎤');
+    }
+  }, 7000);
+
+  showToast('🎤 Listening…');
+
+  R.onresult = function(e) {
+    // Gather the best non-empty transcript across all result items.
+    // iOS sends multiple interim events before final — grab first usable one.
+    var spoken = '';
+    for (var i = 0; i < e.results.length; i++) {
+      var r = e.results[i];
+      if (r && r[0] && r[0].transcript) {
+        spoken = r[0].transcript.toLowerCase().trim();
+        if (spoken) break;
+      }
+    }
+    if (!spoken) return; // Empty interim — wait for more
+
+    resultReceived = true;
+    clearTimeout(listenTimeout);
+    resetMicBtn();
+    _activeRecognition = null;
+
+    if (spoken.includes(word.toLowerCase())) {
+      showConfetti();
+      showToast('🎉 Excellent pronunciation!');
+      currentUser.score = Math.min(100, currentUser.score + 3);
+      saveUsers();
+    } else {
+      showToast('We heard "' + spoken + '" — try again!');
+    }
+  };
+
+  R.onerror = function(e) {
+    resultReceived = true;
+    clearTimeout(listenTimeout);
+    resetMicBtn();
+    _activeRecognition = null;
+    if (e.error === 'not-allowed') {
+      showToast('Microphone access denied. Check your browser settings.');
+    } else if (e.error === 'no-speech') {
+      showToast('No speech detected — please try again 🎤');
+    } else if (e.error === 'aborted') {
+      // Silent — aborted intentionally
+    } else {
+      showToast('Could not recognise speech. Try again.');
+    }
+  };
+
+  R.onend = function() {
+    clearTimeout(listenTimeout);
+    resetMicBtn();
+    _activeRecognition = null;
+    // iOS sometimes fires onend with no result and no error (silent fail)
+    if (!resultReceived) {
+      showToast('Nothing detected — tap the mic and try again 🎤');
+    }
+  };
+
+  try {
+    R.start();
+  } catch(e) {
+    clearTimeout(listenTimeout);
+    resetMicBtn();
+    _activeRecognition = null;
+    showToast('Could not start microphone. Try again.');
+  }
+}
+
+function resetMicBtn() {
+  var micBtn = document.querySelector('.mic-btn');
+  if (micBtn) { micBtn.classList.remove('listening'); micBtn.textContent = '🎤'; }
+}
+
+// ==================== REMAINING UTILS ====================
+function toggleDark() { document.body.classList.toggle('dark'); }
+function switchAccent() {
+  // Locked to Brazilian Portuguese only — kept for backward compatibility
+  showToast('🇧🇷 Brazilian Portuguese only — accent locked to pt-BR');
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style, {
+    position:'fixed', bottom:'110px', left:'50%',
+    transform:'translateX(-50%) translateY(10px)',
+    background:'var(--rv)', color:'white', padding:'12px 22px',
+    borderRadius:'100px', fontSize:'13px', fontWeight:'700',
+    boxShadow:'0 8px 28px rgba(50,23,77,0.4)', zIndex:'9999',
+    opacity:'0', transition:'opacity 0.3s, transform 0.3s',
+    whiteSpace:'nowrap', fontFamily:'DM Sans, sans-serif'
+  });
+  document.body.appendChild(t);
+  requestAnimationFrame(() => { t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; });
+  setTimeout(() => {
+    t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(10px)';
+    setTimeout(()=>t.remove(), 300);
+  }, 2400);
+}
+function showConfetti() {
+  const colors = ['#32174D','#6B35A8','#FF6B51','#F5C842','#2DD4A0','#C084FC','#60A5FA'];
+  for (let i = 0; i < 55; i++) {
+    const c = document.createElement('div'); c.className = 'confetti';
+    c.style.cssText = `left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};width:${Math.random()*9+5}px;height:${Math.random()*9+5}px;animation-duration:${Math.random()*2.5+2}s;animation-delay:${Math.random()*0.6}s;border-radius:${Math.random()>0.5?'50%':'2px'};`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 4000);
+  }
+}
+
+// ==================== NAV ====================
+function getNavHTML(active) {
+  const items = [
+    {id:'home', icon:'🏠', label:'Home', fn:'showHome()'},
+    {id:'stats', icon:'📊', label:'Stats', fn:'showDashboard()'},
+    {id:'practice', icon:'🎯', label:'Practice', fn:'showPractice()'},
+    {id:'profile', icon:'👤', label:'Profile', fn:'showProfile()'},
+  ];
+  return `<nav class="navigation">${items.map(it=>`
+    <div class="nav-item ${active===it.id?'active':''}" onclick="${it.fn}">
+      <span class="nav-icon">${it.icon}</span>
+      <span class="nav-label">${it.label}</span>
+      <span class="nav-dot"></span>
+    </div>`).join('')}</nav>`;
+}
+
+// ==================== LOGIN ====================
+function showLogin() {
+  app.innerHTML = `
+    <div class="login-wrap fade-enter">
+      <div class="login-logo-wrap">🇧🇷</div>
+      <h1 class="login-title">Brazilian Portuguese Master</h1>
+      <p class="login-sub">Your language journey starts here</p>
+      <div class="login-card">
+        <label class="field-label">First Name</label>
+        <input type="text" id="firstName" class="field-input" placeholder="Pedro" autocomplete="given-name">
+        <label class="field-label">Last Name</label>
+        <input type="text" id="lastName" class="field-input" placeholder="Alves" autocomplete="family-name">
+        <label class="field-label" style="margin-bottom:12px;">Age Group</label>
+        <div class="age-options" id="ageOptions">
+          <div class="age-opt" data-age="under18">Under 18</div>
+          <div class="age-opt" data-age="18-24">18 – 24</div>
+          <div class="age-opt" data-age="25-30">25 – 30</div>
+          <div class="age-opt" data-age="31-35">31 – 35</div>
+          <div class="age-opt" data-age="36plus">36+</div>
+        </div>
+        <button class="btn-primary" onclick="createUser(this, event)" style="margin-top:8px;">Start Learning →</button>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:24px;">
+        <button class="icon-btn" onclick="toggleDark()">🌙</button>
+      </div>
+    </div>`;
+  document.querySelectorAll('.age-opt').forEach(o => {
+    o.addEventListener('click', function() {
+      document.querySelectorAll('.age-opt').forEach(x => x.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+  document.getElementById('firstName')?.focus();
+}
+
+function createUser(btn, e) {
+  const firstName = document.getElementById('firstName')?.value.trim();
+  const lastName  = document.getElementById('lastName')?.value.trim();
+  const age = document.querySelector('.age-opt.selected')?.getAttribute('data-age');
+  if (!firstName || !lastName || !age) { showToast('Please fill in all fields'); return; }
+  currentUser = {
+    firstName, lastName, fullName:`${firstName} ${lastName}`, age,
+    score:0, correct:0, total:0, streak:0, categoryProgress:{}, joinDate:new Date().toISOString()
+  };
+  users.push(currentUser); saveUsers(); updateStreak(); showHome();
+}
+
+// ==================== HOME ====================
+function showHome() {
+  if (!currentUser) return showLogin();
+  updateStreak();
+  const greeting = getGreeting();
+  const level = getLevel(currentUser.score);
+  const accuracy = currentUser.total > 0 ? Math.round((currentUser.correct/currentUser.total)*100) : 0;
+  const categories = Object.keys(database);
+  const emojis = ['🔤','👋','☕','🥐','🏃','📝','🏠','🔢','📅','🎨','👨‍👩‍👧','👁️','🍔','🐶','🏡','👕','🚗','🌳','📱','😊','💼','⚽'];
+
+  const catCards = categories.map((cat, i) => {
+    const progress = Math.round(currentUser.categoryProgress?.[cat] || 0);
+    return `
+      <div class="category-card" style="animation-delay:${0.08+i*0.06}s;" onclick="startCategory('${cat.replace(/'/g,"\\'")}')">
+        <div class="cat-num">${String(i+1).padStart(2,'0')}</div>
+        <span class="cat-emoji">${emojis[i%emojis.length]}</span>
+        <div class="cat-name">${cat}</div>
+        <div class="cat-meta">${database[cat].length} words · ${progress}% done</div>
+        <div class="prog-track"><div class="prog-fill" style="width:${progress}%"></div></div>
+      </div>`;
+  }).join('');
+
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <div class="header-title">🇧🇷 Brazilian Portuguese Master</div>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleDark()">🌙</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-greeting">${greeting}</div>
+        <div class="hero-name">${currentUser.firstName}! 👋</div>
+        <div class="hero-level">${level} · ${accuracy}% accuracy</div>
+        <div class="hero-badges">
+          <div class="hero-badge">🔥 ${currentUser.streak} day streak</div>
+          <div class="hero-badge">📚 ${currentUser.total} quizzed</div>
+          <div class="score-ring">${currentUser.score}%</div>
+        </div>
+      </div>
+      <div class="section-header">
+        <span class="section-label">Categories</span>
+        <span class="section-count">${categories.length} topics</span>
+      </div>
+      <div class="category-grid">${catCards}</div>
+    </div>
+    ${getNavHTML('home')}`;
+}
+
+// ==================== WORD SCREEN ====================
+function startCategory(category) {
+  currentCategory = category; categoryWords = database[category]; currentWordIndex = 0; showWord();
+}
+
+function showWord() {
+  if (!categoryWords || currentWordIndex >= categoryWords.length) return showCategoryComplete();
+  const word = categoryWords[currentWordIndex];
+  const pct = Math.round((currentWordIndex/categoryWords.length)*100);
+  const safe = word[0].replace(/'/g,"\\'");
+
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <button class="icon-btn" onclick="showHome()">←</button>
+        <div class="header-title">${currentCategory}</div>
+        <div style="width:42px;"></div>
+      </div>
+      <div class="progress-label"><span>${currentWordIndex+1} / ${categoryWords.length}</span><span>${pct}%</span></div>
+      <div class="progress-track"><div class="progress-fill-bar" style="width:${pct}%"></div></div>
+      <div class="content-card scale-enter" style="animation-delay:0.08s;">
+        <div class="pill">Word ${currentWordIndex+1}</div>
+        <div class="word-display">${word[0]}</div>
+        <div class="translation-display">${word[1]}</div>
+        <button class="speak-btn" onclick="speak('${safe}')">🔊</button>
+        <div style="display:flex;gap:12px;">
+          <button class="btn-secondary" onclick="prevWord()" ${currentWordIndex===0?'disabled style="opacity:0.4;pointer-events:none;"':''}>← Prev</button>
+          <button class="btn-primary" onclick="showQuizForWord()">Quiz Me</button>
+          <button class="btn-secondary" onclick="nextWord()">Next →</button>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-label">💡 ${currentCategory==='Brazilian Portuguese Alphabet' ? 'Pronunciation Tip' : 'Tip'}</div>
+        <div class="tip-text">${currentCategory==='Brazilian Portuguese Alphabet' ? 'Say "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + '. Tap 🔊 to hear the Brazilian pronunciation!' : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!'}</div>
+      </div>
+    </div>`;
+}
+
+function nextWord() { currentWordIndex = Math.min(currentWordIndex+1, categoryWords.length); showWord(); }
+function prevWord() { if (currentWordIndex > 0) { currentWordIndex--; showWord(); } }
+function showQuizForWord() { showQuiz(); }
+
+// ==================== QUIZ ====================
+function showQuiz() {
+  if (!categoryWords) return;
+  const word = categoryWords[currentWordIndex];
+  const correct = word[1];
+  const all = shuffleArray(Object.values(database).flat());
+  const wrongs = [];
+  for (const w of all) { if (w[1] !== correct && !wrongs.includes(w[1])) wrongs.push(w[1]); if (wrongs.length===3) break; }
+  const options = shuffleArray([correct, ...wrongs]);
+  const pct = Math.round((currentWordIndex/categoryWords.length)*100);
+  const safe = word[0].replace(/'/g,"\\'");
+
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <button class="icon-btn" onclick="showWord()">←</button>
+        <div class="header-title">Quiz</div>
+        <button class="icon-btn" onclick="speak('${safe}')">🔊</button>
+      </div>
+      <div class="progress-label"><span>${currentWordIndex+1} / ${categoryWords.length}</span><span>${pct}%</span></div>
+      <div class="progress-track"><div class="progress-fill-bar" style="width:${pct}%"></div></div>
+      <div class="content-card scale-enter" style="animation-delay:0.08s;">
+        <div class="pill">What is the meaning of?</div>
+        <div class="word-display">${word[0]}</div>
+        <div class="quiz-options">
+          ${options.map(opt=>`<button class="quiz-opt" onclick="checkAnswer(this,'${opt.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">
+            ${opt}
+          </button>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+function checkAnswer(el, selected, correct) {
+  document.querySelectorAll('.quiz-opt').forEach(o => o.disabled = true);
+  if (selected === correct) {
+    currentUser.correct++; currentUser.total++;
+    currentUser.score = Math.min(100, currentUser.score + 2);
+    if (!currentUser.categoryProgress) currentUser.categoryProgress = {};
+    currentUser.categoryProgress[currentCategory] = Math.min(100,
+      (currentUser.categoryProgress[currentCategory]||0) + (100/categoryWords.length));
+    saveUsers(); el.classList.add('correct'); showConfetti();
+    setTimeout(()=>nextWord(), 1100);
+  } else {
+    currentUser.total++; saveUsers(); el.classList.add('wrong');
+    document.querySelectorAll('.quiz-opt').forEach(o => { if (o.textContent.trim()===correct) o.classList.add('correct'); });
+    setTimeout(()=>{ el.classList.remove('wrong'); showWord(); }, 1300);
+  }
+}
+
+// ==================== CATEGORY COMPLETE ====================
+function showCategoryComplete() {
+  showConfetti();
+  app.innerHTML = `
+    <div class="complete-wrap">
+      <span class="complete-emoji">🎉</span>
+      <h2 class="complete-title">Category Complete!</h2>
+      <p class="complete-sub">You mastered <strong>${categoryWords.length} words</strong> in <strong>${currentCategory}</strong>.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:300px;margin:0 auto 24px;">
+        <button class="btn-primary" onclick="startIntensePractice()">🎯 Intense Practice</button>
+        <button class="btn-secondary" onclick="showHome()">🏠 Back to Home</button>
+      </div>
+    </div>
+    <div class="section-header"><span class="section-label">Practice Modes</span></div>
+    <div class="category-grid" style="margin-bottom:100px;">
+      <div class="category-card" style="animation-delay:0.1s;" onclick="startMatchingGame()">
+        <span class="cat-emoji">🔄</span><div class="cat-name">Word Matching</div><div class="cat-meta">Match pairs</div>
+      </div>
+      <div class="category-card" style="animation-delay:0.15s;" onclick="startFillBlank()">
+        <span class="cat-emoji">✏️</span><div class="cat-name">Fill in Blank</div><div class="cat-meta">Complete sentences</div>
+      </div>
+      <div class="category-card" style="animation-delay:0.2s;" onclick="startPronunciation()">
+        <span class="cat-emoji">🎤</span><div class="cat-name">Speak & Learn</div><div class="cat-meta">Pronunciation</div>
+      </div>
+      <div class="category-card" style="animation-delay:0.25s;" onclick="startRandomQuiz()">
+        <span class="cat-emoji">📝</span><div class="cat-name">Mixed Quiz</div><div class="cat-meta">Test yourself</div>
+      </div>
+    </div>
+    ${getNavHTML('home')}`;
+}
+
+// ==================== INTENSE PRACTICE ====================
+function startIntensePractice() { practiceType = 'match'; showIntensePractice(); }
+
+function showIntensePractice() {
+  const content = practiceType === 'match' ? getMatchingGame() :
+                  practiceType === 'fill'  ? getFillBlank() :
+                  getPronunciationPractice();
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <button class="icon-btn" onclick="showCategoryComplete()">←</button>
+        <div class="header-title">Intense Practice</div>
+        <div style="width:42px;"></div>
+      </div>
+      <div class="practice-tabs">
+        <div class="practice-tab ${practiceType==='match'?'active':''}" onclick="setPracticeType('match')">🔄 Match</div>
+        <div class="practice-tab ${practiceType==='fill'?'active':''}"  onclick="setPracticeType('fill')">✏️ Fill</div>
+        <div class="practice-tab ${practiceType==='speak'?'active':''}" onclick="setPracticeType('speak')">🎤 Speak</div>
+      </div>
+      ${content}
+    </div>`;
+}
+
+function setPracticeType(type) { practiceType = type; showIntensePractice(); }
+
+// -- Matching Game --
+function startMatchingGame() { practiceType='match'; matchedPairs=[]; selectedMatchPortuguese=null; selectedMatchEnglish=null; showIntensePractice(); }
+
+function getMatchingGame() {
+  const words = shuffleArray([...categoryWords]).slice(0, 6);
+  const english = shuffleArray(words.map(w=>w[1]));
+  matchedPairs = matchedPairs || [];
+  return `<div style="padding:0 16px;" id="matchGame">
+    ${words.map((w,i)=>`
+      <div class="match-row">
+        <div class="match-word ${matchedPairs.includes(w[0])?'matched':''}" onclick="selectMatchPortuguese(this,'${w[0].replace(/'/g,"\\'")}','${w[1].replace(/'/g,"\\'")}')">${w[0]}</div>
+        <div class="match-word ${matchedPairs.includes(english[i])?'matched':''}" onclick="selectMatchEnglish(this,'${english[i].replace(/'/g,"\\'")}','${english[i].replace(/'/g,"\\'")}')">  ${english[i]}</div>
+      </div>`).join('')}
+    <div style="margin-top:16px;">
+      <button class="btn-primary" onclick="checkMatchingComplete(${words.length})">Check Progress ✓</button>
+    </div>
+  </div>`;
+}
+
+function selectMatchPortuguese(el, word, correctEng) {
+  if (matchedPairs.includes(word)) return;
+  document.querySelectorAll('.match-row .match-word:first-child').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMatchPortuguese = { el, word, correctEng };
+  if (selectedMatchEnglish) tryMatch();
+}
+
+function selectMatchEnglish(el, word, original) {
+  if (matchedPairs.includes(word)) return;
+  document.querySelectorAll('.match-row .match-word:last-child').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMatchEnglish = { el, word };
+  if (selectedMatchPortuguese) tryMatch();
+}
+
+function tryMatch() {
+  const port = selectedMatchPortuguese; const eng = selectedMatchEnglish;
+  if (port.correctEng === eng.word) {
+    matchedPairs.push(port.word); matchedPairs.push(eng.word);
+    port.el.classList.add('matched'); port.el.classList.remove('selected');
+    eng.el.classList.add('matched'); eng.el.classList.remove('selected');
+    showConfetti();
+    currentUser.score = Math.min(100, currentUser.score+1); saveUsers();
+  } else {
+    port.el.classList.remove('selected'); eng.el.classList.remove('selected');
+    showToast('Not a match — try again!');
+  }
+  selectedMatchPortuguese = null; selectedMatchEnglish = null;
+}
+
+function checkMatchingComplete(total) {
+  const done = matchedPairs.length/2;
+  if (done >= total) {
+    showToast('🎉 Perfect! All pairs matched!');
+    currentUser.score = Math.min(100, currentUser.score+5); saveUsers();
+  } else {
+    showToast(`${done} / ${total} pairs matched. Keep going!`);
+  }
+}
+
+// -- Fill in Blank --
+function startFillBlank() { practiceType='fill'; showIntensePractice(); }
+
+function getFillBlank() {
+  const word = categoryWords[Math.floor(Math.random()*categoryWords.length)];
+  const safe = word[0].replace(/'/g,"\\'");
+  const sentence = getSampleSentence(word[0]);
+  const display = sentence.replace(word[0], '<span class="blank-slot">_____</span>');
+  return `<div class="content-card scale-enter" style="animation-delay:0.1s;">
+    <div class="pill">Fill in the Blank</div>
+    <div class="fill-blank-text">${display}</div>
+    <input type="text" id="fillAnswer" class="field-input" placeholder="Type the missing word…" autocomplete="off" style="margin-top:16px;">
+    <div style="display:flex;gap:12px;margin-top:4px;">
+      <button class="btn-secondary" onclick="speak('${safe}')">🔊 Listen</button>
+      <button class="btn-primary" onclick="checkFillBlank('${safe}')">Check ✓</button>
+    </div>
+  </div>`;
+}
+
+function getSampleSentence(word) {
+  const map = {
+    'Olá':'_____, como você está?', 'Bom dia':'_____, como você dormiu?',
+    'Água':'Eu bebo _____ todos os dias.', 'Obrigado':'_____, Maria!',
+    'café':'Eu quero um _____.', 'pão':'Eu gosto de _____ com manteiga.'
+  };
+  return map[word] || `Eu uso a palavra "${word}" aqui: _____.`;
+}
+
+function checkFillBlank(correct) {
+  const answer = document.getElementById('fillAnswer')?.value.trim();
+  if (!answer) return;
+  if (answer.toLowerCase() === correct.toLowerCase()) {
+    showConfetti(); showToast('✅ Correct!');
+    currentUser.score = Math.min(100, currentUser.score+2); saveUsers();
+    setTimeout(()=>{ practiceType='fill'; showIntensePractice(); }, 1500);
+  } else {
+    showToast(`❌ The answer is: ${correct}`);
+  }
+}
+
+// -- Pronunciation --
+function startPronunciation() { practiceType='speak'; showIntensePractice(); }
+
+function getPronunciationPractice() {
+  const word = categoryWords[Math.floor(Math.random()*categoryWords.length)];
+  const safe = word[0].replace(/'/g,"\\'");
+  return `<div class="content-card scale-enter" style="animation-delay:0.1s;text-align:center;">
+    <div class="pill">Pronunciation</div>
+    <div class="word-display" style="margin-bottom:8px;">${word[0]}</div>
+    <div class="translation-display">${word[1]}</div>
+    <button class="mic-btn" onclick="startListening('${safe}')">🎤</button>
+    <button class="btn-secondary" onclick="speak('${safe}')">🔊 Listen First</button>
+    <p style="font-size:13px;color:var(--text-3);margin-top:16px;font-weight:500;">Tap the mic and say the word clearly</p>
+  </div>`;
+}
+
+// ==================== DASHBOARD ====================
+function showDashboard() {
+  if (!currentUser) return;
+  const accuracy = currentUser.total > 0 ? Math.round((currentUser.correct/currentUser.total)*100) : 0;
+  const cats = Object.keys(database);
+  const catsDone = Object.keys(currentUser.categoryProgress||{}).filter(c=>(currentUser.categoryProgress[c]||0)>=100).length;
+
+  const catBars = cats.map((cat,i)=>{
+    const p = Math.round(currentUser.categoryProgress?.[cat]||0);
+    return `<div style="margin-bottom:14px;animation:fadeUp 0.4s ${0.1+i*0.05}s both;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:13px;font-weight:700;color:var(--text-2);">${cat}</span>
+        <span style="font-size:12px;font-weight:700;color:var(--rv-pale);">${p}%</span>
+      </div>
+      <div class="prog-track" style="height:6px;"><div class="prog-fill" style="width:${p}%;"></div></div>
+    </div>`;
+  }).join('');
+
+  const badges = [];
+  if ((currentUser.streak||0)>=7) badges.push('🔥 7-Day Streak');
+  if (accuracy>=90) badges.push('🎯 Accuracy Master');
+  if (catsDone>=2) badges.push('📚 Category Explorer');
+  if ((currentUser.total||0)>=100) badges.push('💪 100 Practices');
+  const badgeHTML = badges.length
+    ? badges.map(b=>`<span class="achievement-badge">${b}</span>`).join('')
+    : `<span style="font-size:13px;color:var(--text-3);">Start learning to earn badges!</span>`;
+
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <div style="width:42px;"></div>
+        <div class="header-title">Statistics</div>
+        <button class="icon-btn" onclick="toggleDark()">🌙</button>
+      </div>
+      <div class="stat-grid" style="margin-bottom:16px;">
+        <div class="stat-card" style="animation-delay:0.05s;"><div class="stat-value">${currentUser.score}%</div><div class="stat-label">Mastery</div></div>
+        <div class="stat-card" style="animation-delay:0.10s;"><div class="stat-value">${accuracy}%</div><div class="stat-label">Accuracy</div></div>
+        <div class="stat-card" style="animation-delay:0.15s;"><div class="stat-value">${currentUser.streak||0}</div><div class="stat-label">Day Streak</div></div>
+        <div class="stat-card" style="animation-delay:0.20s;"><div class="stat-value">${catsDone}/${cats.length}</div><div class="stat-label">Completed</div></div>
+      </div>
+      <div class="section-header"><span class="section-label">Achievements</span></div>
+      <div style="padding:0 16px 16px;display:flex;flex-wrap:wrap;gap:0;">${badgeHTML}</div>
+      <div class="section-header"><span class="section-label">Category Progress</span></div>
+      <div style="padding:0 16px 16px;">${catBars}</div>
+    </div>
+    ${getNavHTML('stats')}`;
+}
+
+// ==================== PRACTICE HUB ====================
+function showPractice() {
+  const items = [
+    {num:'01', emoji:'🎲', name:'Random Quiz', desc:'Test your knowledge', fn:'startRandomQuiz()'},
+    {num:'02', emoji:'🔄', name:'Word Match', desc:'Match pairs', fn:'startMatchingFromHub()'},
+    {num:'03', emoji:'✏️', name:'Fill Blanks', desc:'Complete sentences', fn:'startFillBlankFromHub()'},
+    {num:'04', emoji:'🎤', name:'Speak & Learn', desc:'Practice pronunciation', fn:'startPronFromHub()'},
+  ];
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <div style="width:42px;"></div>
+        <div class="header-title">Practice Hub</div>
+        <div style="width:42px;"></div>
+      </div>
+      <div class="section-header" style="margin-top:4px;">
+        <span class="section-label">Modes</span>
+        <span class="section-count">${items.length} available</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:0 16px;">
+        ${items.map((it,i)=>`
+          <div class="practice-card" style="animation-delay:${0.05+i*0.08}s;" onclick="${it.fn}">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="font-size:30px;">${it.emoji}</span>
+              <div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                  <span class="cat-num" style="margin-bottom:0;">${it.num}</span>
+                  <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;">${it.name}</span>
+                </div>
+                <span style="font-size:13px;color:var(--text-3);">${it.desc}</span>
+              </div>
+              <span style="margin-left:auto;color:var(--rv-pale);font-size:20px;font-weight:300;">›</span>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div style="padding:16px;margin-top:4px;">
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-card);">
+          <div class="section-label" style="margin-bottom:6px;">⚡ Quick Challenge</div>
+          <p style="font-size:13px;color:var(--text-2);margin-bottom:16px;font-weight:500;">Test yourself with 10 random words from all categories</p>
+          <button class="btn-primary" onclick="startChallenge()">Start Challenge →</button>
+        </div>
+      </div>
+    </div>
+    ${getNavHTML('practice')}`;
+}
+
+function startMatchingFromHub() {
+  const cats = Object.keys(database);
+  currentCategory = cats[Math.floor(Math.random()*cats.length)];
+  categoryWords = database[currentCategory];
+  matchedPairs=[]; selectedMatchPortuguese=null; selectedMatchEnglish=null;
+  practiceType='match'; showIntensePractice();
+}
+function startFillBlankFromHub() {
+  const cats = Object.keys(database);
+  currentCategory = cats[Math.floor(Math.random()*cats.length)];
+  categoryWords = database[currentCategory];
+  practiceType='fill'; showIntensePractice();
+}
+function startPronFromHub() {
+  const cats = Object.keys(database);
+  currentCategory = cats[Math.floor(Math.random()*cats.length)];
+  categoryWords = database[currentCategory];
+  practiceType='speak'; showIntensePractice();
+}
+function startRandomQuiz() {
+  const cats = Object.keys(database);
+  currentCategory = cats[Math.floor(Math.random()*cats.length)];
+  categoryWords = database[currentCategory];
+  currentWordIndex = Math.floor(Math.random()*categoryWords.length);
+  showQuiz();
+}
+function startChallenge() {
+  const all = [];
+  Object.values(database).forEach(c=>all.push(...c));
+  categoryWords = shuffleArray(all).slice(0, 10);
+  currentCategory = 'Challenge'; currentWordIndex = 0; showQuiz();
+}
+
+// ==================== PROFILE ====================
+function showProfile() {
+  if (!currentUser) return;
+  const joinDate = currentUser.joinDate
+    ? new Date(currentUser.joinDate).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})
+    : 'Today';
+  const level = getLevel(currentUser.score);
+  const initials = (currentUser.firstName[0]+currentUser.lastName[0]).toUpperCase();
+
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <div style="width:42px;"></div>
+        <div class="header-title">Profile</div>
+        <button class="icon-btn" onclick="toggleDark()">🌙</button>
+      </div>
+      <div style="text-align:center;padding:20px 20px 28px;">
+        <div class="profile-avatar">${initials}</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.3px;margin-bottom:8px;">${currentUser.firstName} ${currentUser.lastName}</h2>
+        <span class="pill">${level}</span>
+        <p style="font-size:13px;color:var(--text-3);margin-top:10px;">Member since ${joinDate} · Age: ${currentUser.age||'—'}</p>
+      </div>
+      <div class="stat-grid" style="margin-bottom:20px;">
+        <div class="stat-card" style="animation-delay:0.05s;"><div class="stat-value">${currentUser.total||0}</div><div class="stat-label">Practices</div></div>
+        <div class="stat-card" style="animation-delay:0.10s;"><div class="stat-value">${currentUser.correct||0}</div><div class="stat-label">Correct</div></div>
+        <div class="stat-card" style="animation-delay:0.15s;"><div class="stat-value">${currentUser.streak||0}🔥</div><div class="stat-label">Streak</div></div>
+        <div class="stat-card" style="animation-delay:0.20s;"><div class="stat-value">${currentUser.score}%</div><div class="stat-label">Mastery</div></div>
+      </div>
+      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);margin:0 16px;padding:6px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div class="settings-row">
+          <span>Dark Mode</span>
+          <button class="icon-btn" onclick="toggleDark()">🌙</button>
+        </div>
+        <div class="settings-row">
+          <span>Language</span>
+          <span style="font-weight:700;color:var(--rv-pale);font-size:13px;">🇧🇷 Brazilian Portuguese (pt-BR)</span>
+        </div>
+        <div class="settings-row">
+          <span>Reset Progress</span>
+          <button class="icon-btn" onclick="resetProgress()" style="color:#ef4444;">🗑️</button>
+        </div>
+      </div>
+      <div style="padding:0 16px;">
+        <button class="btn-secondary" onclick="logout()" style="color:#ef4444;border-color:#ef4444;">Log Out</button>
+      </div>
+    </div>
+    ${getNavHTML('profile')}`;
+}
+
+function resetProgress() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  currentUser.score=0; currentUser.correct=0; currentUser.total=0; currentUser.categoryProgress={};
+  saveUsers(); showToast('Progress reset'); showProfile();
+}
+function logout() { currentUser=null; showLogin(); }
+
+// ==================== INIT ====================
+if (users.length > 0) {
+  currentUser = users[0]; updateStreak(); showHome();
+} else {
+  showLogin();
+}
+</script>
+</body>
+</html>
