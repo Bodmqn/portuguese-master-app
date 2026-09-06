@@ -605,7 +605,7 @@ button, .category-card, .nav-item, .quiz-opt, .age-opt, .match-word {
 
 <script>
 // ==================== FULL DATABASE ====================
-// Brazilian Portuguese ONLY (pt-BR) — Updated 2026-08-28: Category 01 now Alphabet with pronunciation
+// Brazilian Portuguese ONLY (pt-BR) — Updated 2026-09-06: Category 01 Alphabet 26, Category 02 Communicating & Essentials 36 (4 topics)
 const database = {
   "Brazilian Portuguese Alphabet": [
     ["A","<span style='font-weight:800;color:var(--rv-pale)'>á [a]</span> — 'ah' as in father — Avião (airplane)"],
@@ -635,35 +635,47 @@ const database = {
     ["Y","<span style='font-weight:800;color:var(--rv-pale)'>ípsilon [ipsilõ]</span> — 'ee-psee-lon' — Yoga"],
     ["Z","<span style='font-weight:800;color:var(--rv-pale)'>zê [ze]</span> — 'zeh' — Zebra (zebra)"]
   ],
-    "Articles": [
-    ["O","<span style='font-weight:800;color:var(--rv-pale)'>Definite Article — Masculine Singular 'the'</span> — o livro (the book) — [oo] as in boot"],
-    ["Os","<span style='font-weight:800;color:var(--rv-pale)'>Definite Article — Masculine Plural 'the'</span> — os livros (the books) — [ooz/oosh]"],
-    ["A","<span style='font-weight:800;color:var(--rv-pale)'>Definite Article — Feminine Singular 'the'</span> — a casa (the house) — [ah] as in father"],
-    ["As","<span style='font-weight:800;color:var(--rv-pale)'>Definite Article — Feminine Plural 'the'</span> — as casas (the houses) — [ahz/ash]"],
-    ["Um","<span style='font-weight:800;color:var(--rv-pale)'>Indefinite Article — Masculine Singular 'a/an'</span> — um carro (a car)"],
-    ["Uns","<span style='font-weight:800;color:var(--rv-pale)'>Indefinite Article — Masculine Plural 'some'</span> — uns carros (some cars)"],
-    ["Uma","<span style='font-weight:800;color:var(--rv-pale)'>Indefinite Article — Feminine Singular 'a/an'</span> — uma maçã (an apple)"],
-    ["Umas","<span style='font-weight:800;color:var(--rv-pale)'>Indefinite Article — Feminine Plural 'some'</span> — umas maçãs (some apples)"],
-    ["O gato / Os gatos","<span style='font-weight:800;color:var(--rv-pale)'>the male cat(s)</span> — O gato dorme (the cat sleeps)"],
-    ["A cadeira / As cadeiras","<span style='font-weight:800;color:var(--rv-pale)'>the chair(s)</span> — A cadeira é nova"],
-    ["O telefone / Os telefones","<span style='font-weight:800;color:var(--rv-pale)'>the telephone(s)</span> — O telefone toca"],
-    ["O amigo / Os amigos","<span style='font-weight:800;color:var(--rv-pale)'>the male friend(s)</span> — O amigo é legal"],
-    ["A praia / As praias","<span style='font-weight:800;color:var(--rv-pale)'>the beach(es)</span> — A praia é linda"],
-    ["O jornal / Os jornais","<span style='font-weight:800;color:var(--rv-pale)'>the newspaper(s)</span> — O jornal de hoje"],
-    ["Um cachorro / Uns cachorros","<span style='font-weight:800;color:var(--rv-pale)'>a dog / some dogs</span> — Um cachorro late"],
-    ["Uma caneta / Umas canetas","<span style='font-weight:800;color:var(--rv-pale)'>a pen / some pens</span> — Uma caneta azul"],
-    ["Um relógio / Uns relógios","<span style='font-weight:800;color:var(--rv-pale)'>a watch / some watches</span> — Um relógio caro"],
-    ["Um avião / Uns aviões","<span style='font-weight:800;color:var(--rv-pale)'>an airplane / some airplanes</span> — Um avião grande"],
-    ["Uma xícara / Umas xícaras","<span style='font-weight:800;color:var(--rv-pale)'>a cup / some cups</span> — Uma xícara de café"],
-    ["Uma cidade / Umas cidades","<span style='font-weight:800;color:var(--rv-pale)'>a city / some cities</span> — Uma cidade grande"],
-    ["O problema","<span style='font-weight:800;color:var(--rv-pale)'>Masculine despite -a (Greek -ema)</span> — o problema é difícil"],
-    ["O sistema / O clima / O tema","<span style='font-weight:800;color:var(--rv-pale)'>Masculine -ema/-ama</span> — o sistema, o clima tropical, o tema difícil"],
-    ["A nação / A cidade / A viagem","<span style='font-weight:800;color:var(--rv-pale)'>Feminine -ção/-dade/-gem</span> — a nação, a cidade, a viagem"],
-    ["O dia / O mapa / O planeta","<span style='font-weight:800;color:var(--rv-pale)'>Masculine -a false friend</span> — o dia lindo, o mapa antigo"],
-    ["A foto (fotografia)","<span style='font-weight:800;color:var(--rv-pale)'>Feminine shortened</span> — a foto (from a fotografia)"],
-    ["A moto (motocicleta)","<span style='font-weight:800;color:var(--rv-pale)'>Feminine shortened</span> — a moto (from a motocicleta)"],
-    ["O pneu (pneumático)","<span style='font-weight:800;color:var(--rv-pale)'>Masculine shortened</span> — o pneu (from o pneumático)"],
-    ["O cinema","<span style='font-weight:800;color:var(--rv-pale)'>Masculine -a</span> — o cinema fechou (the cinema closed)"]
+  "Communicating & Essentials": [
+    // Topic 1: Communicating — Greetings & Farewells (13)
+    ["Bom dia!","<span style='font-weight:800;color:var(--rv-pale)'>Good morning!</span> — Formal Greeting — use 6am–12pm, most common morning hello"],
+    ["Boa tarde!","<span style='font-weight:800;color:var(--rv-pale)'>Good afternoon!</span> — Formal Greeting — 12pm–6pm"],
+    ["Boa noite!","<span style='font-weight:800;color:var(--rv-pale)'>Good evening! / Good night!</span> — Formal Greeting — after 6pm (hello & goodbye)"],
+    ["Oi!","<span style='font-weight:800;color:var(--rv-pale)'>Hi!</span> — Informal Greeting — friends & peers, very Brazilian"],
+    ["Olá!","<span style='font-weight:800;color:var(--rv-pale)'>Hello!</span> — Neutral Greeting — safe in any situation"],
+    ["Adeus!","<span style='font-weight:800;color:var(--rv-pale)'>Goodbye!</span> — Formal Farewell — final, less common daily; prefer Tchau/Até logo"],
+    ["Tchau!","<span style='font-weight:800;color:var(--rv-pale)'>Bye!</span> — Informal Farewell — #1 in Brazil, casual"],
+    ["Até logo!","<span style='font-weight:800;color:var(--rv-pale)'>See you later!</span> — Informal Farewell — see you soon"],
+    ["Até mais!","<span style='font-weight:800;color:var(--rv-pale)'>See you! / See you later!</span> — Informal Farewell — casual, very common"],
+    ["Muito prazer!","<span style='font-weight:800;color:var(--rv-pale)'>Nice to meet you!</span> — Polite, no gender change — after introductions"],
+    ["Desculpa!","<span style='font-weight:800;color:var(--rv-pale)'>Sorry!</span> — Informal — formal is Desculpe! / Com licença..."],
+    ["Bem-vinda!","<span style='font-weight:800;color:var(--rv-pale)'>Welcome! (to a woman)</span> — Polite gendered — to a man → Bem-vindo! (T2)"],
+    ["Muito obrigada!","<span style='font-weight:800;color:var(--rv-pale)'>Thank you very much! (said by a woman)</span> — Gendered — man says Muito obrigado!"],
+    // Topic 2: Polite Expressions — Gendered (6) + Neutral (4) — well-structured for learning
+    ["Bem-vindo!","<span style='font-weight:800;color:var(--rv-pale)'>Welcome! (to a man)</span> — Polite gendered — ends -o = man"],
+    ["Obrigado!","<span style='font-weight:800;color:var(--rv-pale)'>Thank you! (said by a man)</span> — Gendered — -o speaker = man"],
+    ["Obrigada!","<span style='font-weight:800;color:var(--rv-pale)'>Thank you! (said by a woman)</span> — Gendered — -a speaker = woman"],
+    ["Muito obrigado!","<span style='font-weight:800;color:var(--rv-pale)'>Thank you very much! (said by a man)</span> — Gendered — ends -o"],
+    ["Prazer em conhecê-lo!","<span style='font-weight:800;color:var(--rv-pale)'>Nice to meet you! (to a man)</span> — Gendered — -lo = him"],
+    ["Prazer em conhecê-la!","<span style='font-weight:800;color:var(--rv-pale)'>Nice to meet you! (to a woman)</span> — Gendered — -la = her"],
+    ["Por favor...","<span style='font-weight:800;color:var(--rv-pale)'>Please...</span> — Polite, no gender change — universal"],
+    ["Por gentileza...","<span style='font-weight:800;color:var(--rv-pale)'>Please... / Kindly...</span> — No gender change — more formal than Por favor"],
+    ["Com licença...","<span style='font-weight:800;color:var(--rv-pale)'>Excuse me...</span> — No gender change — to pass or get attention"],
+    // Topic 3: Personal Pronouns — Singular (3) + Plural (5) — corrected orthography
+    ["Eu","<span style='font-weight:800;color:var(--rv-pale)'>I</span> — Singular — 1st person"],
+    ["Você","<span style='font-weight:800;color:var(--rv-pale)'>You</span> — Singular — #1 in Brazil (Tu is regional south/northeast)"],
+    ["Ela","<span style='font-weight:800;color:var(--rv-pale)'>She</span> — Singular Feminine — 3rd person"],
+    ["Ele","<span style='font-weight:800;color:var(--rv-pale)'>He</span> — Singular Masculine — 3rd person (completes set for Ser)"],
+    ["Nós","<span style='font-weight:800;color:var(--rv-pale)'>We</span> — Plural — 1st person"],
+    ["Vocês","<span style='font-weight:800;color:var(--rv-pale)'>You (plural)</span> — 2nd Plural — you all"],
+    ["Eles","<span style='font-weight:800;color:var(--rv-pale)'>They (masculine/mixed)</span> — Plural — 3rd person"],
+    ["Elas","<span style='font-weight:800;color:var(--rv-pale)'>They (feminine)</span> — Plural — all women"],
+    // Topic 4: Verb Ser — Present Tense (6) — with example sentences
+    ["Eu sou","<span style='font-weight:800;color:var(--rv-pale)'>I am — sou</span> — Eu sou brasileiro. / Sou brasileiro. (I am Brazilian.)"],
+    ["Tu és","<span style='font-weight:800;color:var(--rv-pale)'>You are — és</span> — Tu és estrangeira. / És estrangeira. (You are foreign.) — informal/regional"],
+    ["Ele é / Ela é","<span style='font-weight:800;color:var(--rv-pale)'>He / She is — é</span> — Ela é estudante. / É estudante. (She is a student.)"],
+    ["Nós somos","<span style='font-weight:800;color:var(--rv-pale)'>We are — somos</span> — Nós somos amigos. / Somos amigos. (We are friends.)"],
+    ["Vós sois","<span style='font-weight:800;color:var(--rv-pale)'>You are — sois</span> — Vós sois competentes. / Sois competentes. (You are competent.) — very formal/archaic, rare in Brazil"],
+    ["Eles são / Elas são","<span style='font-weight:800;color:var(--rv-pale)'>They are — são</span> — Eles são brasileiros. / São brasileiros. (They are Brazilian.)"]
   ],
   "Order at a Cafe (Section 1)": [
     ["até logo","see you later"],["tudo bem","how are you"],["ela","she"],
@@ -1066,7 +1078,7 @@ function showHome() {
   const level = getLevel(currentUser.score);
   const accuracy = currentUser.total > 0 ? Math.round((currentUser.correct/currentUser.total)*100) : 0;
   const categories = Object.keys(database);
-  const emojis = ['🔤','📰','☕','🥐','🏃','📝','🏠','🔢','📅','🎨','👨‍👩‍👧','👁️','🍔','🐶','🏡','👕','🚗','🌳','📱','😊','💼','⚽'];
+  const emojis = ['🔤','🗣️','☕','🥐','🏃','📝','🏠','🔢','📅','🎨','👨‍👩‍👧','👁️','🍔','🐶','🏡','👕','🚗','🌳','📱','😊','💼','⚽'];
 
   const catCards = categories.map((cat, i) => {
     const progress = Math.round(currentUser.categoryProgress?.[cat] || 0);
@@ -1130,7 +1142,7 @@ function showWord() {
       <div class="content-card scale-enter" style="animation-delay:0.08s;">
         <div class="pill">Word ${currentWordIndex+1}</div>
         <div class="word-display">${word[0]}</div>
-        <div class="translation-display" style="${currentCategory==='Articles'?'font-size:19px;line-height:1.4':''}">${word[1]}</div>
+        <div class="translation-display" style="${currentCategory==='Communicating & Essentials'?'font-size:18px;line-height:1.4':''}">${word[1]}</div>
         <button class="speak-btn" onclick="speak('${safe}')">🔊</button>
         <div style="display:flex;gap:12px;">
           <button class="btn-secondary" onclick="prevWord()" ${currentWordIndex===0?'disabled style="opacity:0.4;pointer-events:none;"':''}>← Prev</button>
@@ -1139,8 +1151,8 @@ function showWord() {
         </div>
       </div>
       <div class="tip-card">
-        <div class="tip-label">💡 ${currentCategory==='Brazilian Portuguese Alphabet' ? 'Pronunciation Tip' : currentCategory==='Articles' ? 'Grammar Tip' : 'Tip'}</div>
-        <div class="tip-text">${currentCategory==='Brazilian Portuguese Alphabet' ? 'Say "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + '. Tap 🔊 to hear Brazilian pronunciation!' : currentCategory==='Articles' ? 'Tip: O=[oo] boot, A=[ah] father, Os=[oosh], As=[ash] — match gender & number! Example: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[0] : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!'}</div>
+        <div class="tip-label">💡 ${currentCategory==='Brazilian Portuguese Alphabet' ? 'Pronunciation Tip' : currentCategory==='Communicating & Essentials' ? 'Communication Tip' : 'Tip'}</div>
+        <div class="tip-text">${currentCategory==='Brazilian Portuguese Alphabet' ? 'Say "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + '. Tap 🔊 to hear Brazilian pronunciation!' : currentCategory==='Communicating & Essentials' ? (word[0].includes('sou')||word[0].includes('és')||word[0].includes(' é')||word[0].includes('somos')||word[0].includes('sois')||word[0].includes('são') ? 'Verb <strong>Ser</strong> = identity/origin. Example: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[1] : word[1].includes('Gendered') ? 'Gender matters! <strong>' + word[0] + '</strong> → ' + word[1].split(' — ')[0] + ' — note -o/-a and -lo/-la!' : word[0].includes('Bom dia')||word[0].includes('Boa tarde')||word[0].includes('Boa noite')||word[0]==='Oi!'||word[0]==='Olá!'||word[0].includes('Até')||word[0].includes('Tchau')||word[0].includes('Adeus') ? 'Greeting/Farewell: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — tap 🔊!' : word[1].includes('no gender change') ? 'Polite & neutral: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — works for everyone!' : word[1].includes('Singular')||word[1].includes('Plural') ? 'Pronoun: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[0] + ' — Você = you (#1 in Brazil)!' : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!') : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!'}</div>
       </div>
     </div>`;
 }
@@ -1154,9 +1166,12 @@ function showQuiz() {
   if (!categoryWords) return;
   const word = categoryWords[currentWordIndex];
   const correct = word[1];
-  const all = shuffleArray(Object.values(database).flat());
+  // Well-structured quiz: prefer same-category distractors for gendered/polite learning, fallback to global pool
+  const sameCat = database[currentCategory] ? shuffleArray(database[currentCategory]) : [];
+  const globalShuffled = shuffleArray(Object.values(database).flat());
+  const pool = [...sameCat, ...globalShuffled];
   const wrongs = [];
-  for (const w of all) { if (w[1] !== correct && !wrongs.includes(w[1])) wrongs.push(w[1]); if (wrongs.length===3) break; }
+  for (const w of pool) { if (w[1] !== correct && !wrongs.includes(w[1])) wrongs.push(w[1]); if (wrongs.length===3) break; }
   const options = shuffleArray([correct, ...wrongs]);
   const pct = Math.round((currentWordIndex/categoryWords.length)*100);
   const safe = word[0].replace(/'/g,"\\'");
@@ -1174,7 +1189,7 @@ function showQuiz() {
         <div class="pill">What is the meaning of?</div>
         <div class="word-display">${word[0]}</div>
         <div class="quiz-options">
-          ${options.map(opt=>`<button class="quiz-opt" style="${currentCategory==='Articles'?'font-size:13px;line-height:1.3':''}" onclick="checkAnswer(this,'${opt.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">
+          ${options.map(opt=>`<button class="quiz-opt" style="${currentCategory==='Communicating & Essentials'?'font-size:13px;line-height:1.3':''}" onclick="checkAnswer(this,'${opt.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">
             ${opt}
           </button>`).join('')}
         </div>
@@ -1336,9 +1351,45 @@ function getFillBlank() {
 
 function getSampleSentence(word) {
   const map = {
-    'Olá':'_____, como você está?', 'Bom dia':'_____, como você dormiu?',
-    'Água':'Eu bebo _____ todos os dias.', 'Obrigado':'_____, Maria!',
-    'café':'Eu quero um _____.', 'pão':'Eu gosto de _____ com manteiga.'
+    'Bom dia!':'_____! Como você está?',
+    'Boa tarde!':'_____! Tudo bem?',
+    'Boa noite!':'_____! Como foi seu dia?',
+    'Oi!':'_____! Tudo bem?',
+    'Olá!':'_____, como você está?',
+    'Adeus!':'_____! Foi um prazer.',
+    'Tchau!':'_____! Até amanhã.',
+    'Até logo!':'_____! Nos vemos em breve.',
+    'Até mais!':'_____! Se cuida.',
+    'Muito prazer!':'_____, sou Ana.',
+    'Desculpa!':'_____, cheguei atrasado.',
+    'Bem-vinda!':'_____, Ana! Fique à vontade.',
+    'Muito obrigada!':'_____, pela ajuda!',
+    'Bem-vindo!':'_____, João! Entre.',
+    'Obrigado!':'_____, pela ajuda! (homem)',
+    'Obrigada!':'_____, pela ajuda! (mulher)',
+    'Muito obrigado!':'_____! Você é gentil. (homem)',
+    'Prazer em conhecê-lo!':'_____, João!',
+    'Prazer em conhecê-la!':'_____, Ana!',
+    'Por favor...':'_____, me ajude?',
+    'Por gentileza...':'_____, pode me ajudar?',
+    'Com licença...':'_____, posso passar?',
+    'Eu':'_____ sou estudante.',
+    'Você':'_____ é brasileiro?',
+    'Ela':'_____ é minha amiga.',
+    'Ele':'_____ é meu amigo.',
+    'Nós':'_____ somos do Brasil.',
+    'Vocês':'_____ são bem-vindos!',
+    'Eles':'_____ são brasileiros.',
+    'Elas':'_____ são brasileiras.',
+    'Eu sou':'_____ brasileiro. / Sou brasileiro.',
+    'Tu és':'_____ estrangeira. / És estrangeira.',
+    'Ele é / Ela é':'Ela _____ estudante. / É estudante.',
+    'Nós somos':'_____ amigos. / Somos amigos.',
+    'Vós sois':'_____ competentes. / Sois competentes.',
+    'Eles são / Elas são':'_____ brasileiros. / São brasileiros.',
+    'Água':'Eu bebo _____ todos os dias.',
+    'café':'Eu quero um _____.',
+    'pão':'Eu gosto de _____ com manteiga.'
   };
   return map[word] || `Eu uso a palavra "${word}" aqui: _____.`;
 }
@@ -1364,7 +1415,7 @@ function getPronunciationPractice() {
   return `<div class="content-card scale-enter" style="animation-delay:0.1s;text-align:center;">
     <div class="pill">Pronunciation</div>
     <div class="word-display" style="margin-bottom:8px;">${word[0]}</div>
-    <div class="translation-display" style="${currentCategory==='Articles'?'font-size:19px;line-height:1.4':''}">${word[1]}</div>
+    <div class="translation-display" style="${currentCategory==='Communicating & Essentials'?'font-size:18px;line-height:1.4':''}">${word[1]}</div>
     <button class="mic-btn" onclick="startListening('${safe}')">🎤</button>
     <button class="btn-secondary" onclick="speak('${safe}')">🔊 Listen First</button>
     <p style="font-size:13px;color:var(--text-3);margin-top:16px;font-weight:500;">Tap the mic and say the word clearly</p>

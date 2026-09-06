@@ -13,7 +13,7 @@
 | `index.html` | **Authoritative** app + inline `const database` + UI | Mobile shell preserved |
 | `data.js` | Mirror database (cached by PWA) | Synced with `index.html` database |
 | `manifest.json` | PWA manifest — branding | Updated to Brazilian |
-| `service-worker.js` | Offline cache | Bumped to `br-portuguese-v4` |
+| `service-worker.js` | Offline cache | Bumped to `br-portuguese-v5` |
 | `PROGRESS.md` | This log — living document | Created 2026-08-28 |
 
 **Key code refs:**
@@ -92,15 +92,28 @@
   - **Design rationale:** Articles must match gender+number. **Expanded** `Masc.`→`Masculine`, `Fem.`→`Feminine`, `Sing.`→`Singular`, `Pl.`→`Plural`, `Masc. despite`→`Masculine despite` etc. for clarity (full words). **Bold distinguished** first segment `Definite Article — Masculine Plural 'the'` via `<span style='font-weight:800;color:var(--rv-pale)'>` — grammar core pops. Kept pronunciation `O=[oo] boot` etc. and example word per entry; **scoped font reduction** for `Articles` (`translation-display:356` `22px`→`19px`, `quiz-opt:368` `14px`→`13px` when `currentCategory==='Articles'` in `showWord:1110`/`showQuiz:1156`) accommodates longer full-word strings without overflow. Tricky rules teach -ema/-ama vs -ção/-dade/-gem and shortened retention without global redesign.
   - **Tip card:** Dynamic `Grammar Tip` for `Articles` (`index.html:1122-1123`): `O=[oo], A=[ah], Os=[oosh], As=[ash] — match gender & number!`
   - **Why 28 not 8:** Core 8 articles + 12 examples + 8 tricky = 28 gives quiz variety (`showQuiz:1133` distinct wrongs) and matches Alphabet 26 granularity; contractions (`no/na/do/da`) reserved for future `02B`.
-- **Files:** `index.html:638` `Greetings` → `Articles` (28, full words + bold, scoped 19px/13px), `data.js:30` `Articles` (2 → 28, sync, full words + bold), `index.html:1049` emoji `📰`, `index.html:752` bold for Alphabet, `service-worker.js:3` `br-portuguese-v3` → `br-portuguese-v4`
+ - **Files:** `index.html:638` `Greetings` → `Articles` (28, full words + bold, scoped 19px/13px), `data.js:30` `Articles` (2 → 28, sync, full words + bold), `index.html:1049` emoji `📰`, `index.html:752` bold for Alphabet, `service-worker.js:3` `br-portuguese-v3` → `br-portuguese-v4`
+
+### 2026-09-06 — Category 02 Rebuild: Articles → Communicating & Essentials (v0.4.0)
+- **Before:** `Articles` (`index.html:638-667` 28 entries: O/Os/A/As + Um/Umas + examples + tricky -ema/-ção, `📰`) — grammar-heavy
+- **After:** `Communicating & Essentials` — **36 entries, 4 well-structured topics for true understanding** (kept as 02 to preserve order)
+  - **Label:** `Communicating & Essentials` (`index.html:638`, `data.js:30`)
+  - **Emoji:** `🗣️` (`index.html:1081` changed from `📰`)
+  - **Content (both files synced, 36 — ordered pedagogically T1→T4):**
+    - *Topic 1 — Communicating 13:* `Bom dia!` (Formal 6am-12pm), `Boa tarde!` (12-6pm), `Boa noite!` (after 6pm hello & goodbye), `Oi!` (Hi! informal, Brazilian), `Olá!` (Hello neutral), `Adeus!` (Formal farewell final), `Tchau!` (#1 informal), `Até logo!`, `Até mais!` (very common casual), `Muito prazer!` (no gender), `Desculpa!` (informal → formal `Desculpe!`), `Bem-vinda!` (to a woman → `Bem-vindo!`), `Muito obrigada!` (said by woman → `Muito obrigado!`) — each with usage hint `Formal/Informal`, time, frequency
+    - *Topic 2 — Polite Expressions 9 new (+3 in T1 =12):* Gendered `Bem-vindo!` (to a man -o), `Obrigado!` (said by man -o), `Obrigada!` (said by woman -a), `Muito obrigado!`, `Prazer em conhecê-lo!` (-lo=him), `Prazer em conhecê-la!` (-la=her) + Neutral `Por favor...`, `Por gentileza...` (more formal), `Com licença...` (to pass/attention) — **gender logic explicit** `-o/-a`, `-lo/-la` for understanding
+    - *Topic 3 — Personal Pronouns 8 (corrected orthography):* `Eu` (I), `Você` (You, #1 in Brazil, Tu regional), `Ela` (She), `Ele` (He, added to complete set), `Nós` (We), `Vocês` (You pl, corrected from `Vóces`), `Eles` (They masc/mixed), `Elas` (They fem) — fixes `Voce`→`Você`, `Vóces`→`Vocês`, adds `Ele`
+    - *Topic 4 — Verb Ser Present 6:* `Eu sou` — Eu sou brasileiro./Sou brasileiro., `Tu és` — Tu és estrangeira./És estrangeira. (regional), `Ele é / Ela é` — Ela é estudante./É estudante., `Nós somos` — Nós somos amigos./Somos amigos., `Vós sois` — Vós sois competentes./Sois competentes. (very formal/archaic rare in Brazil), `Eles são / Elas são` — Eles são brasileiros./São brasileiros. — each with pt example + English
+  - **Design rationale (well-structured & informative):** Flat list ordered T1→T4 so `showWord:1127` Next/Prev feels like 4 lessons; **bold distinguished** English core via `<span style='font-weight:800;color:var(--rv-pale)'>Good morning!</span>` etc. Gender hints inline prevent confusion; time/register notes (`6am-12pm`, `#1 in Brazil`) give real-world when-to-use. **Deduplicated** `Muito prazer!/Bem-vinda!/Muito obrigada!` cross-referenced (`→ Bem-vindo!`) instead of duplicate cards → quiz distinctness preserved (`showQuiz:1165` needs distinct `w[1]`). Scoped font `Communicating & Essentials` `18px` (`translation-display:1145`) + `13px` (`quiz-opt:1189`) keeps mobile 430px `index.html:601` readable for longer gendered strings (vs Articles `19px`/`13px`). Tip card dynamic `Communication Tip` (`index.html:1154`) now 5 branches: Ser → identity verb tip, Gendered → `-o/-a` tip, Greeting → time tip, Neutral → universal tip, Pronoun → `Você` tip. `getSampleSentence:1352` expanded to 36 entries (`Bom dia! → _____! Como você está?` ... `Eles são → _____ brasileiros.`) for meaningful FillBlank. Quiz well-structured: same-category distractors first (`sameCat` pool `index.html:1169`) → `Obrigado!` wrongs include `Obrigada!`/`Muito obrigado!` (forces gender learning) fallback to global pool for variety; scoring `+2` mastery retained `checkAnswer:1197`.
+  - **Files:** `index.html:607` header comment, `index.html:638-672` Articles 28→Communicating 36, `data.js:30-66` mirror 36, `index.html:1081` emoji `🗣️`, `index.html:1145,1154,1189,1382` scoped font/tip/speak, `index.html:1169` quiz same-cat pool, `index.html:1352` `getSampleSentence` 36, `service-worker.js:3` `v4`→`v5`
 
 ---
 
 ## 3. Current Database Overview
 
-**Authoritative (index.html inline) — 8 categories after 2026-08-28:**
+**Authoritative (index.html inline) — 8 categories after 2026-09-06:**
 1. `Brazilian Portuguese Alphabet` (26) — **DONE, Brazilian + pronunciation**
-2. `Articles` (28) — **DONE, Brazilian + pronunciation + tricky gender**
+2. `Communicating & Essentials` (36) — **DONE, 4 topics: Communicating 13 + Polite 9 + Pronouns 8 + Ser 6 — well-structured, informative**
 3. `Order at a Cafe (Section 1)` (30)
 4. `Order at a Cafe (Section 2)` (15)
 5. `Order at a Restaurant (Section 1)` (38)
@@ -109,7 +122,9 @@
 8. `Home (Section 2)` (16)
 
 **Mirror (data.js) — 30+ categories (needs sync on each rebuild):**
-`Brazilian Portuguese Alphabet`, `Articles`, `Greetings & Politeness`, `Question Words`, `Essential Verbs`, `Common Adjectives`, `Basic Nouns`, `Numbers`, `Days & Months`, `Colors`, `Family Members`, `Body Parts`, `Food & Drinks`, `Animals`, `House & Home`, `Clothing`, `Transportation`, `Nature`, `Common Adverbs & Prepositions`, `More Question Words`, `City & Places`, `School & Education`, `Health & Body`, `Technology & Communication`, `Emotions & Feelings`, `Work & Professions`, `Shopping`, `Weather & Seasons`, `Sports & Leisure`
+`Brazilian Portuguese Alphabet`, `Communicating & Essentials` (36), `Greetings & Politeness`, `Question Words`, `Essential Verbs`, `Common Adjectives`, `Basic Nouns`, `Numbers`, `Days & Months`, `Colors`, `Family Members`, `Body Parts`, `Food & Drinks`, `Animals`, `House & Home`, `Clothing`, `Transportation`, `Nature`, `Common Adverbs & Prepositions`, `More Question Words`, `City & Places`, `School & Education`, `Health & Body`, `Technology & Communication`, `Emotions & Feelings`, `Work & Professions`, `Shopping`, `Weather & Seasons`, `Sports & Leisure`
+
+> Legacy: `Articles` (28) retired 2026-09-06 — replaced by `Communicating & Essentials`; content archived in git history.
 
 > **Note:** `data.js` has richer taxonomy; `index.html` inline is the runtime source. They are now synced for Category 01. Future rebuilds must sync both.
 
@@ -119,17 +134,17 @@
 
 Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `PROGRESS.md`:
 
-- [x] **Category 02** — `Articles` (28) — **DONE** — see Completed above
-- [ ] **Category 02B (future)** — Article Contractions (`no/na/do/da = em/de + o/a`, `num/numa`) — reserved
+- [x] **Category 02** — `Articles` (28) — **DONE 2026-08-28** — see Completed above (retired)
+- [x] **Category 02** — `Communicating & Essentials` (36) — **DONE 2026-09-06** — well-structured 4 topics, informative hints + well-structured quiz (same-cat distractors)
 - [ ] **Category 03** — `Order at a Cafe (Section 1)` → **Brazilian Café & Padaria** (pt-BR specific: `pão de queijo, coxinha, suco natural, pingado`)
 - [ ] **Category 04** — `Order at a Cafe (Section 2)` → continue Café phrases (sentences)
 - [ ] **Category 05-06** — Restaurant → **Brazilian Restaurant (Feijoada, churrasco, self-service)**
 - [ ] **Category 07-08** — Home → **Brazilian Home & Daily Life**
 - [ ] **Backfill data.js taxonomy** — Align `data.js` 30 categories to Brazilian reality (e.g., `Numbers`, `Colors`, `Family` already usable but need pt-BR review; `Technology`, `Slang` add `gírias` like `legal, massa, mano`)
-- [ ] **Quiz hardening** — Review `showQuiz:1133` wrong-answer pool (`Object.values(database).flat()`) for pt-BR uniqueness; ensure `CheckAnswer:1165` scoring still `+2` mastery
-- [ ] **Practice modes** — Validate `Matching:1245`, `FillBlank:1303`, `Pronunciation:1345` with new pt-BR content; add `getSampleSentence` pt-BR sentences per category
-- [ ] **Tip cards** — Make category-specific tips (like alphabet pronunciation tip) without CSS change
-- [ ] **PWA** — Keep `service-worker.js` version bump per release
+- [x] **Quiz hardening** — `showQuiz:1165` now same-category pool first (`sameCat` → global fallback) for Communicating & Essentials gendered learning; scoring `+2` retained `checkAnswer:1197`
+- [x] **Practice modes** — `getSampleSentence:1352` expanded to 36 entries (greetings/pronouns/Ser); `Matching:1245`, `FillBlank:1336`, `Pronunciation:1376` validated
+- [x] **Tip cards** — Dynamic `Communication Tip` 5 branches (`index.html:1154`: Ser/ Gendered/ Greeting/ Neutral/ Pronoun) + Pronunciation Tip
+- [x] **PWA** — `service-worker.js:3` bumped `v4`→`v5`
 
 **Future idea (not now):** Add `Category 01B: Acentos & Ç` (`ÁÂÃÀÉÊÍÓÔÕÚÇ`) after alphabet is validated with users.
 
@@ -145,10 +160,18 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 | 2026-08-28 | Keep 26 letters, not 38 | Core alphabet first; accents as separate future category |
 | 2026-08-28 | Single PROGRESS.md log | Keep record of all improvements + next steps in repo root |
 | 2026-08-28 | Category 02 = Articles 28 with pronunciation + tricky gender | Articles must match gender/number; pronunciation O/A/Os/As + -ema/-ama vs -ção/-dade/-gem + shortened retention; 28 gives quiz depth; contractions reserved for 02B |
+| 2026-09-06 | Category 02 = Communicating & Essentials 36 (well-structured 4 topics, informative) | User directive — 4 topics in place of Articles, well-arranged for understanding; deduplicated overlaps, corrected Você/Vocês, added Ele, detailed usage hints (time/gender/register) + well-structured quiz same-cat distractors; Articles retired |
 
 ---
 
 ## 6. Changelog
+
+- **v0.4.0 — 2026-09-06: Communicating & Essentials — Well-Structured & Informative**
+  - Category 02: `Articles` (28) → `Communicating & Essentials` (36): T1 Communicating 13 (Formal `Bom dia!/Boa tarde!/Boa noite!` + Informal `Oi!/Olá!` + Farewells `Adeus!/Tchau!/Até logo!/Até mais!` with time/register hints), T2 Polite 9+3 (Gendered `Bem-vindo!/Obrigado!/Obrigada!/Muito obrigado!/Prazer em conhecê-lo/la` with -o/-a/-lo/-la + Neutral `Por favor.../Por gentileza.../Com licença...`), T3 Pronouns 8 (`Eu/Você` corrected, `Ele` added, `Vocês` corrected, `Eles/Elas`), T4 Ser 6 (`Eu sou` … `Eles são` with pt examples + en) — ordered T1→T4, deduplicated overlaps, bold English core, `18px/13px` scoped for gendered strings
+  - Well-structured quiz: `showQuiz:1165` same-category pool first (`sameCat` → global fallback) so `Obrigado!` distractors are `Obrigada!`/`Muito obrigado!` (gender learning), fallback variety retained
+  - Practice hardening: `getSampleSentence:1352` 36 entries, tip card `Communication Tip` 5 branches (`index.html:1154`: Ser/Gendered/Greeting/Neutral/Pronoun), `Matching:1245`/`FillBlank:1336`/`Speak:1376` validated
+  - Emoji 02 `📰`→`🗣️` (`index.html:1081`), PWA `v4`→`v5` (`service-worker.js:3`)
+  - Files: `index.html:607,638,1081,1145,1154,1169,1189,1352,1382` + `data.js:30` (sync) + `service-worker.js` + `PROGRESS.md`
 
 - **v0.3.1 — 2026-08-28: Articles Full Words + Bold + Scoped Font**
   - Expand `Masc.`/`Fem.`/`Sing.`/`Pl.` → `Masculine`/`Feminine`/`Singular`/`Plural` (full words) for all 28 Articles + tricky rules; bold distinguished via `<span style='font-weight:800;color:var(--rv-pale)'>` — Alphabet: `á [a]` (first segment) pops, Articles core 8: `Definite Article — Masculine Singular 'the'` (first two segments) pops for explanatory clarity
@@ -192,4 +215,4 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 
 ---
 
-*Maintained by: Bodeo — 2026-08-28 — ✅ Paused after Category 02 (Alphabet 26 + Articles 28) — Next: Category 03 Brazilian Café & Padaria — paused after v0.3.1 full-words+bold, will continue next session. Record kept as requested.*
+*Maintained by: Bodeo — 2026-09-06 — ✅ Category 02 rebuilt: Communicating & Essentials 36 (well-structured 4 topics, informative hints, well-structured quiz) — Alphabet 26 retained — Next: Category 03 Brazilian Café & Padaria — paused after v0.4.0, will continue next session. Record kept as requested.*
