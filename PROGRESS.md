@@ -13,7 +13,7 @@
 | `index.html` | **Authoritative** app + inline `const database` + UI | Mobile shell preserved |
 | `data.js` | Mirror database (cached by PWA) | Synced with `index.html` database |
 | `manifest.json` | PWA manifest — branding | Updated to Brazilian |
-| `service-worker.js` | Offline cache | Bumped to `br-portuguese-v7` |
+| `service-worker.js` | Offline cache | Bumped to `br-portuguese-v8` |
 | `PROGRESS.md` | This log — living document | Created 2026-08-28 |
 
 **Key code refs:**
@@ -128,7 +128,7 @@
 **Authoritative (index.html inline) — 9 categories after 2026-09-07:**
 1. `Brazilian Portuguese Alphabet` (26) — **DONE, Brazilian + pronunciation**
 2. `Communicating & Essentials` (36) — **DONE, 4 topics: Communicating 13 + Polite 9 + Pronouns 8 + Ser 6 — well-structured, informative**
-3. `Articles & Gender` (36) — **DONE, 5 topics: Foundation 2 + Definite/Indefinite 8 + Gender 8 + Plural 8 + Tricky/Agreement 6 — well-arranged, explanatory, quiz proper**
+3. `Articles & Gender` (24) — **DONE, 3 topics: Definite 8 + Indefinite 8 + Variable/Common/Table 8 — conversational, pronunciation-fixed, well-arranged**
 4. `Order at a Cafe (Section 1)` (30)
 5. `Order at a Cafe (Section 2)` (15)
 6. `Order at a Restaurant (Section 1)` (43)
@@ -137,7 +137,7 @@
 9. `Home (Section 2)` (16)
 
 **Mirror (data.js) — 30 categories (needs sync on each rebuild):**
-`Brazilian Portuguese Alphabet` (26), `Communicating & Essentials` (36), `Articles & Gender` (36), `Greetings & Politeness` (17), `Question Words` (6), `Essential Verbs` (53), `Common Adjectives` (33), `Basic Nouns` (15), `Numbers` (30), `Days & Months` (29), `Colors` (20), `Family Members` (28), `Body Parts` (30), `Food & Drinks` (39), `Animals` (30), `House & Home` (30), `Clothing` (30), `Transportation` (30), `Nature` (28), `Common Adverbs & Prepositions` (30), `More Question Words` (20), `City & Places` (29), `School & Education` (25), `Health & Body` (29), `Technology & Communication` (28), `Emotions & Feelings` (27), `Work & Professions` (25), `Shopping` (23), `Weather & Seasons` (26), `Sports & Leisure` (26)
+`Brazilian Portuguese Alphabet` (26), `Communicating & Essentials` (36), `Articles & Gender` (24), `Greetings & Politeness` (17), `Question Words` (6), `Essential Verbs` (53), `Common Adjectives` (33), `Basic Nouns` (15), `Numbers` (30), `Days & Months` (29), `Colors` (20), `Family Members` (28), `Body Parts` (30), `Food & Drinks` (39), `Animals` (30), `House & Home` (30), `Clothing` (30), `Transportation` (30), `Nature` (28), `Common Adverbs & Prepositions` (30), `More Question Words` (20), `City & Places` (29), `School & Education` (25), `Health & Body` (29), `Technology & Communication` (28), `Emotions & Feelings` (27), `Work & Professions` (25), `Shopping` (23), `Weather & Seasons` (26), `Sports & Leisure` (26)
 
 > Legacy: `Articles` (28) retired 2026-09-06 — replaced by `Communicating & Essentials`; content archived in git history.
 
@@ -151,16 +151,16 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 
 - [x] **Category 02** — `Articles` (28) — **DONE 2026-08-28** — see Completed above (retired)
 - [x] **Category 02** — `Communicating & Essentials` (36) — **DONE 2026-09-06** — well-structured 4 topics, informative hints + well-structured quiz (same-cat distractors)
-- [x] **Category 03** — `Articles & Gender` (36) — **DONE 2026-09-07** — well-arranged 5 topics (Foundation 2 + Definite/Indefinite 8 + Gender 8 + Plural 8 + Tricky/Agreement 6), explanatory, quiz proper arrangement (Option A insert, 8→9 cats)
+- [x] **Category 03** — `Articles & Gender` (24) — **DONE 2026-09-07** — conversational 3 topics (Definite 8 + Indefinite 8 + Variable/Common/Table 8), pronunciation-fixed (word[0] minimal), well-arranged (Option A insert, 8→9 cats) — redo 36→24 per preference
 - [ ] **Category 04** — `Order at a Cafe (Section 1)` (30) → **Brazilian Café & Padaria** (pt-BR specific: `pão de queijo, coxinha, suco natural, pingado`)
 - [ ] **Category 05** — `Order at a Cafe (Section 2)` (15) → continue Café phrases (sentences)
 - [ ] **Category 06-07** — Restaurant → **Brazilian Restaurant (Feijoada, churrasco, self-service)** (43+38)
 - [ ] **Category 08-09** — Home → **Brazilian Home & Daily Life** (19+16)
 - [ ] **Backfill data.js taxonomy** — Align `data.js` 30 categories to Brazilian reality (e.g., `Numbers`, `Colors`, `Family` already usable but need pt-BR review; `Technology`, `Slang` add `gírias` like `legal, massa, mano`)
-- [x] **Quiz hardening** — `showQuiz:1212` now same-category pool first (`sameCat` → global fallback) for Communicating & Articles & Gender learning; proper arrangement with `13px` scoped for table strings; scoring `+2` retained `checkAnswer:1243`
-- [x] **Practice modes** — `getSampleSentence:1395` expanded to 36 Noun Inflection + 36 Communicating entries (72 total tailored); `Matching:1318`, `FillBlank:1380`, `Pronunciation:1455` validated
-- [x] **Tip cards** — Dynamic `Communication Tip` 5 branches + `Grammar Tip` 12 branches (`index.html:1197-1198`: Noun Inflection foundation/definite/gender/plural/tricky/agreement) + Pronunciation Tip
-- [x] **PWA** — `service-worker.js:3` bumped `v5`→`v7` (v6 rename to `Articles & Gender`)
+- [x] **Quiz hardening** — `showQuiz:1198` now same-category pool first (`sameCat` → global fallback) for Communicating & Articles & Gender (24) learning; proper arrangement with `13px` scoped; scoring `+2` retained `checkAnswer:1229`
+- [x] **Practice modes** — `getSampleSentence:1395` rebuilt to 24 Articles & Gender + 36 Communicating (60 total tailored); `Matching:1318`, `FillBlank:1380`, `Pronunciation:1455` validated (pronunciation-fixed)
+- [x] **Tip cards** — Dynamic `Communication Tip` 5 branches + `Grammar Tip` 8 branches (`index.html:1183-1184`: o/a/os/as, o livro/a casa, o dia/a foto, um/uma/uns/umas, o lápis/a caneta, o garoto/a garota, porteiro/síndica) + Pronunciation Tip
+- [x] **PWA** — `service-worker.js:3` bumped `v5`→`v8` (v6 rename + v8 redo 24 pronunciation-fixed)
 
 **Future idea (not now):** Add `Category 01B: Acentos & Ç` (`ÁÂÃÀÉÊÍÓÔÕÚÇ`) after alphabet is validated with users.
 
@@ -177,7 +177,7 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 | 2026-08-28 | Single PROGRESS.md log | Keep record of all improvements + next steps in repo root |
 | 2026-08-28 | Category 02 = Articles 28 with pronunciation + tricky gender | Articles must match gender/number; pronunciation O/A/Os/As + -ema/-ama vs -ção/-dade/-gem + shortened retention; 28 gives quiz depth; contractions reserved for 02B |
 | 2026-09-06 | Category 02 = Communicating & Essentials 36 (well-structured 4 topics, informative) | User directive — 4 topics in place of Articles, well-arranged for understanding; deduplicated overlaps, corrected Você/Vocês, added Ele, detailed usage hints (time/gender/register) + well-structured quiz same-cat distractors; Articles retired |
-| 2026-09-07 | Category 03 = Articles & Gender 36 (well-arranged 5 topics, explanatory, quiz proper) | User directive Option A — insert as 03 via well-arranged pedagogy (Foundation → Definite/Indefinite→Gender→Plural→Tricky/Agreement), includes all user theory + table porteiro/síndica + lápis/caneta/garoto/garota, pronunciation [oo]/[ah]/[ũ], bold core, 18px/13px scoped, Grammar Tip 12 branches, quiz sameCat proper arrangement; preserve Café 04-09 |
+| 2026-09-07 | Category 03 = Articles & Gender 24 (conversational 3 topics, pronunciation-fixed) | User directive Option 1 — redo 36→24, drop theory Noun Inflection/What is Article?, minimal word[0] for TTS (o→says o, o lápis→says o lápis, o porteiro→says o porteiro), well-arranged Definite 8 + Indefinite 8 (um pão/uma coxinha Brazilian daily) + Variable/Common/Table 8 (garoto/garota, estudante, porteiro/síndica), 18px/13px scoped, Grammar Tip 8 branches, quiz sameCat proper; preserve Café 04-09 |
 
 ---
 
@@ -243,4 +243,4 @@ Work sequentially, one category per sprint, syncing `index.html` + `data.js` + `
 
 ---
 
-*Maintained by: Bodeo — 2026-09-07 — ✅ Category 03 renamed: `Articles & Gender` 36 (ex `Noun Inflection & Articles`) — Alphabet 26 + Communicating 36 retained — 9 categories total — Next: Category 04 Brazilian Café & Padaria — paused after v0.5.1, will continue next session. Record kept as requested.*
+*Maintained by: Bodeo — 2026-09-07 — ✅ Category 03 redone: `Articles & Gender` 24 (conversational, pronunciation-fixed, ex 36) — Alphabet 26 + Communicating 36 retained — 9 categories total — Next: Category 04 Brazilian Café & Padaria — paused after v0.5.2, will continue next session. Record kept as requested.*

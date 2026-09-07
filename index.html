@@ -605,7 +605,7 @@ button, .category-card, .nav-item, .quiz-opt, .age-opt, .match-word {
 
 <script>
 // ==================== FULL DATABASE ====================
-// Brazilian Portuguese ONLY (pt-BR) — Updated 2026-09-07: Category 01 Alphabet 26, Category 02 Communicating 36, Category 03 Articles & Gender 36 (well-arranged)
+// Brazilian Portuguese ONLY (pt-BR) — Updated 2026-09-07: Category 01 Alphabet 26, Category 02 Communicating 36, Category 03 Articles & Gender 24 (conversational, pronunciation-fixed)
 const database = {
   "Brazilian Portuguese Alphabet": [
     ["A","<span style='font-weight:800;color:var(--rv-pale)'>á [a]</span> — 'ah' as in father — Avião (airplane)"],
@@ -678,47 +678,33 @@ const database = {
     ["Eles são / Elas são","<span style='font-weight:800;color:var(--rv-pale)'>They are — são</span> — Eles são brasileiros. / São brasileiros. (They are Brazilian.)"]
   ],
   "Articles & Gender": [
-    // Topic 1: What is Articles & Gender? (2) — explanatory foundation
-    ["Noun Inflection (Flexão Nominal)","<span style='font-weight:800;color:var(--rv-pale)'>Noun inflection = changes in noun form</span> — expresses Gender (masculine/feminine) & Number (singular/plural) — article must agree"],
-    ["What is an Article? (O que é um Artigo?)","<span style='font-weight:800;color:var(--rv-pale)'>Article = word before a noun</span> — indicates Definite (the) or Indefinite (a/an) + Gender + Number — must match noun"],
-    // Topic 2: Definite vs Indefinite + Table Singular (6) — your Definite vs Indefinite + porteiro/síndica table
-    ["o — Definite Masculine Singular [oo]","<span style='font-weight:800;color:var(--rv-pale)'>o [oo] — Definite Masculine Singular 'the'</span> — specific known masculine noun — o livro (the book)"],
-    ["a — Definite Feminine Singular [ah]","<span style='font-weight:800;color:var(--rv-pale)'>a [ah] — Definite Feminine Singular 'the'</span> — specific known feminine noun — a casa (the house)"],
-    ["um — Indefinite Masculine Singular [ũ]","<span style='font-weight:800;color:var(--rv-pale)'>um [ũ] — Indefinite Masculine Singular 'a/an'</span> — non-specific masculine — um livro (a book)"],
-    ["uma — Indefinite Feminine Singular [ˈũmɐ]","<span style='font-weight:800;color:var(--rv-pale)'>uma [ˈũmɐ] — Indefinite Feminine Singular 'a/an'</span> — non-specific feminine — uma casa (a house)"],
-    ["Definite vs Indefinite — o/a vs um/uma","<span style='font-weight:800;color:var(--rv-pale)'>Definite o/a = 'the' vs Indefinite um/uma = 'a/an'</span> — o livro = the (specific) book vs um livro = a (any) book"],
-    ["o porteiro — the doorman","<span style='font-weight:800;color:var(--rv-pale)'>o porteiro — Masculine Definite 'the doorman'</span> — Table: Masculine | Definite o (the) — specific person"],
-    ["um porteiro — a doorman","<span style='font-weight:800;color:var(--rv-pale)'>um porteiro — Masculine Indefinite 'a doorman'</span> — Table: Masculine | Indefinite um (a/an) — any doorman"],
-    ["a síndica — the property manager","<span style='font-weight:800;color:var(--rv-pale)'>a síndica — Feminine Definite 'the property manager'</span> — Table: Feminine | Definite a (the) — specific person"],
-    ["uma síndica — a property manager","<span style='font-weight:800;color:var(--rv-pale)'>uma síndica — Feminine Indefinite 'a property manager'</span> — Table: Feminine | Indefinite uma (a/an) — any manager"],
-    // Topic 3: Gender Distinction — -o/-a rules + Fixed vs Variable (8) — your Gender Distinction + lápis/caneta/garoto/garota
-    ["Gender Rule: -o → Masculine (o/um)","<span style='font-weight:800;color:var(--rv-pale)'>Nouns ending in -o are generally Masculine → o/um</span> — o livro, o garoto, o carro — rule with exceptions"],
-    ["Gender Rule: -a → Feminine (a/uma)","<span style='font-weight:800;color:var(--rv-pale)'>Nouns ending in -a are generally Feminine → a/uma</span> — a casa, a caneta, a garota — rule with exceptions"],
-    ["o lápis — the pencil","<span style='font-weight:800;color:var(--rv-pale)'>o lápis — Fixed Masculine 'the pencil'</span> — only masculine, never *a lápis — ends -is but masculine"],
-    ["a caneta — the pen","<span style='font-weight:800;color:var(--rv-pale)'>a caneta — Fixed Feminine 'the pen'</span> — only feminine, never *o caneta"],
-    ["o garoto / a garota — the boy / the girl","<span style='font-weight:800;color:var(--rv-pale)'>o garoto → a garota — Variable Gender (biforme)</span> — changes form -o → -a — boy/girl"],
-    ["o aluno / a aluna — the student","<span style='font-weight:800;color:var(--rv-pale)'>o aluno → a aluna — Variable Gender</span> — -o → -a change — same root, different gender"],
-    ["o professor / a professora — the teacher","<span style='font-weight:800;color:var(--rv-pale)'>o professor → a professora — Variable Gender</span> — add -a — teacher m/f"],
-    ["o/a estudante — the student (m/f)","<span style='font-weight:800;color:var(--rv-pale)'>o estudante / a estudante — Common of Two Genders</span> — noun unchanged, only article changes — uniform"],
-    ["o/a artista — the artist (m/f)","<span style='font-weight:800;color:var(--rv-pale)'>o artista / a artista — Common of Two Genders</span> — o artista (him) vs a artista (her) — article shows gender"],
-    // Topic 4: Plural Forms — add -s (8) — your Plural Forms section
-    ["os — Definite Masculine Plural [oosh]","<span style='font-weight:800;color:var(--rv-pale)'>os [oosh] — Definite Masculine Plural 'the'</span> — add -s to o — os livros (the books)"],
-    ["as — Definite Feminine Plural [ash]","<span style='font-weight:800;color:var(--rv-pale)'>as [ash] — Definite Feminine Plural 'the'</span> — add -s to a — as casas (the houses)"],
-    ["uns — Indefinite Masculine Plural [ũs]","<span style='font-weight:800;color:var(--rv-pale)'>uns [ũs] — Indefinite Masculine Plural 'some'</span> — add -s to um — uns livros (some books)"],
-    ["umas — Indefinite Feminine Plural [ˈũmɐs]","<span style='font-weight:800;color:var(--rv-pale)'>umas [ˈũmɐs] — Indefinite Feminine Plural 'some'</span> — add -s to uma — umas casas (some houses)"],
-    ["os livros / as casas — the books / the houses","<span style='font-weight:800;color:var(--rv-pale)'>Plural Definite: os livros / as casas</span> — regular +s — gender & number both agree"],
-    ["uns livros / umas casas — some books / some houses","<span style='font-weight:800;color:var(--rv-pale)'>Plural Indefinite: uns livros / umas casas</span> — 'some' — indefinite plural +s"],
-    ["os porteiros / as síndicas — the doormen / the managers","<span style='font-weight:800;color:var(--rv-pale)'>os porteiros / as síndicas — Definite Plural Table</span> — o porteiro → os porteiros, a síndica → as síndicas"],
-    ["uns porteiros / umas síndicas — some doormen / some managers","<span style='font-weight:800;color:var(--rv-pale)'>uns porteiros / umas síndicas — Indefinite Plural Table</span> — um porteiro → uns porteiros, uma síndica → umas síndicas"],
-    ["os garotos / as garotas — the boys / the girls","<span style='font-weight:800;color:var(--rv-pale)'>os garotos / as garotas — Plural Agreement</span> — article + noun both plural — must match!"],
-    ["os lápis / as canetas — the pencils / the pens","<span style='font-weight:800;color:var(--rv-pale)'>os lápis (same form) / as canetas — Plural Fixed Nouns</span> — lápis invariable, article shows plural — os lápis"],
-    // Topic 5: Tricky Gender & Agreement Summary (6) — explanatory wrap-up
-    ["o dia / o mapa / o planeta — the day/map/planet","<span style='font-weight:800;color:var(--rv-pale)'>Masculine despite -a: o dia, o mapa, o planeta</span> — exception — ends -a but masculine → o*"],
-    ["o problema / o sistema / o clima — the problem/system/climate","<span style='font-weight:800;color:var(--rv-pale)'>Greek -ema/-ama → Masculine: o problema</span> — o sistema, o tema, o clima — always masculine"],
-    ["a cidade / a nação / a viagem — the city/nation/trip","<span style='font-weight:800;color:var(--rv-pale)'>Feminine -dade/-ção/-gem → a cidade, a nação</span> — a viagem, a passagem — always feminine"],
-    ["a foto / a moto — the photo / the motorcycle","<span style='font-weight:800;color:var(--rv-pale)'>Shortened Feminine: a foto (fotografia)</span> — a moto (motocicleta) — keeps original feminine gender"],
-    ["Agreement Rule: Article + Noun Must Agree!","<span style='font-weight:800;color:var(--rv-pale)'>Articles must match Gender & Number!</span> — o livro (m.sing), a casa (f.sing), os livros (m.pl), as casas (f.pl) — always agree!"],
-    ["Complete Table: o/um → os/uns | a/uma → as/umas","<span style='font-weight:800;color:var(--rv-pale)'>Masculine: o/um → os/uns | Feminine: a/uma → as/umas</span> — o porteiro/um porteiro → os/uns porteiros | a síndica/uma síndica → as/umas síndicas"]
+    // Topic 1: Definite o/a/os/as (8) — conversational, minimal word[0] for TTS
+    ["o","<span style='font-weight:800;color:var(--rv-pale)'>o [oo] — Definite Masculine Singular 'the'</span> — specific masculine noun — o livro (the book)"],
+    ["a","<span style='font-weight:800;color:var(--rv-pale)'>a [ah] — Definite Feminine Singular 'the'</span> — specific feminine noun — a casa (the house)"],
+    ["os","<span style='font-weight:800;color:var(--rv-pale)'>os [oosh] — Definite Masculine Plural 'the'</span> — add -s to o — os livros (the books)"],
+    ["as","<span style='font-weight:800;color:var(--rv-pale)'>as [ash] — Definite Feminine Plural 'the'</span> — add -s to a — as casas (the houses)"],
+    ["o livro","<span style='font-weight:800;color:var(--rv-pale)'>o livro — the book</span> — ends -o → Masculine — o/um"],
+    ["a casa","<span style='font-weight:800;color:var(--rv-pale)'>a casa — the house</span> — ends -a → Feminine — a/uma"],
+    ["o dia","<span style='font-weight:800;color:var(--rv-pale)'>o dia — the day</span> — Masculine despite -a — exception!"],
+    ["a foto","<span style='font-weight:800;color:var(--rv-pale)'>a foto — the photo</span> — Shortened Feminine (fotografia) — keeps fem"],
+    // Topic 2: Indefinite um/uma/uns/umas (8) — Brazilian daily + fixed
+    ["um","<span style='font-weight:800;color:var(--rv-pale)'>um [ũ] — Indefinite Masculine Singular 'a/an'</span> — non-specific — um livro (a book)"],
+    ["uma","<span style='font-weight:800;color:var(--rv-pale)'>uma [ˈũmɐ] — Indefinite Feminine Singular 'a/an'</span> — non-specific — uma casa (a house)"],
+    ["uns","<span style='font-weight:800;color:var(--rv-pale)'>uns [ũs] — Indefinite Masculine Plural 'some'</span> — add -s to um — uns livros (some books)"],
+    ["umas","<span style='font-weight:800;color:var(--rv-pale)'>umas [ˈũmɐs] — Indefinite Feminine Plural 'some'</span> — add -s to uma — umas casas (some houses)"],
+    ["um pão","<span style='font-weight:800;color:var(--rv-pale)'>um pão — a bread</span> — Brazilian daily — pão francês"],
+    ["uma coxinha","<span style='font-weight:800;color:var(--rv-pale)'>uma coxinha — a coxinha</span> — Brazilian daily — chicken croquette"],
+    ["o lápis","<span style='font-weight:800;color:var(--rv-pale)'>o lápis — the pencil</span> — Fixed Masculine — never *a lápis, ends -is but masc"],
+    ["a caneta","<span style='font-weight:800;color:var(--rv-pale)'>a caneta — the pen</span> — Fixed Feminine — never *o caneta"],
+    // Topic 3: Variable/Common + Table (8) — conversational pairs
+    ["o garoto","<span style='font-weight:800;color:var(--rv-pale)'>o garoto — the boy</span> — Variable Gender (biforme) — base form"],
+    ["a garota","<span style='font-weight:800;color:var(--rv-pale)'>a garota — the girl</span> — Variable Gender — -o → -a change"],
+    ["o aluno","<span style='font-weight:800;color:var(--rv-pale)'>o aluno — the male student</span> — Variable Gender — -o → -a"],
+    ["a aluna","<span style='font-weight:800;color:var(--rv-pale)'>a aluna — the female student</span> — Variable Gender — same root"],
+    ["o estudante","<span style='font-weight:800;color:var(--rv-pale)'>o estudante — the male student</span> — Common of Two Genders (uniform) — article shows gender"],
+    ["a estudante","<span style='font-weight:800;color:var(--rv-pale)'>a estudante — the female student</span> — Common — noun unchanged, only article changes"],
+    ["o porteiro","<span style='font-weight:800;color:var(--rv-pale)'>o porteiro — the doorman</span> — Table: Masculine Definite o (the) — specific person"],
+    ["a síndica","<span style='font-weight:800;color:var(--rv-pale)'>a síndica — the property manager</span> — Table: Feminine Definite a (the) — specific person"]
   ],
   "Order at a Cafe (Section 1)": [
     ["até logo","see you later"],["tudo bem","how are you"],["ela","she"],
@@ -1195,7 +1181,7 @@ function showWord() {
       </div>
       <div class="tip-card">
         <div class="tip-label">💡 ${currentCategory==='Brazilian Portuguese Alphabet' ? 'Pronunciation Tip' : currentCategory==='Communicating & Essentials' ? 'Communication Tip' : currentCategory==='Articles & Gender' ? 'Grammar Tip' : 'Tip'}</div>
-        <div class="tip-text">${currentCategory==='Brazilian Portuguese Alphabet' ? 'Say "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + '. Tap 🔊 to hear Brazilian pronunciation!' : currentCategory==='Communicating & Essentials' ? (word[0].includes('sou')||word[0].includes('és')||word[0].includes(' é')||word[0].includes('somos')||word[0].includes('sois')||word[0].includes('são') ? 'Verb <strong>Ser</strong> = identity/origin. Example: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[1] : word[1].includes('Gendered') ? 'Gender matters! <strong>' + word[0] + '</strong> → ' + word[1].split(' — ')[0] + ' — note -o/-a and -lo/-la!' : word[0].includes('Bom dia')||word[0].includes('Boa tarde')||word[0].includes('Boa noite')||word[0]==='Oi!'||word[0]==='Olá!'||word[0].includes('Até')||word[0].includes('Tchau')||word[0].includes('Adeus') ? 'Greeting/Farewell: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — tap 🔊!' : word[1].includes('no gender change') ? 'Polite & neutral: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — works for everyone!' : word[1].includes('Singular')||word[1].includes('Plural') ? 'Pronoun: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[0] + ' — Você = you (#1 in Brazil)!' : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!') : currentCategory==='Articles & Gender' ? (word[0].includes('Noun Inflection') ? 'Flexão Nominal: nouns change for <strong>Gender & Number</strong> — article must agree! Tap 🔊!' : word[0].includes('What is an Article') ? '<strong>Article</strong> comes BEFORE noun — o/a (the) vs um/uma (a/an) — marks definite/indefinite!' : word[0].includes('Definite vs Indefinite') ? '<strong>Definite o/a = the (specific)</strong> vs <strong>Indefinite um/uma = a/an (any)</strong> — o livro vs um livro!' : word[0]==='o — Definite Masculine Singular [oo]'||word[0]==='a — Definite Feminine Singular [ah]'||word[0]==='um — Indefinite Masculine Singular [ũ]'||word[0]==='uma — Indefinite Feminine Singular [ˈũmɐ]' ? 'Core article: "<strong>' + word[0].split(' — ')[0] + '</strong>" — ' + word[1].split(' — ')[0].replace(/<[^>]*>/g,'') + ' — memorize o/a/um/uma!' : word[0].includes('porteiro')||word[0].includes('síndica') ? 'Table focus: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0].replace(/<[^>]*>/g,'') + ' — note Masculine o/um vs Feminine a/uma!' : word[0].includes('Gender Rule') ? 'Rule: ' + word[1].split(' — ')[0].replace(/<[^>]*>/g,'') + ' — but watch exceptions!' : word[0].includes('o lápis') ? 'Fixed Gender: <strong>o lápis</strong> is always masculine — article proves gender when ending is tricky!' : word[0].includes('a caneta') ? 'Fixed Gender: <strong>a caneta</strong> is always feminine — never *o caneta!' : word[0].includes('o garoto')||word[0].includes('o aluno')||word[0].includes('o professor') ? 'Variable Gender (biforme): <strong>' + word[0] + '</strong> — noun changes -o → -a!' : word[0].includes('o/a estudante')||word[0].includes('o/a artista') ? 'Common of Two: <strong>o/a ' + word[0].split('/')[1].trim().split(' ')[0] + '</strong> — noun SAME, article shows gender — uniform!' : word[0]==='os — Definite Masculine Plural [oosh]'||word[0]==='as — Definite Feminine Plural [ash]'||word[0]==='uns — Indefinite Masculine Plural [ũs]'||word[0]==='umas — Indefinite Feminine Plural [ˈũmɐs]' ? 'Plural article: "<strong>' + word[0].split(' — ')[0] + '</strong>" — add -s to singular — o→os, a→as, um→uns, uma→umas!' : word[0].includes('os livros')||word[0].includes('uns livros')||word[0].includes('os porteiros')||word[0].includes('uns porteiros')||word[0].includes('os garotos')||word[0].includes('os lápis') ? 'Plural Agreement: article + noun BOTH plural — "<strong>' + word[0] + '</strong>" — must match gender & number!' : word[0].includes('o dia') ? 'Exception: <strong>o dia/mapa/planeta</strong> — ends -a but MASCULINE — memorize!' : word[0].includes('o problema') ? 'Exception: Greek <strong>-ema/-ama → masculine</strong> — o problema, o sistema, o clima!' : word[0].includes('a cidade') ? 'Exception: <strong>-dade/-ção/-gem → feminine</strong> — a cidade, a nação, a viagem!' : word[0].includes('a foto') ? 'Shortened: <strong>a foto</strong> (fotografia), <strong>a moto</strong> (motocicleta) — keeps original feminine!' : word[0].includes('Agreement Rule') ? '<strong>Golden Rule: Article MUST match noun!</strong> — o livro (m.s), a casa (f.s), os livros (m.pl), as casas (f.pl)!' : word[0].includes('Complete Table') ? '<strong>Full Table:</strong> Masculine o/um → os/uns | Feminine a/uma → as/umas — covers all 8 articles!' : 'Think: what gender & number is "<strong>' + word[0] + '</strong>"? Choose o/a/um/uma/os/as/uns/umas correctly!') : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!'}</div>
+        <div class="tip-text">${currentCategory==='Brazilian Portuguese Alphabet' ? 'Say "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + '. Tap 🔊 to hear Brazilian pronunciation!' : currentCategory==='Communicating & Essentials' ? (word[0].includes('sou')||word[0].includes('és')||word[0].includes(' é')||word[0].includes('somos')||word[0].includes('sois')||word[0].includes('são') ? 'Verb <strong>Ser</strong> = identity/origin. Example: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[1] : word[1].includes('Gendered') ? 'Gender matters! <strong>' + word[0] + '</strong> → ' + word[1].split(' — ')[0] + ' — note -o/-a and -lo/-la!' : word[0].includes('Bom dia')||word[0].includes('Boa tarde')||word[0].includes('Boa noite')||word[0]==='Oi!'||word[0]==='Olá!'||word[0].includes('Até')||word[0].includes('Tchau')||word[0].includes('Adeus') ? 'Greeting/Farewell: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — tap 🔊!' : word[1].includes('no gender change') ? 'Polite & neutral: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — works for everyone!' : word[1].includes('Singular')||word[1].includes('Plural') ? 'Pronoun: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[0] + ' — Você = you (#1 in Brazil)!' : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!') : currentCategory==='Articles & Gender' ? (word[0]==='o' ? 'Definite Masc Singular: <strong>o [oo] = the</strong> — o livro — tap 🔊 to hear!' : word[0]==='a' ? 'Definite Fem Singular: <strong>a [ah] = the</strong> — a casa — tap 🔊!' : word[0]==='os' ? 'Definite Masc Plural: <strong>os [oosh] = the</strong> — os livros — add -s!' : word[0]==='as' ? 'Definite Fem Plural: <strong>as [ash] = the</strong> — as casas — add -s!' : word[0]==='o livro' ? 'Example: <strong>o livro</strong> ends -o → Masculine — o/um!' : word[0]==='a casa' ? 'Example: <strong>a casa</strong> ends -a → Feminine — a/uma!' : word[0]==='o dia' ? 'Exception: <strong>o dia</strong> ends -a but is MASCULINE — memorize!' : word[0]==='a foto' ? 'Exception: <strong>a foto</strong> (fotografia) keeps feminine — shortened!' : word[0]==='um' ? 'Indefinite Masc Singular: <strong>um [ũ] = a/an</strong> — um livro — any book!' : word[0]==='uma' ? 'Indefinite Fem Singular: <strong>uma [ˈũmɐ] = a/an</strong> — uma casa!' : word[0]==='uns' ? 'Indefinite Masc Plural: <strong>uns [ũs] = some</strong> — uns livros — add -s!' : word[0]==='umas' ? 'Indefinite Fem Plural: <strong>umas [ˈũmɐs] = some</strong> — umas casas!' : word[0]==='um pão' ? 'Brazilian daily: <strong>um pão</strong> — a bread — pão francês! Yummy!' : word[0]==='uma coxinha' ? 'Brazilian daily: <strong>uma coxinha</strong> — chicken croquette — tasty!' : word[0]==='o lápis' ? 'Fixed Gender: <strong>o lápis</strong> is ALWAYS masculine — never *a lápis! Says o lápis' : word[0]==='a caneta' ? 'Fixed Gender: <strong>a caneta</strong> is ALWAYS feminine — never *o caneta!' : word[0]==='o garoto' ? 'Variable Gender: <strong>o garoto</strong> — the boy — base form!' : word[0]==='a garota' ? 'Variable Gender: <strong>a garota</strong> — -o → -a change — girl!' : word[0]==='o aluno' ? 'Variable Gender: <strong>o aluno</strong> → a aluna — student m!' : word[0]==='a aluna' ? 'Variable Gender: <strong>a aluna</strong> — female student — same root!' : word[0]==='o estudante' ? 'Common of Two: <strong>o estudante</strong> — noun SAME, article shows gender!' : word[0]==='a estudante' ? 'Common of Two: <strong>a estudante</strong> — noun unchanged, only article changes!' : word[0]==='o porteiro' ? 'Table: <strong>o porteiro — the doorman</strong> — Masculine Definite (specific)!' : word[0]==='a síndica' ? 'Table: <strong>a síndica — the property manager</strong> — Feminine Definite!' : 'Think: what gender & number is "<strong>' + word[0] + '</strong>"? Choose o/a/um/uma/os/as/uns/umas correctly!') : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!'}</div>
       </div>
     </div>`;
 }
@@ -1430,44 +1416,32 @@ function getSampleSentence(word) {
     'Nós somos':'_____ amigos. / Somos amigos.',
     'Vós sois':'_____ competentes. / Sois competentes.',
     'Eles são / Elas são':'_____ brasileiros. / São brasileiros.',
-    // Articles & Gender — 36 well-arranged sentences
-    'Noun Inflection (Flexão Nominal)':'_____ expressa gênero e número — artigo deve concordar!',
-    'What is an Article? (O que é um Artigo?)':'_____ vem antes do substantivo e indica gênero e número.',
-    'o — Definite Masculine Singular [oo]':'_____ livro está na mesa. (the book)',
-    'a — Definite Feminine Singular [ah]':'_____ casa é bonita. (the house)',
-    'um — Indefinite Masculine Singular [ũ]':'Quero _____ livro novo. (a book)',
-    'uma — Indefinite Feminine Singular [ˈũmɐ]':'Quero _____ casa nova. (a house)',
-    'Definite vs Indefinite — o/a vs um/uma':'_____ livro é específico, _____ livro é qualquer um.',
-    'o porteiro — the doorman':'_____ porteiro abriu a porta. (the doorman)',
-    'um porteiro — a doorman':'Precisamos de _____ porteiro. (a doorman)',
-    'a síndica — the property manager':'_____ síndica organizou a reunião. (the manager)',
-    'uma síndica — a property manager':'Precisamos de _____ síndica. (a manager)',
-    'Gender Rule: -o → Masculine (o/um)':'_____ livro, _____ garoto, _____ carro — -o → masculino!',
-    'Gender Rule: -a → Feminine (a/uma)':'_____ casa, _____ caneta, _____ garota — -a → feminino!',
-    'o lápis — the pencil':'_____ lápis está na mochila. — sempre masculino!',
-    'a caneta — the pen':'_____ caneta está na mesa. — sempre feminino!',
-    'o garoto / a garota — the boy / the girl':'_____ garoto e _____ garota são amigos.',
-    'o aluno / a aluna — the student':'_____ aluno e _____ aluna estudam juntos.',
-    'o professor / a professora — the teacher':'_____ professor e _____ professora ensinam.',
-    'o/a estudante — the student (m/f)':'_____ estudante (ele) e _____ estudante (ela) chegaram.',
-    'o/a artista — the artist (m/f)':'_____ artista pintou e _____ artista cantou.',
-    'os — Definite Masculine Plural [oosh]':'_____ livros estão na estante. (the books)',
-    'as — Definite Feminine Plural [ash]':'_____ casas são grandes. (the houses)',
-    'uns — Indefinite Masculine Plural [ũs]':'Quero _____ livros novos. (some books)',
-    'umas — Indefinite Feminine Plural [ˈũmɐs]':'Quero _____ casas novas. (some houses)',
-    'os livros / as casas — the books / the houses':'_____ livros e _____ casas são meus.',
-    'uns livros / umas casas — some books / some houses':'Comprei _____ livros e _____ casas.',
-    'os porteiros / as síndicas — the doormen / the managers':'_____ porteiros e _____ síndicas trabalham aqui.',
-    'uns porteiros / umas síndicas — some doormen / some managers':'Precisamos de _____ porteiros e _____ síndicas.',
-    'os garotos / as garotas — the boys / the girls':'_____ garotos e _____ garotas brincam.',
-    'os lápis / as canetas — the pencils / the pens':'_____ lápis são pretos, _____ canetas são azuis.',
-    'o dia / o mapa / o planeta — the day/map/planet':'_____ dia, _____ mapa, _____ planeta — terminam em -a mas são masculinos!',
-    'o problema / o sistema / o clima — the problem/system/climate':'_____ problema, _____ sistema, _____ clima — gregos -ema/-ama → masculino!',
-    'a cidade / a nação / a viagem — the city/nation/trip':'_____ cidade, _____ nação, _____ viagem — -dade/-ção/-gem → feminino!',
-    'a foto / a moto — the photo / the motorcycle':'_____ foto e _____ moto — abreviações mantêm feminino!',
-    'Agreement Rule: Article + Noun Must Agree!':'_____ livro, _____ casa, _____ livros, _____ casas — artigo concorda!',
-    'Complete Table: o/um → os/uns | a/uma → as/umas':'_____ porteiro/_____ porteiro → _____/_____ porteiros | _____ síndica/_____ síndica → _____/_____ síndicas',
-    'Água':'Eu bebo _____ todos os dias.',
+    // Articles & Gender — 24 conversational sentences (pronunciation-fixed)
+    'o':'_____ livro está na mesa. (the book — masc sing)',
+    'a':'_____ casa é bonita. (the house — fem sing)',
+    'os':'_____ livros estão na estante. (the books — masc pl)',
+    'as':'_____ casas são grandes. (the houses — fem pl)',
+    'o livro':'_____ livro está na mesa. (ends -o → masc)',
+    'a casa':'_____ casa é bonita. (ends -a → fem)',
+    'o dia':'_____ dia está lindo! (masc despite -a)',
+    'a foto':'_____ foto está linda! (shortened fem)',
+    'um':'Quero _____ livro novo. (a book — masc)',
+    'uma':'Quero _____ casa nova. (a house — fem)',
+    'uns':'Quero _____ livros novos. (some books — masc pl)',
+    'umas':'Quero _____ casas novas. (some houses — fem pl)',
+    'um pão':'Quero _____ pão na padaria. (a bread)',
+    'uma coxinha':'Quero _____ coxinha! (a coxinha — tasty)',
+    'o lápis':'_____ lápis está na mochila. (fixed masc)',
+    'a caneta':'_____ caneta está na mesa. (fixed fem)',
+    'o garoto':'_____ garoto é alto. (the boy)',
+    'a garota':'_____ garota é alta. (the girl — -o→-a)',
+    'o aluno':'_____ aluno estuda português. (male student)',
+    'a aluna':'_____ aluna estuda português. (female student)',
+    'o estudante':'_____ estudante (ele) chegou cedo. (common m)',
+    'a estudante':'_____ estudante (ela) chegou cedo. (common f)',
+    'o porteiro':'_____ porteiro abriu a porta. (the doorman — masc definite)',
+    'a síndica':'_____ síndica organizou a reunião. (the manager — fem definite)',
+        'Água':'Eu bebo _____ todos os dias.',
     'café':'Eu quero um _____.',
     'pão':'Eu gosto de _____ com manteiga.'
   };
