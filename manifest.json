@@ -1,6 +1,6 @@
 {
-  "name": "Brazilian Portuguese Master",
-  "short_name": "BRPortuguese",
+  "name": "My Portuguese Lessons - Class Tutor",
+  "short_name": "PTLessons",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#F5F0FA",

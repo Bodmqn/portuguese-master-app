@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Brazilian Portuguese Master</title>
+<title>My Portuguese Lessons - Class Tutor</title>
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -603,10 +603,11 @@ button, .category-card, .nav-item, .quiz-opt, .age-opt, .match-word {
 <body>
 <div class="app" id="app"></div>
 
+<script src="data.js"></script>
 <script>
-// ==================== FULL DATABASE ====================
-// Brazilian Portuguese ONLY (pt-BR) — Updated 2026-09-07: Category 01 Alphabet 26, Category 02 Communicating 36, Category 03 Articles & Gender 24 (conversational, pronunciation-fixed)
-const database = {
+// ==================== FULL DATABASE (OLD 9 topics kept below, overridden by Lessons) ====================
+// Brazilian Portuguese ONLY (pt-BR) — OLD content retained for history, runtime uses Lessons 1-3
+var database = {
   "Brazilian Portuguese Alphabet": [
     ["A","<span style='font-weight:800;color:var(--rv-pale)'>á [a]</span> — 'ah' as in father — Avião (airplane)"],
     ["B","<span style='font-weight:800;color:var(--rv-pale)'>bê [be]</span> — 'beh' as in boy — Bola (ball)"],
@@ -807,11 +808,18 @@ const database = {
   ]
 };
 
+// ==================== LESSONS ACTIVE (Lessons 1-3 override old 9 topics) ====================
+// Single source is data.js (window.APP_DB). Inline old DB above is history only.
+if (window.APP_DB) { database = window.APP_DB; }
+const lessonGroups = window.APP_GROUPS || {};
+const dialogues = window.APP_DIALOGS || {};
+
 // ==================== STATE ====================
 let users = JSON.parse(localStorage.getItem('users') || '[]');
 let currentUser = null;
 const accent = 'pt-BR'; // Locked to Brazilian Portuguese only (pt-BR)
 let currentCategory = null;
+let currentLesson = null;
 let currentWordIndex = 0;
 let categoryWords = [];
 let practiceType = 'match';
@@ -1057,8 +1065,8 @@ function showLogin() {
   app.innerHTML = `
     <div class="login-wrap fade-enter">
       <div class="login-logo-wrap">🇧🇷</div>
-      <h1 class="login-title">Brazilian Portuguese Master</h1>
-      <p class="login-sub">Your language journey starts here</p>
+      <h1 class="login-title">My Portuguese Lessons</h1>
+      <p class="login-sub">Your Tuesday class tutor — Lessons 1 to 18</p>
       <div class="login-card">
         <label class="field-label">First Name</label>
         <input type="text" id="firstName" class="field-input" placeholder="Pedro" autocomplete="given-name">
@@ -1099,32 +1107,75 @@ function createUser(btn, e) {
   users.push(currentUser); saveUsers(); updateStreak(); showHome();
 }
 
-// ==================== HOME ====================
+// ==================== HOME (Lessons) ====================
+function lessonStats(lessonTitle) {
+  const parts = (lessonGroups[lessonTitle] && lessonGroups[lessonTitle].parts) || [];
+  let total = 0, prog = 0;
+  parts.forEach(p => { total += (database[p] || []).length; prog += Math.round(currentUser.categoryProgress?.[p] || 0); });
+  const avg = parts.length ? Math.round(prog / parts.length) : 0;
+  return { parts: parts.length, total, avg };
+}
 function showHome() {
   if (!currentUser) return showLogin();
   updateStreak();
   const greeting = getGreeting();
   const level = getLevel(currentUser.score);
   const accuracy = currentUser.total > 0 ? Math.round((currentUser.correct/currentUser.total)*100) : 0;
-  const categories = Object.keys(database);
-  const emojis = ['🔤','🗣️','📰','☕','🥐','🏃','📝','🏠','🔢','📅','🎨','👨‍👩‍👧','👁️','🍔','🐶','🏡','👕','🚗','🌳','📱','😊','💼','⚽'];
-
-  const catCards = categories.map((cat, i) => {
-    const progress = Math.round(currentUser.categoryProgress?.[cat] || 0);
+  const lessons = Object.keys(lessonGroups);
+  // Fallback if data.js failed to load: show flat parts
+  if (!lessons.length) {
+    const categories = Object.keys(database);
+    const catCards = categories.map((cat, i) => {
+      const progress = Math.round(currentUser.categoryProgress?.[cat] || 0);
+      return `
+        <div class="category-card" style="animation-delay:${0.08+i*0.06}s;" onclick="startCategory('${cat.replace(/'/g,"\\'")}')">
+          <div class="cat-num">${String(i+1).padStart(2,'0')}</div>
+          <span class="cat-emoji">📚</span>
+          <div class="cat-name">${cat}</div>
+          <div class="cat-meta">${database[cat].length} words · ${progress}% done</div>
+          <div class="prog-track"><div class="prog-fill" style="width:${progress}%"></div></div>
+        </div>`;
+    }).join('');
+    app.innerHTML = `
+      <div class="fade-enter">
+        <div class="header">
+          <div class="header-title">🇧🇷 Portuguese Lessons</div>
+          <div class="header-actions"><button class="icon-btn" onclick="toggleDark()">🌙</button></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-greeting">${greeting}</div>
+          <div class="hero-name">${currentUser.firstName}! 👋</div>
+          <div class="hero-level">${level} · ${accuracy}% accuracy</div>
+          <div class="hero-badges">
+            <div class="hero-badge">🔥 ${currentUser.streak} day streak</div>
+            <div class="hero-badge">📚 ${currentUser.total} quizzed</div>
+            <div class="score-ring">${currentUser.score}%</div>
+          </div>
+        </div>
+        <div class="section-header"><span class="section-label">Lessons</span><span class="section-count">${categories.length} parts</span></div>
+        <div class="category-grid">${catCards}</div>
+      </div>
+      ${getNavHTML('home')}`;
+    return;
+  }
+  const lessonCards = lessons.map((les, i) => {
+    const st = lessonStats(les);
+    const meta = lessonGroups[les];
     return `
-      <div class="category-card" style="animation-delay:${0.08+i*0.06}s;" onclick="startCategory('${cat.replace(/'/g,"\\'")}')">
-        <div class="cat-num">${String(i+1).padStart(2,'0')}</div>
-        <span class="cat-emoji">${emojis[i%emojis.length]}</span>
-        <div class="cat-name">${cat}</div>
-        <div class="cat-meta">${database[cat].length} words · ${progress}% done</div>
-        <div class="prog-track"><div class="prog-fill" style="width:${progress}%"></div></div>
+      <div class="category-card" style="animation-delay:${0.08+i*0.06}s;" onclick="showLessonParts('${les.replace(/'/g,"\\'")}')">
+        <div class="cat-num">Lesson ${i+1}</div>
+        <span class="cat-emoji">${meta.emoji || '📚'}</span>
+        <div class="cat-name">${les}</div>
+        <div class="cat-meta">${meta.subtitle || ''}</div>
+        <div class="cat-meta">${st.parts} parts · ${st.total} phrases · ${st.avg}% done</div>
+        <div class="prog-track"><div class="prog-fill" style="width:${st.avg}%"></div></div>
       </div>`;
   }).join('');
 
   app.innerHTML = `
     <div class="fade-enter">
       <div class="header">
-        <div class="header-title">🇧🇷 Brazilian Portuguese Master</div>
+        <div class="header-title">🇧🇷 Portuguese Lessons</div>
         <div class="header-actions">
           <button class="icon-btn" onclick="toggleDark()">🌙</button>
         </div>
@@ -1140,17 +1191,126 @@ function showHome() {
         </div>
       </div>
       <div class="section-header">
-        <span class="section-label">Categories</span>
-        <span class="section-count">${categories.length} topics</span>
+        <span class="section-label">Lessons 1–18</span>
+        <span class="section-count">${lessons.length} of 18 ready</span>
       </div>
-      <div class="category-grid">${catCards}</div>
+      <div class="category-grid">${lessonCards}</div>
+      <div class="tip-card" style="margin-top:16px;">
+        <div class="tip-label">💡 How it works</div>
+        <div class="tip-text">Open a Lesson → study its small Parts → tap 🔊 to hear Brazilian audio → Quiz, Match, Fill, Speak. <strong>Bold purple</strong> = must-master from your PDF.</div>
+      </div>
     </div>
     ${getNavHTML('home')}`;
 }
 
+// ==================== LESSON PARTS ====================
+function showLessonParts(lessonTitle) {
+  if (!currentUser) return showLogin();
+  currentLesson = lessonTitle;
+  const meta = lessonGroups[lessonTitle] || { parts: [], emoji: '📚', subtitle: '' };
+  const parts = meta.parts || [];
+  const dlg = dialogues[lessonTitle] || [];
+  const partCards = parts.map((p, i) => {
+    const progress = Math.round(currentUser.categoryProgress?.[p] || 0);
+    const short = p.replace(/^Lesson \d+[A-Z]? - /, '');
+    return `
+      <div class="category-card" style="animation-delay:${0.05+i*0.05}s;" onclick="startCategory('${p.replace(/'/g,"\\'")}')">
+        <div class="cat-num">Part ${String.fromCharCode(65+i)}</div>
+        <span class="cat-emoji">${['💬','🙏','🧍','🔤','📝','🌍','🔢','😊','❓','🎩','🤝','💪','🏠','🆘','📍','🏪','🧭','📅','⏰','☀️'][i%20]}</span>
+        <div class="cat-name">${short}</div>
+        <div class="cat-meta">${(database[p]||[]).length} phrases · ${progress}% done</div>
+        <div class="prog-track"><div class="prog-fill" style="width:${progress}%"></div></div>
+      </div>`;
+  }).join('');
+  const dlgCards = dlg.map((d, i) => `
+    <div class="practice-card" style="animation-delay:${0.05+i*0.05}s;" onclick="showDialogueDetail('${lessonTitle.replace(/'/g,"\\'")}',${i})">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="font-size:30px;">🎭</span>
+        <div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;">${d.title}</div>
+        <span style="font-size:13px;color:var(--text-3);">${d.lines.length} lines · tap to act it</span></div>
+        <span style="margin-left:auto;color:var(--rv-pale);font-size:20px;font-weight:300;">›</span>
+      </div>
+    </div>`).join('');
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <button class="icon-btn" onclick="showHome()">←</button>
+        <div class="header-title">${lessonTitle}</div>
+        <div style="width:42px;"></div>
+      </div>
+      <div class="section-header" style="margin-top:4px;">
+        <span class="section-label">Parts</span>
+        <span class="section-count">${parts.length} parts</span>
+      </div>
+      <div class="category-grid">${partCards}</div>
+      <div class="section-header" style="margin-top:16px;">
+        <span class="section-label">Conversations</span>
+        <span class="section-count">${dlg.length} dialogues</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:0 16px 100px;">
+        ${dlgCards || '<p style="font-size:13px;color:var(--text-3);">No dialogues yet.</p>'}
+      </div>
+    </div>
+    ${getNavHTML('home')}`;
+}
+
+// ==================== DIALOGUE VIEWER ====================
+function showDialogueDetail(lessonTitle, idx) {
+  const d = (dialogues[lessonTitle] || [])[idx];
+  if (!d) return showLessonParts(lessonTitle);
+  const lines = d.lines.map((ln, i) => {
+    const sp = ln[0].replace(/'/g,"\\'");
+    const pt = ln[1].replace(/'/g,"\\'");
+    return `
+      <div class="content-card" style="text-align:left;padding:18px;margin:0 0 10px;animation-delay:${i*0.05}s;">
+        <div class="pill">${ln[0]}</div>
+        <div style="font-size:17px;font-weight:700;margin:10px 0 4px;">${ln[1]}</div>
+        <div style="font-size:13px;color:var(--text-2);margin-bottom:12px;">${ln[2] || ''}</div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn-secondary" style="padding:10px;" onclick="speak('${pt}')">🔊 Hear</button>
+          <button class="btn-secondary" style="padding:10px;" onclick="startListening('${pt}')">🎤 Say it</button>
+        </div>
+      </div>`;
+  }).join('');
+  app.innerHTML = `
+    <div class="fade-enter">
+      <div class="header">
+        <button class="icon-btn" onclick="showLessonParts('${lessonTitle.replace(/'/g,"\\'")}')">←</button>
+        <div class="header-title">${d.title}</div>
+        <div style="width:42px;"></div>
+      </div>
+      <div style="padding:0 16px 100px;">
+        <div class="tip-card" style="margin:0 0 12px;">
+          <div class="tip-label">🎭 Role-play</div>
+          <div class="tip-text">Tap 🔊 to hear each line in Brazilian Portuguese, then 🎤 to say it yourself. Act both roles.</div>
+        </div>
+        ${lines}
+      </div>
+    </div>`;
+}
+
 // ==================== WORD SCREEN ====================
 function startCategory(category) {
-  currentCategory = category; categoryWords = database[category]; currentWordIndex = 0; showWord();
+  currentCategory = category; categoryWords = database[category]; currentWordIndex = 0;
+  if (!currentLesson) {
+    for (const les of Object.keys(lessonGroups)) {
+      if ((lessonGroups[les].parts || []).includes(category)) { currentLesson = les; break; }
+    }
+  }
+  showWord();
+}
+function backFromWord() {
+  if (currentLesson && lessonGroups[currentLesson]) return showLessonParts(currentLesson);
+  return showHome();
+}
+function tutorTip(word) {
+  const pt = word[0], en = (word[1] || '').split(' — ');
+  const core = en[0] || '';
+  const rest = en.slice(1).join(' — ') || 'Practice with audio.';
+  if (/ser|est|fic|tem|mora/i.test(currentCategory || '') && /sou|és| é |somos|são|estou|está|fica|tenho|moro/i.test(pt + ' ' + word[1])) return 'Grammar in plain English: <strong>' + pt + '</strong> → ' + core + '. ' + rest;
+  if (/Gender|Noun|Possess/i.test(currentCategory || '') || /obrigad|bem-vind|senhor|meu|minha|seu|sua/i.test(pt + ' ' + word[1])) return 'Watch gender: <strong>' + pt + '</strong> → ' + core + '. ' + rest;
+  if (/Greet|Courtesy|Help|Question|Address/i.test(currentCategory || '')) return 'Use it like this: <strong>' + pt + '</strong> → ' + core + '. ' + rest;
+  return 'Say <strong>' + pt + '</strong> — ' + core + '. Tap 🔊 to hear it. ' + rest;
 }
 
 function showWord() {
@@ -1162,7 +1322,7 @@ function showWord() {
   app.innerHTML = `
     <div class="fade-enter">
       <div class="header">
-        <button class="icon-btn" onclick="showHome()">←</button>
+        <button class="icon-btn" onclick="backFromWord()">←</button>
         <div class="header-title">${currentCategory}</div>
         <div style="width:42px;"></div>
       </div>
@@ -1171,7 +1331,7 @@ function showWord() {
       <div class="content-card scale-enter" style="animation-delay:0.08s;">
         <div class="pill">Word ${currentWordIndex+1}</div>
         <div class="word-display">${word[0]}</div>
-        <div class="translation-display" style="${(currentCategory==='Communicating & Essentials'||currentCategory==='Articles & Gender')?'font-size:18px;line-height:1.4':''}">${word[1]}</div>
+        <div class="translation-display" style="font-size:18px;line-height:1.4">${word[1]}</div>
         <button class="speak-btn" onclick="speak('${safe}')">🔊</button>
         <div style="display:flex;gap:12px;">
           <button class="btn-secondary" onclick="prevWord()" ${currentWordIndex===0?'disabled style="opacity:0.4;pointer-events:none;"':''}>← Prev</button>
@@ -1180,8 +1340,8 @@ function showWord() {
         </div>
       </div>
       <div class="tip-card">
-        <div class="tip-label">💡 ${currentCategory==='Brazilian Portuguese Alphabet' ? 'Pronunciation Tip' : currentCategory==='Communicating & Essentials' ? 'Communication Tip' : currentCategory==='Articles & Gender' ? 'Grammar Tip' : 'Tip'}</div>
-        <div class="tip-text">${currentCategory==='Brazilian Portuguese Alphabet' ? 'Say "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + '. Tap 🔊 to hear Brazilian pronunciation!' : currentCategory==='Communicating & Essentials' ? (word[0].includes('sou')||word[0].includes('és')||word[0].includes(' é')||word[0].includes('somos')||word[0].includes('sois')||word[0].includes('são') ? 'Verb <strong>Ser</strong> = identity/origin. Example: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[1] : word[1].includes('Gendered') ? 'Gender matters! <strong>' + word[0] + '</strong> → ' + word[1].split(' — ')[0] + ' — note -o/-a and -lo/-la!' : word[0].includes('Bom dia')||word[0].includes('Boa tarde')||word[0].includes('Boa noite')||word[0]==='Oi!'||word[0]==='Olá!'||word[0].includes('Até')||word[0].includes('Tchau')||word[0].includes('Adeus') ? 'Greeting/Farewell: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — tap 🔊!' : word[1].includes('no gender change') ? 'Polite & neutral: "<strong>' + word[0] + '</strong>" — ' + word[1].split(' — ')[0] + ' — works for everyone!' : word[1].includes('Singular')||word[1].includes('Plural') ? 'Pronoun: "<strong>' + word[0] + '</strong>" → ' + word[1].split(' — ')[0] + ' — Você = you (#1 in Brazil)!' : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!') : currentCategory==='Articles & Gender' ? (word[0]==='o' ? 'Definite Masc Singular: <strong>o [oo] = the</strong> — o livro — tap 🔊 to hear!' : word[0]==='a' ? 'Definite Fem Singular: <strong>a [ah] = the</strong> — a casa — tap 🔊!' : word[0]==='os' ? 'Definite Masc Plural: <strong>os [oosh] = the</strong> — os livros — add -s!' : word[0]==='as' ? 'Definite Fem Plural: <strong>as [ash] = the</strong> — as casas — add -s!' : word[0]==='o livro' ? 'Example: <strong>o livro</strong> ends -o → Masculine — o/um!' : word[0]==='a casa' ? 'Example: <strong>a casa</strong> ends -a → Feminine — a/uma!' : word[0]==='o dia' ? 'Exception: <strong>o dia</strong> ends -a but is MASCULINE — memorize!' : word[0]==='a foto' ? 'Exception: <strong>a foto</strong> (fotografia) keeps feminine — shortened!' : word[0]==='um' ? 'Indefinite Masc Singular: <strong>um [ũ] = a/an</strong> — um livro — any book!' : word[0]==='uma' ? 'Indefinite Fem Singular: <strong>uma [ˈũmɐ] = a/an</strong> — uma casa!' : word[0]==='uns' ? 'Indefinite Masc Plural: <strong>uns [ũs] = some</strong> — uns livros — add -s!' : word[0]==='umas' ? 'Indefinite Fem Plural: <strong>umas [ˈũmɐs] = some</strong> — umas casas!' : word[0]==='um pão' ? 'Brazilian daily: <strong>um pão</strong> — a bread — pão francês! Yummy!' : word[0]==='uma coxinha' ? 'Brazilian daily: <strong>uma coxinha</strong> — chicken croquette — tasty!' : word[0]==='o lápis' ? 'Fixed Gender: <strong>o lápis</strong> is ALWAYS masculine — never *a lápis! Says o lápis' : word[0]==='a caneta' ? 'Fixed Gender: <strong>a caneta</strong> is ALWAYS feminine — never *o caneta!' : word[0]==='o garoto' ? 'Variable Gender: <strong>o garoto</strong> — the boy — base form!' : word[0]==='a garota' ? 'Variable Gender: <strong>a garota</strong> — -o → -a change — girl!' : word[0]==='o aluno' ? 'Variable Gender: <strong>o aluno</strong> → a aluna — student m!' : word[0]==='a aluna' ? 'Variable Gender: <strong>a aluna</strong> — female student — same root!' : word[0]==='o estudante' ? 'Common of Two: <strong>o estudante</strong> — noun SAME, article shows gender!' : word[0]==='a estudante' ? 'Common of Two: <strong>a estudante</strong> — noun unchanged, only article changes!' : word[0]==='o porteiro' ? 'Table: <strong>o porteiro — the doorman</strong> — Masculine Definite (specific)!' : word[0]==='a síndica' ? 'Table: <strong>a síndica — the property manager</strong> — Feminine Definite!' : 'Think: what gender & number is "<strong>' + word[0] + '</strong>"? Choose o/a/um/uma/os/as/uns/umas correctly!') : 'Try to create a sentence using "<strong>' + word[0] + '</strong>". Practice makes perfect!'}</div>
+        <div class="tip-label">💡 Tutor explains</div>
+        <div class="tip-text">${tutorTip(word)}</div>
       </div>
     </div>`;
 }
@@ -1218,7 +1378,7 @@ function showQuiz() {
         <div class="pill">What is the meaning of?</div>
         <div class="word-display">${word[0]}</div>
         <div class="quiz-options">
-          ${options.map(opt=>`<button class="quiz-opt" style="${(currentCategory==='Communicating & Essentials'||currentCategory==='Articles & Gender')?'font-size:13px;line-height:1.3':''}" onclick="checkAnswer(this,'${opt.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">
+          ${options.map(opt=>`<button class="quiz-opt" style="font-size:13px;line-height:1.3" onclick="checkAnswer(this,'${opt.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">
             ${opt}
           </button>`).join('')}
         </div>
@@ -1243,17 +1403,19 @@ function checkAnswer(el, selected, correct) {
   }
 }
 
-// ==================== CATEGORY COMPLETE ====================
+// ==================== PART COMPLETE ====================
 function showCategoryComplete() {
   showConfetti();
+  const backFn = (currentLesson && lessonGroups[currentLesson]) ? `showLessonParts('${currentLesson.replace(/'/g,"\\'")}')` : 'showHome()';
   app.innerHTML = `
     <div class="complete-wrap">
       <span class="complete-emoji">🎉</span>
-      <h2 class="complete-title">Category Complete!</h2>
-      <p class="complete-sub">You mastered <strong>${categoryWords.length} words</strong> in <strong>${currentCategory}</strong>.</p>
+      <h2 class="complete-title">Part Complete!</h2>
+      <p class="complete-sub">You mastered <strong>${categoryWords.length} phrases</strong> in <strong>${currentCategory}</strong>.</p>
       <div style="display:flex;flex-direction:column;gap:12px;max-width:300px;margin:0 auto 24px;">
         <button class="btn-primary" onclick="startIntensePractice()">🎯 Intense Practice</button>
-        <button class="btn-secondary" onclick="showHome()">🏠 Back to Home</button>
+        <button class="btn-secondary" onclick="${backFn}">📚 Back to Lesson</button>
+        <button class="btn-secondary" onclick="showHome()">🏠 All Lessons</button>
       </div>
     </div>
     <div class="section-header"><span class="section-label">Practice Modes</span></div>
@@ -1443,9 +1605,24 @@ function getSampleSentence(word) {
     'a síndica':'_____ síndica organizou a reunião. (the manager — fem definite)',
         'Água':'Eu bebo _____ todos os dias.',
     'café':'Eu quero um _____.',
-    'pão':'Eu gosto de _____ com manteiga.'
+    'pão':'Eu gosto de _____ com manteiga.',
+    // Lessons 1-3 must-master (pre-blanked: display keeps _____)
+    'Bom dia!':'_____! Como voce esta? (morning)',
+    'De onde voce e?':'_____? Sou brasileiro. (origin)',
+    'Sou brasileiro':'_____ brasileiro. (I am Brazilian)',
+    'Quantos anos voce tem?':'_____? Tenho 14 anos. (age)',
+    'Tenho 14 anos!':'_____ 14 anos! (I am 14)',
+    'Onde voce mora?':'_____? Moro na Rua. (address)',
+    'Eu moro em Portugal':'_____ em Portugal. (I live)',
+    'Onde fica esse mercadinho?':'_____ esse mercadinho? (place)',
+    'Ele fica bem na esquina':'Ele _____ bem na esquina. (it is located)',
+    'Estou um pouco cansada':'_____ um pouco cansada. (tired)',
+    'Eu nao falo portugues':'_____ nao falo portugues. (help)',
+    'O que significa essa palavra?':'_____ essa palavra? (meaning)',
+    'Hoje e quinta-feira':'Hoje e _____. (Thursday)',
+    'Pela manha':'_____ vou ao supermercado. (morning)'
   };
-  return map[word] || `Eu uso a palavra "${word}" aqui: _____.`;
+  return map[word] || 'Diz em voz alta: _____. (tap Listen, then type what you hear)';
 }
 
 function checkFillBlank(correct) {
@@ -1469,7 +1646,7 @@ function getPronunciationPractice() {
   return `<div class="content-card scale-enter" style="animation-delay:0.1s;text-align:center;">
     <div class="pill">Pronunciation</div>
     <div class="word-display" style="margin-bottom:8px;">${word[0]}</div>
-    <div class="translation-display" style="${(currentCategory==='Communicating & Essentials'||currentCategory==='Articles & Gender')?'font-size:18px;line-height:1.4':''}">${word[1]}</div>
+    <div class="translation-display" style="font-size:18px;line-height:1.4">${word[1]}</div>
     <button class="mic-btn" onclick="startListening('${safe}')">🎤</button>
     <button class="btn-secondary" onclick="speak('${safe}')">🔊 Listen First</button>
     <p style="font-size:13px;color:var(--text-3);margin-top:16px;font-weight:500;">Tap the mic and say the word clearly</p>
@@ -1480,11 +1657,16 @@ function getPronunciationPractice() {
 function showDashboard() {
   if (!currentUser) return;
   const accuracy = currentUser.total > 0 ? Math.round((currentUser.correct/currentUser.total)*100) : 0;
-  const cats = Object.keys(database);
+  const lessons = Object.keys(lessonGroups);
+  const cats = lessons.length ? lessons.flatMap(l => (lessonGroups[l].parts || [])) : Object.keys(database);
   const catsDone = Object.keys(currentUser.categoryProgress||{}).filter(c=>(currentUser.categoryProgress[c]||0)>=100).length;
 
-  const catBars = cats.map((cat,i)=>{
-    const p = Math.round(currentUser.categoryProgress?.[cat]||0);
+  const catBars = (lessons.length ? lessons : cats).map((cat,i)=>{
+    let p, label = cat;
+    if (lessons.length) {
+      const parts = lessonGroups[cat].parts || [];
+      p = parts.length ? Math.round(parts.reduce((a,pp)=>a+Math.round(currentUser.categoryProgress?.[pp]||0),0)/parts.length) : 0;
+    } else { p = Math.round(currentUser.categoryProgress?.[cat]||0); }
     return `<div style="margin-bottom:14px;animation:fadeUp 0.4s ${0.1+i*0.05}s both;">
       <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
         <span style="font-size:13px;font-weight:700;color:var(--text-2);">${cat}</span>
@@ -1497,7 +1679,7 @@ function showDashboard() {
   const badges = [];
   if ((currentUser.streak||0)>=7) badges.push('🔥 7-Day Streak');
   if (accuracy>=90) badges.push('🎯 Accuracy Master');
-  if (catsDone>=2) badges.push('📚 Category Explorer');
+  if (catsDone>=2) badges.push('📚 Lesson Explorer');
   if ((currentUser.total||0)>=100) badges.push('💪 100 Practices');
   const badgeHTML = badges.length
     ? badges.map(b=>`<span class="achievement-badge">${b}</span>`).join('')
@@ -1518,7 +1700,7 @@ function showDashboard() {
       </div>
       <div class="section-header"><span class="section-label">Achievements</span></div>
       <div style="padding:0 16px 16px;display:flex;flex-wrap:wrap;gap:0;">${badgeHTML}</div>
-      <div class="section-header"><span class="section-label">Category Progress</span></div>
+      <div class="section-header"><span class="section-label">Lesson Progress</span></div>
       <div style="padding:0 16px 16px;">${catBars}</div>
     </div>
     ${getNavHTML('stats')}`;
