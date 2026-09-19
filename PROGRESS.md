@@ -8,7 +8,7 @@
 - [x] **Lesson 1 — Bem-vindo ao Condomínio Brasil!** (Aula 01) — 8 parts, ~140 phrases
   - 1A Greetings and Farewells (9) | 1B Courtesy (14) | 1C Ser and Pronouns (16) | 1D Alphabet A-Z (27) | 1E Nouns Gender and Number (17) | 1F Nationalities (17) | 1G Numbers 0-100 (34) | 1H Estar and Feelings (9)
   - Dialogues: Marta meets Leo, Marta and Rudinei, Spelling on the phone, Leo and Rasmus
-  - Bold must-master: Bom dia! Muito prazer bem-vinda! Desculpa muito obrigada Ate logo! Sou De onde voce e? Sou brasileiro Quantos anos? Tenho... oitenta e nove estou um pouco cansada
+  - Bold must-master: Bom dia! Muito prazer bem-vinda! Desculpa muito obrigada Até logo! Sou De onde você é? Sou brasileiro Quantos anos? Tenho... oitenta e nove estou um pouco cansada
 - [x] **Lesson 2 — Fazendo Amigos** (Aula 02) — 6 parts, ~60 phrases
   - 2A Question Words (14) | 2B Formal and Informal You (7) | 2C Possessives (11) | 2D Ter (7) | 2E Morar (9) | 2F Asking for Help (8)
   - Dialogues: Luiza welcomes Marta, Rudinei and Dona Ana, Where do you live?
