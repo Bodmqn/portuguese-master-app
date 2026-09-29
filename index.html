@@ -352,7 +352,11 @@ body.dark .navigation { background: rgba(26, 11, 46, 0.92); }
   -webkit-text-fill-color: transparent; background-clip: text;
   margin: 18px 0 10px; line-height: 1.1; letter-spacing: -1px;
   animation: scaleIn 0.3s cubic-bezier(0.22,1,0.36,1) both;
+  overflow-wrap: break-word; text-wrap: balance;
 }
+.word-display.wd-lg { font-size: 34px; letter-spacing: -0.5px; }
+.word-display.wd-md { font-size: 28px; line-height: 1.2; letter-spacing: -0.3px; }
+.word-display.wd-sm { font-size: 24px; line-height: 1.25; letter-spacing: 0; }
 .translation-display {
   font-size: 22px; font-weight: 500; color: var(--text-2);
   margin-bottom: 28px; padding-bottom: 24px; border-bottom: 2px dashed var(--border);
@@ -598,6 +602,9 @@ button, .category-card, .nav-item, .quiz-opt, .age-opt, .match-word {
 @media (max-width: 360px) {
   .hero-name { font-size: 24px; }
   .word-display { font-size: 38px; }
+  .word-display.wd-lg { font-size: 30px; }
+  .word-display.wd-md { font-size: 25px; }
+  .word-display.wd-sm { font-size: 22px; }
   .nav-item { padding: 8px 12px; min-width: 50px; }
   .cat-name { font-size: 13px; }
 }
@@ -1339,6 +1346,13 @@ function visualFor(v) {
   }
   return `<div class="visual-large">${v}</div>`;
 }
+function wordSizeClass(t) {
+  const n = (t || '').length;
+  if (n > 30) return 'wd-sm';
+  if (n > 20) return 'wd-md';
+  if (n > 12) return 'wd-lg';
+  return '';
+}
 function tutorTip(word) {
   const pt = word[0], en = (word[1] || '').split(' — ');
   const core = en[0] || '';
@@ -1371,7 +1385,7 @@ function showWord() {
       <div class="content-card scale-enter" style="animation-delay:0.08s;">
         <div class="pill">Word ${currentWordIndex+1}</div>
         ${visualFor(word[2])}
-        <div class="word-display">${word[0]}</div>
+        <div class="word-display ${wordSizeClass(word[0])}">${word[0]}</div>
         <div class="translation-display" style="font-size:18px;line-height:1.4">${word[1]}</div>
         <button class="speak-btn" onclick="speak('${safe}')">🔊</button>
         <div style="display:flex;gap:12px;">
@@ -1417,7 +1431,7 @@ function showQuiz() {
       <div class="progress-track"><div class="progress-fill-bar" style="width:${pct}%"></div></div>
       <div class="content-card scale-enter" style="animation-delay:0.08s;">
         <div class="pill">What is the meaning of?</div>
-        <div class="word-display">${word[0]}</div>
+        <div class="word-display ${wordSizeClass(word[0])}">${word[0]}</div>
         <div class="quiz-options">
           ${options.map(opt=>`<button class="quiz-opt" style="font-size:13px;line-height:1.3" onclick="checkAnswer(this,'${opt.replace(/'/g,"\\'")}','${correct.replace(/'/g,"\\'")}')">
             ${opt}
@@ -1703,7 +1717,7 @@ function getPronunciationPractice() {
   const safe = word[0].replace(/'/g,"\\'");
   return `<div class="content-card scale-enter" style="animation-delay:0.1s;text-align:center;">
     <div class="pill">Pronunciation</div>
-    <div class="word-display" style="margin-bottom:8px;">${word[0]}</div>
+    <div class="word-display ${wordSizeClass(word[0])}" style="margin-bottom:8px;">${word[0]}</div>
     <div class="translation-display" style="font-size:18px;line-height:1.4">${word[1]}</div>
     <button class="mic-btn" onclick="startListening('${safe}')">🎤</button>
     <button class="btn-secondary" onclick="speak('${safe}')">🔊 Listen First</button>
