@@ -299,6 +299,90 @@ window.APP_DB = {
     ["Assisto TV", "<span style='font-weight:800;color:var(--rv-pale)'>I watch TV — assistir</span> — Assisto TV na sala — drop EU naturally"],
     ["Eu durmo", "<span style='font-weight:800;color:var(--rv-pale)'>I sleep — dormir</span> — E hora de dormir — O to U change: durmo"],
     ["Todos os dias acordo cedo", "<span style='font-weight:800;color:var(--rv-pale)'>Every day I wake early — Mateus story</span> — de segunda a sexta routine — use EU verbs to tell YOUR day"]
+  ],
+  "Lesson 4A - Meios de Transporte": [
+    ["o ônibus", "<span style='font-weight:800;color:var(--rv-pale)'>the bus — masculine public transport</span> — say OH-nee-boos — linha 165 ou 167 — Dona Ana vai de ônibus", "🚌"],
+    ["o táxi", "<span style='font-weight:800;color:var(--rv-pale)'>the taxi — masculine individual transport</span> — say TAHK-see — cobra tarifa por distância e tempo — Se ficar tarde volte de táxi", "🚕"],
+    ["a bicicleta", "<span style='font-weight:800;color:var(--rv-pale)'>the bicycle — feminine alternative transport</span> — say bee-see-KLEH-tah — Marta Paula e Antônio vão de bicicleta — controla gases e petróleo", "🚲"],
+    ["o carro", "<span style='font-weight:800;color:var(--rv-pale)'>the car — masculine</span> — say KAH-hoo — Eles passam por toda a cidade de carro", "🚗"],
+    ["o avião", "<span style='font-weight:800;color:var(--rv-pale)'>the airplane — masculine public for long distances</span> — say ah-vee-OWNG — locomoção aérea para longas distâncias", "✈️"],
+    ["o barco", "<span style='font-weight:800;color:var(--rv-pale)'>the boat — masculine water transport</span> — say BAR-koo — barcos e balsas onde não há estrada", "🚢"],
+    ["o caminhão", "<span style='font-weight:800;color:var(--rv-pale)'>the truck — masculine cargo transport</span> — say kah-meen-YOWNG — estradas levam cargas e passageiros", "🚚"],
+    ["a caminhonete", "<span style='font-weight:800;color:var(--rv-pale)'>the pickup — feminine</span> — say kah-mee-oh-NEH-chee — menor que caminhão", "🛻"],
+    ["o metrô", "<span style='font-weight:800;color:var(--rv-pale)'>the subway — masculine public transport</span> — say meh-TROH — esteja no ponto na estação de metrô na hora", "🚇"],
+    ["a motocicleta", "<span style='font-weight:800;color:var(--rv-pale)'>the motorcycle — feminine</span> — say moh-toh-see-KLEH-tah — de moto no trânsito intenso", "🏍️"],
+    ["o trem", "<span style='font-weight:800;color:var(--rv-pale)'>the train — masculine public transport</span> — say treng — van ônibus trem metrô e avião são públicos", "🚂"],
+    ["a van", "<span style='font-weight:800;color:var(--rv-pale)'>the van — feminine public transport</span> — say vahng — Tu vais à escola de van", "🚐"],
+    ["público vs individual", "<span style='font-weight:800;color:var(--rv-pale)'>Public vs individual transport</span> — van ônibus trem metrô avião: todos usam — táxi: individual com tarifa — biggest Aula 04 distinction", "🎫"]
+  ],
+  "Lesson 4B - Pegando o Ônibus": [
+    ["Qual ônibus eu pego?", "<span style='font-weight:800;color:var(--rv-pale)'>Which bus do I take? — THE bus question</span> — Dona Ana to Tânia — pego is I-take from pegar — say PEH-goo", "🚌"],
+    ["A linha 165 ou 167", "<span style='font-weight:800;color:var(--rv-pale)'>Bus line 165 or 167 — answer model</span> — Acho que a linha 165 ou 167 não tenho certeza — sempre confirme com o motorista", "🔢"],
+    ["Aonde a senhora vai?", "<span style='font-weight:800;color:var(--rv-pale)'>Where are you going? — formal with movement</span> — Tânia to Dona Ana — Aonde adds TO — A senhora is formal you", "📍"],
+    ["Vou visitar uma amiga adoentada", "<span style='font-weight:800;color:var(--rv-pale)'>I am going to visit a sick friend</span> — Dona Ana reason — vou is I-go — amiga adoentada que me ligou", "🏠"],
+    ["A linha 167 passa aqui na rua?", "<span style='font-weight:800;color:var(--rv-pale)'>Does line 167 pass on this street? — itinerary question</span> — passa is it-passes — say PAH-sah", "🛣️"],
+    ["Passa na rua de trás!", "<span style='font-weight:800;color:var(--rv-pale)'>It passes on the back street! — itinerary answer</span> — Não passa aqui passa LÁ — rua de trás is behind street", "↩️"],
+    ["Vá até a esquina da padaria", "<span style='font-weight:800;color:var(--rv-pale)'>Go to the bakery corner — direction 1</span> — A senhora tem que ir até a esquina — até is up-to", "🥖"],
+    ["Dobre à direita", "<span style='font-weight:800;color:var(--rv-pale)'>Turn right — direction 2</span> — say DOH-bree ah dee-RAY-tah — Siga uma quadra para a parada", "➡️"],
+    ["A parada do ônibus", "<span style='font-weight:800;color:var(--rv-pale)'>The bus stop — destination</span> — Siga uma quadra para chegar à parada — parada is stop", "🚏"],
+    ["O Largo do Mercado", "<span style='font-weight:800;color:var(--rv-pale)'>Market Square — Dona Ana destination</span> — ir até o Largo do Mercado — say LAR-goo", "🏪"],
+    ["Volte antes de anoitecer!", "<span style='font-weight:800;color:var(--rv-pale)'>Come back before dark! — Tânia warning</span> — tenha cuidado viu Dona Ana — volte is come-back", "🌙"],
+    ["Se ficar tarde, volte de táxi", "<span style='font-weight:800;color:var(--rv-pale)'>If it gets late, come back by taxi — safety plan</span> — Vou deixar meu telefone na sua bolsa — Qualquer coisa me liga", "🚕"]
+  ],
+  "Lesson 4C - Verbo Ir": [
+    ["Eu vou", "<span style='font-weight:800;color:var(--rv-pale)'>I go — vou</span> — Vou visitar uma amiga — Vou tomar nota — say voh — irregular must-master", "➡️"],
+    ["Tu vais", "<span style='font-weight:800;color:var(--rv-pale)'>You go — vais tu form</span> — Tu vais à escola de van — regional south and northeast", "➡️"],
+    ["Ele vai / Ela vai", "<span style='font-weight:800;color:var(--rv-pale)'>He goes / She goes — vai</span> — Ele vai ao escritório de bicicleta — Aonde a senhora vai uses vai", "➡️"],
+    ["Nós vamos", "<span style='font-weight:800;color:var(--rv-pale)'>We go — vamos</span> — Nós vamos ao restaurante de táxi — Vamos à praia short form", "➡️"],
+    ["Eles vão", "<span style='font-weight:800;color:var(--rv-pale)'>They go — vão nasal</span> — Eles vão à praia — say vowng with tilde — hat marks plural", "➡️"],
+    ["Eu vou ao supermercado", "<span style='font-weight:800;color:var(--rv-pale)'>I go to the supermarket — ao for masculine place</span> — quem vai vai A algum lugar — ao is a plus o", "🛒"],
+    ["Tu vais à escola de van", "<span style='font-weight:800;color:var(--rv-pale)'>You go to school by van — à for feminine place</span> — à is a plus a — Vais à escola", "🚐"],
+    ["Ele vai ao escritório de bicicleta", "<span style='font-weight:800;color:var(--rv-pale)'>He goes to the office by bike — transport with DE</span> — ir DE bicicleta DE táxi DE van — DE means by", "🚲"],
+    ["Nós vamos ao restaurante de táxi", "<span style='font-weight:800;color:var(--rv-pale)'>We go to the restaurant by taxi</span> — ao restaurante masculine — de táxi is by-taxi", "🚕"],
+    ["Eles vão à praia", "<span style='font-weight:800;color:var(--rv-pale)'>They go to the beach — à praia feminine</span> — Vamos à praia Vamos à escola — feminine places take À", "🏖️"],
+    ["Aonde a senhora vai?", "<span style='font-weight:800;color:var(--rv-pale)'>Where are you going? — ir shows deslocamento</span> — o verbo ir indica deslocamento — movement TO somewhere", "📍"],
+    ["Quem vai, vai a algum lugar", "<span style='font-weight:800;color:var(--rv-pale)'>Whoever goes, goes TO a place — golden rule</span> — masculine AO feminine À — Vai ao escritório Vou ao supermercado", "💡"]
+  ],
+  "Lesson 4D - Verbo Passar": [
+    ["Eu passo", "<span style='font-weight:800;color:var(--rv-pale)'>I pass — passo</span> — Eu passo em frente à parada todo dia — say PAH-soo", "🛣️"],
+    ["Tu passas", "<span style='font-weight:800;color:var(--rv-pale)'>You pass — passas tu form</span> — Tu passas pela padaria quando vens aqui — adds S for tu", "🛣️"],
+    ["Ele passa", "<span style='font-weight:800;color:var(--rv-pale)'>He passes / It passes — passa</span> — Ele passa pelo Condomínio Brasil? — bus ele passa ali na parada", "🛣️"],
+    ["Nós passamos", "<span style='font-weight:800;color:var(--rv-pale)'>We pass — passamos</span> — Nós passamos de bicicleta por você todas as manhãs — MOS for we", "🛣️"],
+    ["Eles passam", "<span style='font-weight:800;color:var(--rv-pale)'>They pass — passam</span> — Eles passam por toda a cidade de carro — AM for they", "🛣️"],
+    ["Eu passo em frente à parada", "<span style='font-weight:800;color:var(--rv-pale)'>I pass in front of the stop every day</span> — em frente à parada de ônibus todo dia — route past a point", "🚏"],
+    ["Tu passas pela padaria", "<span style='font-weight:800;color:var(--rv-pale)'>You pass by the bakery — pela for feminine</span> — quando vens aqui em casa — pela is por plus a", "🥖"],
+    ["Ele passa pelo Condomínio?", "<span style='font-weight:800;color:var(--rv-pale)'>Does it pass by the condo? — pelo for masculine</span> — pelo is por plus o — itinerary check", "🏠"],
+    ["Nós passamos de bicicleta", "<span style='font-weight:800;color:var(--rv-pale)'>We pass by bike every morning</span> — por você todas as manhãs — DE tells transport PASSAR with DE too", "🚲"],
+    ["Quem passa, passa por", "<span style='font-weight:800;color:var(--rv-pale)'>Whoever passes, passes BY something — golden rule</span> — por algum lugar ou alguém — pelo pela pelos pelas", "💡"],
+    ["Ir é deslocamento, passar é percurso", "<span style='font-weight:800;color:var(--rv-pale)'>Ir is movement, passar is route — core distinction</span> — Aonde vai vs Por onde passa — exam trap of Aula 04", "🧭"]
+  ],
+  "Lesson 4E - Que Horas São": [
+    ["Que horas são?", "<span style='font-weight:800;color:var(--rv-pale)'>What time is it? — THE time question</span> — say kee OH-rahs sowng — always plural SÃO except 1 oclock", "⏰"],
+    ["São nove horas", "<span style='font-weight:800;color:var(--rv-pale)'>It is nine oclock — plural SÃO</span> — verbo ser for time — São nove São dez São quinze", "CLOCK|9|0"],
+    ["São nove em ponto", "<span style='font-weight:800;color:var(--rv-pale)'>It is nine sharp — em ponto</span> — exactly on the hour — say eng POHN-too", "CLOCK|9|0"],
+    ["São nove e quinze", "<span style='font-weight:800;color:var(--rv-pale)'>It is nine fifteen — e plus minutes</span> — São nove horas e quinze minutos — first half of clock", "CLOCK|9|15"],
+    ["São nove e trinta", "<span style='font-weight:800;color:var(--rv-pale)'>It is nine thirty — 24h keeps trinta</span> — quinze horas e trinta after midday — 15h30 is quinze e trinta not meia", "CLOCK|9|30"],
+    ["São nove e meia", "<span style='font-weight:800;color:var(--rv-pale)'>It is half past nine — meia for 30 in 12h</span> — 9h30 is nove e meia — Mas atenção 15h30 stays trinta minutos", "CLOCK|9|30"],
+    ["São nove e quarenta", "<span style='font-weight:800;color:var(--rv-pale)'>It is nine forty — past 30 counts up</span> — Quatro e quarenta Onze e quarenta e cinco — digital style", "CLOCK|9|40"],
+    ["São vinte para as dez", "<span style='font-weight:800;color:var(--rv-pale)'>It is twenty to ten — PARA after 30</span> — após trinta informamos o que FALTA — Vinte para as cinco", "CLOCK|9|40"],
+    ["Faltam vinte para as dez", "<span style='font-weight:800;color:var(--rv-pale)'>Twenty minutes are missing to ten — FALTAM form</span> — same as São vinte para — faltam is they-lack", "CLOCK|9|40"],
+    ["É uma hora", "<span style='font-weight:800;color:var(--rv-pale)'>It is one oclock — singular É</span> — É uma hora da manhã da tarde da madrugada — only 1 uses É", "CLOCK|1|0"],
+    ["É meio-dia", "<span style='font-weight:800;color:var(--rv-pale)'>It is noon — singular É</span> — say MAY-oo DEE-ah — 12:00 Meio dia — sun icon", "CLOCK|12|0"],
+    ["É meia-noite", "<span style='font-weight:800;color:var(--rv-pale)'>It is midnight — singular É</span> — say MAY-ah NOY-chee — 00:00 Meia noite — moon icon", "CLOCK|0|0"]
+  ],
+  "Lesson 4F - Relógio 12h e 24h": [
+    ["Três horas da manhã", "<span style='font-weight:800;color:var(--rv-pale)'>3 AM — 12h model with expression</span> — 03:00 Três horas da manhã — numeral plus da manhã", "CLOCK|3|0"],
+    ["Três horas da tarde", "<span style='font-weight:800;color:var(--rv-pale)'>3 PM — same clock different period</span> — modelo 12h usa da manhã tarde noite — 12h needs expression", "CLOCK|3|0"],
+    ["Seis horas da manhã", "<span style='font-weight:800;color:var(--rv-pale)'>6 AM — morning bus time</span> — 06:00 Seis horas da manhã — Tânia: às 13 e 30 tem um bus", "CLOCK|6|0"],
+    ["Seis horas da tarde", "<span style='font-weight:800;color:var(--rv-pale)'>6 PM — evening</span> — 18:00 dezoito horas in 24h — 12h says seis da tarde 24h says dezoito", "CLOCK|6|0"],
+    ["03:00 três horas / 15:00 quinze horas", "<span style='font-weight:800;color:var(--rv-pale)'>3 AM vs 3 PM in 24h — only numerals</span> — modelo 24h usa só numerais — 03 Três 15 Quinze", "CLOCK|3|0"],
+    ["06:00 seis horas / 18:00 dezoito horas", "<span style='font-weight:800;color:var(--rv-pale)'>6 AM vs 6 PM in 24h</span> — 06 seis 18 dezoito — transporte público usa 24h", "CLOCK|6|0"],
+    ["00:00 meia-noite / 12:00 meio-dia", "<span style='font-weight:800;color:var(--rv-pale)'>Midnight vs noon in 24h</span> — 00 Meia noite 12 Meio dia — É singular for both", "CLOCK|12|0"],
+    ["Nove e dez", "<span style='font-weight:800;color:var(--rv-pale)'>9:10 — minutes past the hour</span> — Nove horas e dez minutos — relógio digital style", "CLOCK|9|10"],
+    ["Onze e quarenta e cinco", "<span style='font-weight:800;color:var(--rv-pale)'>11:45 — late minutes still E</span> — Onze horas e quarenta e cinco minutos — then switch to PARA", "CLOCK|11|45"],
+    ["Cinco para o meio-dia", "<span style='font-weight:800;color:var(--rv-pale)'>Five to noon — PARA o singular</span> — 11:55 Cinco minutos para o meio dia — meio-dia takes O", "CLOCK|11|55"],
+    ["Dez para a uma da tarde", "<span style='font-weight:800;color:var(--rv-pale)'>Ten to one PM — PARA A singular</span> — 12:50 Dez minutos para a uma hora da tarde — uma takes A", "CLOCK|12|50"],
+    ["Vinte para as cinco da tarde", "<span style='font-weight:800;color:var(--rv-pale)'>Twenty to five PM — PARA AS plural</span> — 16:40 Vinte minutos para as cinco horas da tarde — plural takes AS", "CLOCK|4|40"]
   ]
 };
 
@@ -317,6 +401,11 @@ window.APP_GROUPS = {
     subtitle: "Places, days, routine",
     emoji: "🗺️",
     parts: ["Lesson 3A - Ficar vs Estar", "Lesson 3B - Shops and Places", "Lesson 3C - Where Adverbs", "Lesson 3D - Days and Months", "Lesson 3E - Time Adverbs", "Lesson 3F - Daily Routine"]
+  },
+  "Lesson 4 - Vamos de Ônibus ou a Pé?": {
+    subtitle: "Transport, ir and passar, telling time",
+    emoji: "🚌",
+    parts: ["Lesson 4A - Meios de Transporte", "Lesson 4B - Pegando o Ônibus", "Lesson 4C - Verbo Ir", "Lesson 4D - Verbo Passar", "Lesson 4E - Que Horas São", "Lesson 4F - Relógio 12h e 24h"]
   }
 };
 
@@ -336,5 +425,10 @@ window.APP_DIALOGS = {
     { title: "In the elevator", lines: [["Leo", "E voce? Andou fazendo compras?", "And you? Been shopping?"], ["Marta", "Fui a fruteira aqui perto e ao supermercado ali ao lado do posto.", "I went to the fruit shop near here and the supermarket beside the gas station."], ["Marta", "E onde fica esse mercadinho?", "And where is that little market?"], ["Leo", "Ele fica bem na esquina com a avenida.", "It is right on the corner with the avenue."]] },
     { title: "Thursday routine", lines: [["Leo", "Oi, filha! Onde voce estava?", "Hi, daughter! Where were you?"], ["Luiza", "Oi, pai! Hoje e quinta-feira. Eu estava no grupo de Historia.", "Hi, dad! Today is Thursday. I was in the History group."]] },
     { title: "Mateus day", lines: [["Mateus", "Todos os dias acordo bem cedo e tomo meu cafe da manha.", "Every day I wake up very early and have breakfast."], ["Mateus", "Pela manha vou ao supermercado. Vou cedo porque ele fica longe.", "In the morning I go to the supermarket. I go early because it is far."], ["Mateus", "A noite tomo banho, janto e durmo.", "At night I shower, have dinner and sleep."]] }
+  ],
+  "Lesson 4 - Vamos de Ônibus ou a Pé?": [
+    { title: "Dona Ana e Tânia — qual ônibus?", lines: [["Dona Ana", "Tânia, você sabe qual ônibus eu pego para ir até o Largo do Mercado?", "Tânia, do you know which bus I take to go to Market Square?"], ["Tânia", "Acho que a linha 165 ou 167, não tenho certeza. É bom a senhora perguntar ao motorista.", "I think line 165 or 167, not sure. Better ask the driver to confirm."], ["Dona Ana", "E a linha 167 passa aqui na rua?", "And does line 167 pass on this street?"], ["Tânia", "Não. Passa na rua de trás! Vá até a esquina da padaria e dobre à direita.", "No. It passes on the back street! Go to the bakery corner and turn right."], ["Tânia", "Siga uma quadra para chegar à parada do ônibus.", "Go one block to reach the bus stop."], ["Dona Ana", "E quais os horários que ele passa ali na parada?", "And what times does it pass at the stop?"], ["Tânia", "Às 13 horas e 30 tem um. Depois só às 15 horas. Se ficar tarde, volte de táxi!", "At 1:30pm there is one. Then only at 3pm. If it gets late, come back by taxi!"]] },
+    { title: "Marta, Antônio e Paula — bicicleta", lines: [["Marta", "Minha nossa! Que falta de respeito!", "Oh my! How disrespectful!"], ["Paula", "Nossa! Que perigo!", "Wow! How dangerous!"], ["Antônio", "Não é fácil! Nós, ciclistas, sabemos como é essa lei do mais forte no trânsito.", "It is not easy! We cyclists know this law of the strongest in traffic."], ["Marta", "Vocês costumam ir de bicicleta para todos os lugares?", "Do you usually go by bike everywhere?"], ["Paula", "O tempo todo. Para trabalhar, para passear.", "All the time. To work, to hang out."], ["Antônio", "Você deve estar sempre atento. Não pode descuidar um segundo.", "You must always stay alert. Cannot relax one second."]] },
+    { title: "A linha 167 passa aqui?", lines: [["Tânia", "Aonde a senhora vai?", "Where are you going?"], ["Dona Ana", "Vou visitar uma velha amiga adoentada.", "I am going to visit a sick old friend."], ["Tânia", "A senhora tem que ir até a esquina e dobrar à direita.", "You have to go to the corner and turn right."], ["Dona Ana", "Vou tomar nota para não esquecer.", "I will take notes so I do not forget."]] }
   ]
 };

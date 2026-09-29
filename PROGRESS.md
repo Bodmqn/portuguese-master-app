@@ -1,7 +1,7 @@
 # My Portuguese Lessons — Progress Tracker
 
 > Old 9-topic log discarded per owner request (2026-09-17). New system: **Lessons 1–18**, one per Tuesday class. Old generic categories (Alphabet, Communicating, Cafe, Restaurant, Home) deleted from runtime — Lessons only.
-> Source: e-Tec Brasil PDFs (Aula 01–03 parsed; 04–18 pending). App teaches like an English-speaking teacher. Bold in PDF = must-master (purple-bold, weighted in quiz).
+> Source: e-Tec Brasil PDFs (Aula 01–04 parsed; 05–18 pending). App teaches like an English-speaking teacher. Bold in PDF = must-master (purple-bold, weighted in quiz).
 
 ## 1. Lessons Status
 
@@ -17,7 +17,11 @@
   - 3A Ficar vs Estar (9) | 3B Shops and Places (12) | 3C Where Adverbs (9) | 3D Days and Months (12) | 3E Time Adverbs (8) | 3F Daily Routine (12)
   - Dialogues: In the elevator, Thursday routine, Mateus day
   - Bold must-master: fica Onde fica esse mercadinho? Ele fica... aqui perto ali ao lado la quinta-feira Pela manha Amanha routine verbs
-- [ ] **Lesson 4** — pending class PDF
+- [x] **Lesson 4 — Vamos de Ônibus ou a Pé?** (Aula 04) — 6 parts, ~70 phrases
+  - 4A Meios de Transporte (13) | 4B Pegando o Ônibus (12) | 4C Verbo Ir (12) | 4D Verbo Passar (11) | 4E Que Horas São (12) | 4F Relógio 12h e 24h (12)
+  - Dialogues: Dona Ana e Tânia — qual ônibus?, Marta Antônio e Paula — bicicleta, A linha 167 passa aqui?
+  - Bold must-master: ônibus táxi bicicleta qual ônibus eu pego? passa aqui na rua? vou vai vamos passa passa por Que horas são? São... É... e meia em ponto para as faltam meio-dia meia-noite
+  - Visuals: emoji transport per phrase (🚌🚕🚲...) + inline SVG clocks via CLOCK|h|m tokens (03:00 06:00 09:10 11:45 11:55 12:50 16:40 24h pairs)
 - [ ] **Lesson 5** — pending
 - [ ] **Lesson 6** — pending
 - [ ] **Lesson 7** — pending
@@ -35,9 +39,9 @@
 
 ## 2. App Structure (static, offline)
 
-- `data.js` — single source: `APP_DB` (20 parts) + `APP_GROUPS` (3 lessons) + `APP_DIALOGS` (10)
-- `index.html` — loads `data.js`, overrides old inline DB; Home = Lessons → Parts → Words; Dialogue viewer with Hear/Say; Quiz/Match/Fill/Speak reused per part; tutorTip() English explanations; dashboard aggregates by Lesson
-- `service-worker.js` — `pt-lessons-v1`
+- `data.js` — single source: `APP_DB` (26 parts) + `APP_GROUPS` (4 lessons) + `APP_DIALOGS` (13)
+- `index.html` — loads `data.js`, overrides old inline DB; Home = Lessons → Parts → Words; Dialogue viewer with Hear/Say; Quiz/Match/Fill/Speak reused per part; tutorTip() English explanations; dashboard aggregates by Lesson; visuals via optional `word[2]` (emoji or `CLOCK|h|m`) rendered by `visualFor()` + `clockSVG()`
+- `service-worker.js` — `pt-lessons-v3`
 - No backend, pt-BR TTS locked.
 
 ## 3. How to Add Lesson N (each Tuesday)
@@ -58,4 +62,4 @@
 - [ ] Dialogues list + Hear/Say per line
 - [ ] Dashboard Lesson bar moves
 
-*Maintained: 2026-09-17 — Lessons 1–3 live (20 parts). Next: Lesson 4 PDF.*
+*Maintained: 2026-09-29 — Lessons 1–4 live (26 parts). Next: Lesson 5 PDF.*

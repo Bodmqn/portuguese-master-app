@@ -357,6 +357,9 @@ body.dark .navigation { background: rgba(26, 11, 46, 0.92); }
   font-size: 22px; font-weight: 500; color: var(--text-2);
   margin-bottom: 28px; padding-bottom: 24px; border-bottom: 2px dashed var(--border);
 }
+.visual-large { font-size: 64px; line-height: 1; margin: 14px 0 4px; animation: scaleIn 0.3s ease both; }
+.clock-wrap { display: flex; justify-content: center; margin: 14px 0 4px; }
+.clock-svg { width: 150px; height: 150px; filter: drop-shadow(0 6px 16px rgba(50,23,77,0.18)); }
 
 /* ===== PROGRESS BAR ===== */
 .progress-track { height: 5px; background: var(--surface2); margin: 0 16px 4px; border-radius: 10px; overflow: hidden; }
@@ -1303,11 +1306,48 @@ function backFromWord() {
   if (currentLesson && lessonGroups[currentLesson]) return showLessonParts(currentLesson);
   return showHome();
 }
+function clockSVG(h, m) {
+  h = ((parseInt(h, 10) % 12) + 12) % 12; m = (parseInt(m, 10) % 60 + 60) % 60;
+  const cx = 75, cy = 75, R = 62;
+  const ha = (h + m / 60) * 30 - 90, ma = m * 6 - 90;
+  const rad = d => d * Math.PI / 180;
+  const hx = cx + 32 * Math.cos(rad(ha)), hy = cy + 32 * Math.sin(rad(ha));
+  const mx = cx + 48 * Math.cos(rad(ma)), my = cy + 48 * Math.sin(rad(ma));
+  let ticks = '';
+  for (let i = 0; i < 12; i++) {
+    const a = rad(i * 30), big = i % 3 === 0;
+    const x1 = cx + (big ? 54 : 57) * Math.cos(a), y1 = cy + (big ? 54 : 57) * Math.sin(a);
+    const x2 = cx + 60 * Math.cos(a), y2 = cy + 60 * Math.sin(a);
+    ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#32174D" stroke-width="${big ? 4 : 2}" stroke-linecap="round"/>`;
+  }
+  return `<div class="clock-wrap"><svg class="clock-svg" viewBox="0 0 150 150" role="img" aria-label="clock ${h}:${String(m).padStart(2,'0')}">`
+    + `<circle cx="75" cy="75" r="68" fill="#ffffff" stroke="#32174D" stroke-width="6"/>`
+    + `<text x="75" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#32174D" font-family="DM Sans,sans-serif">12</text>`
+    + `<text x="75" y="126" text-anchor="middle" font-size="16" font-weight="800" fill="#32174D" font-family="DM Sans,sans-serif">6</text>`
+    + `<text x="122" y="81" text-anchor="middle" font-size="16" font-weight="800" fill="#32174D" font-family="DM Sans,sans-serif">3</text>`
+    + `<text x="28" y="81" text-anchor="middle" font-size="16" font-weight="800" fill="#32174D" font-family="DM Sans,sans-serif">9</text>`
+    + ticks
+    + `<line x1="75" y1="75" x2="${mx.toFixed(1)}" y2="${my.toFixed(1)}" stroke="#FF6B51" stroke-width="4" stroke-linecap="round"/>`
+    + `<line x1="75" y1="75" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="#32174D" stroke-width="6" stroke-linecap="round"/>`
+    + `<circle cx="75" cy="75" r="6" fill="#32174D"/></svg></div>`;
+}
+function visualFor(v) {
+  if (!v) return '';
+  if (typeof v === 'string' && v.indexOf('CLOCK|') === 0) {
+    const p = v.split('|');
+    return clockSVG(p[1] || '12', p[2] || '0');
+  }
+  return `<div class="visual-large">${v}</div>`;
+}
 function tutorTip(word) {
   const pt = word[0], en = (word[1] || '').split(' — ');
   const core = en[0] || '';
   const rest = en.slice(1).join(' — ') || 'Practice with audio.';
-  if (/ser|est|fic|tem|mora/i.test(currentCategory || '') && /sou|és| é |somos|são|estou|está|fica|tenho|moro/i.test(pt + ' ' + word[1])) return 'Grammar in plain English: <strong>' + pt + '</strong> → ' + core + '. ' + rest;
+  if (/4C|Verbo Ir/i.test(currentCategory || '') || /\ vou|\ vai|\ vamos|\ vão|aonde/i.test(' ' + pt + ' ' + word[1])) return 'Grammar in plain English: <strong>' + pt + '</strong> → ' + core + '. Quem vai, vai A algum lugar: masculine AO, feminine À. ' + rest;
+  if (/4D|Verbo Passar/i.test(currentCategory || '') || /passo|passa|passam/i.test(pt + ' ' + word[1])) return 'Route in plain English: <strong>' + pt + '</strong> → ' + core + '. Quem passa, passa POR: pelo (masc), pela (fem). Ir = movement, passar = route. ' + rest;
+  if (/4E|4F|Hora|Relógio/i.test(currentCategory || '') || /que horas|são |é meio|é meia|para as|faltam|e meia/i.test(pt + ' ' + word[1])) return 'Time in plain English: <strong>' + pt + '</strong> → ' + core + '. SÃO for plural hours, É for 1/meio-dia/meia-noite. After :30 use PARA AS (what is missing). ' + rest;
+  if (/4A|Transporte/i.test(currentCategory || '') || /ônibus|táxi|bicicleta|carro|avião|barco|trem|metrô|van/i.test(pt + ' ' + word[1])) return 'Transport in plain English: <strong>' + pt + '</strong> → ' + core + '. Públicos (bus/train/metro/van/plane) vs individual (táxi with tarifa). Watch gender: o ônibus but a bicicleta. ' + rest;
+  if (/4B|Ônibus/i.test(currentCategory || '') || /qual ônibus|linha|parada|esquina|dobre/i.test(pt + ' ' + word[1])) return 'Use it like this: <strong>' + pt + '</strong> → ' + core + '. Dona Ana model: ask line, confirm with driver, follow esquina → direita → quadra → parada. ' + rest;
   if (/Gender|Noun|Possess/i.test(currentCategory || '') || /obrigad|bem-vind|senhor|meu|minha|seu|sua/i.test(pt + ' ' + word[1])) return 'Watch gender: <strong>' + pt + '</strong> → ' + core + '. ' + rest;
   if (/Greet|Courtesy|Help|Question|Address/i.test(currentCategory || '')) return 'Use it like this: <strong>' + pt + '</strong> → ' + core + '. ' + rest;
   return 'Say <strong>' + pt + '</strong> — ' + core + '. Tap 🔊 to hear it. ' + rest;
@@ -1330,6 +1370,7 @@ function showWord() {
       <div class="progress-track"><div class="progress-fill-bar" style="width:${pct}%"></div></div>
       <div class="content-card scale-enter" style="animation-delay:0.08s;">
         <div class="pill">Word ${currentWordIndex+1}</div>
+        ${visualFor(word[2])}
         <div class="word-display">${word[0]}</div>
         <div class="translation-display" style="font-size:18px;line-height:1.4">${word[1]}</div>
         <button class="speak-btn" onclick="speak('${safe}')">🔊</button>
@@ -1620,7 +1661,24 @@ function getSampleSentence(word) {
     'Eu nao falo portugues':'_____ nao falo portugues. (help)',
     'O que significa essa palavra?':'_____ essa palavra? (meaning)',
     'Hoje e quinta-feira':'Hoje e _____. (Thursday)',
-    'Pela manha':'_____ vou ao supermercado. (morning)'
+    'Pela manha':'_____ vou ao supermercado. (morning)',
+    // Lesson 4 must-master (Aula 04 transport, ir/passar, hours)
+    'o ônibus':'_____? Pego a linha 167. (the bus)',
+    'o táxi':'Se ficar tarde, volte de _____. (taxi)',
+    'a bicicleta':'Vamos de _____? (bike)',
+    'Qual ônibus eu pego?':'_____? Pego a linha 167. (which bus)',
+    'A linha 167 passa aqui na rua?':'_____? Passa na rua de trás. (does it pass)',
+    'Dobre à direita':'Vá até a esquina e _____. (turn right)',
+    'A parada do ônibus':'Siga até _____. (bus stop)',
+    'Eu vou':'_____ visitar uma amiga. (I go)',
+    'Eles vão à praia':'_____ à praia. (they go)',
+    'Ele passa':'Ele _____ pelo Condomínio? (it passes)',
+    'Quem passa, passa por':'Quem passa, _____ algum lugar. (passes by)',
+    'Que horas são?':'_____? São nove horas. (what time)',
+    'São nove e meia':'São _____? Nove e meia = 9:30. (half past)',
+    'São vinte para as dez':'São _____? 9:40 = twenty to ten. (twenty to)',
+    'É meio-dia':'_____? Meio-dia = noon. (noon)',
+    'É meia-noite':'_____? Meia-noite = midnight. (midnight)'
   };
   return map[word] || 'Diz em voz alta: _____. (tap Listen, then type what you hear)';
 }
